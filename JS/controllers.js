@@ -364,50 +364,22 @@ function SurveysController($scope, $http) {
 }
 
 function SurveysCountryController($scope,$http) {
-	/*if (Global.getCountries == null) {
-		$http.get('data/getCountries.json').success(function(data){
-			$scope.Countries = data.DATA;
-			Global.getCountries = data.DATA;
-			$scope.Flags = [];
-			for (var index = 0; index < $scope.Countries.length; index++) {
-				$scope.Flags.push(Global.GetCountryDataByCountry[$scope.Countries[index][0]].Flag);
-			}
-		}); 
-	} else {*/
-		$scope.Countries = Global.getCountries;
-		$scope.Flags = [];
-		for (var index = 0; index < $scope.Countries.length; index++) {
-			$scope.Flags.push(Global.getCountryDetailsByCountryCode[$scope.Countries[index][0]].Flag);
-		}
-	//}
+
+	$scope.Countries = Global.getCountries;
+	$scope.Flags = [];
+	for (var index = 0; index < $scope.Countries.length; index++) {
+		$scope.Flags.push(Global.getCountryDetailsByCountryCode[$scope.Countries[index][0]].Flag);
+	}
+	
 }
 function SurveysRecentController($scope,$http) {
-	/*if (Global.getRecentSurveys == null) {
-		$http.get('data/getRecentSurveys.json').success(function(data) {
-			$scope.Surveys = data.DATA;
-			Global.getRecentSurveys = data.DATA;
-			temp = data.DATA;
-			$scope.Surveys = [];
-			if (Global.getSurveyDetailsBySurveyId== null) {
-				$http.get('data/getSurveyDetailsBySurveyId.json').success(function(data){
-					Global.getSurveyDetailsBySurveyId= data;
-					for(var index = 0; index < temp.length; index++) {
-						$scope.Surveys.push(Global.getSurveyDetailsBySurveyId[temp[index][0]]);
-					}
-				});		
-			} else {
-				for(var index = 0; index < temp.length; index++) {
-					$scope.Surveys.push(Global.getSurveyDetailsBySurveyId[temp[index][0]]);
-				}
-			}
-		});
-	} else {*/
-		temp = Global.getRecentSurveys;
-		$scope.Surveys = [];
-		for(var index = 0; index < temp.length; index++) {
-			$scope.Surveys.push(Global.getSurveyDetailsBySurveyId[temp[index][0]]);
-		}
-	//}
+	
+	temp = Global.getRecentSurveys;
+	$scope.Surveys = [];
+	for(var index = 0; index < temp.length; index++) {
+		$scope.Surveys.push(Global.getSurveyDetailsBySurveyId[temp[index][0]]);
+	}
+	
 	$scope.recentSurveys = function(survey) {
 		if (survey != undefined)
 			return (survey.SURVEYSTATUS == 'Completed');
@@ -447,12 +419,11 @@ function SurveysRecentController($scope,$http) {
 }
 function SurveysOngoingController($scope,$http) {
 
-		temp = Global.getRecentSurveys;
-		$scope.Surveys = [];
-		for(var index = 0; index < temp.length; index++) {
-			$scope.Surveys.push(Global.getSurveyDetailsBySurveyId[temp[index][0]]);
-		}
-	//}
+	temp = Global.getRecentSurveys;
+	$scope.Surveys = [];
+	for(var index = 0; index < temp.length; index++) {
+		$scope.Surveys.push(Global.getSurveyDetailsBySurveyId[temp[index][0]]);
+	}
 	
 	
 	$scope.ongoingSurveys = function(survey) {
@@ -499,36 +470,15 @@ function SurveyInformationController($scope, $routeParams, $http) {
 	//});
 	
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getSurveyCharacteristics/?callback=JSON_CALLBACK&f=json&SurveyIds='+$routeParams.SurveyId).success(function(data,status,header,config){
-	
-	/*if (Global.getSurveyDetailsBySurveyId== null) {
-		$http.get('data/getSurveyDetailsBySurveyId.json').success(function(data){
-			Global.getSurveyDetailsBySurveyId= data;
-			$scope.data = Global.getSurveyDetailsBySurveyId[$routeParams.SurveyId];
-		});		
-	} else {*/
-		$scope.data = Global.getSurveyDetailsBySurveyId[$routeParams.SurveyId];	
-	//}
+
+	$scope.data = Global.getSurveyDetailsBySurveyId[$routeParams.SurveyId];	
 	
 	$scope.HeaderLabel = $scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR;
 		
-	/*if (Global.getSurveyCharacteristicsBySurveyId == null) {
-		$http.get('data/getSurveyCharacteristicsBySurveyId.json').success(function(data){
-			$scope.Characteristics = data[$routeParams.SurveyId];
-			Global.getSurveyCharacteristicsBySurveyId = data;
-		});
-	} else {*/
-		$scope.Characteristics = Global.getSurveyCharacteristicsBySurveyId[$routeParams.SurveyId];
-	//}	
+	$scope.Characteristics = Global.getSurveyCharacteristicsBySurveyId[$routeParams.SurveyId];
 	
-	/*if (Global.getPublicationsBySurveyId == null) {
-		$http.get('data/getPublicationsBySurveyId.json').success(function(data){
-			$scope.Publications = data[$routeParams.SurveyId];
-			Global.getPublicationsBySurveyId = data;
-		});
-	} else {*/
-		$scope.Publications = Global.getPublicationsBySurveyId[$routeParams.SurveyId];
-	//}
-
+	$scope.Publications = Global.getPublicationsBySurveyId[$routeParams.SurveyId];
+	
 	// Set the default selected tab
 	$scope.Information = 'selectedOption';
 	// Set the style for the selected tab
