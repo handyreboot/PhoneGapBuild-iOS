@@ -4,7 +4,13 @@
 	id="com.USAID.MeasureDHS" 
 	version="1.0">
 
-	<!-- id="com.icfi.MeasureDHS" -->
+	<!-- Development Package Name -->
+	<!-- id="com.USAID.MeasureDHS" -->
+
+	<!-- Production Package Name -->
+	<!-- id="com.icfi.MeasureDHS" -->	
+
+
 	<name>measureDHS</name>
 	<description>
 		Quick access to survey information and statistics from the USAID-funded Demographic and Health Surveys.  MEASURE DHS has carried 		out more than 300 surveys in 90+ countries. The surveys collect information on fertility and family planning, maternal and child health, child mortality, nutrition, malaria, HIV/AIDS, and many other health topics. MEASURE DHS Mobile provides indicator tables, charts, maps, and trend data from the Demographic and Health Surveys,  as well as survey information, and quick links to survey-related publications.

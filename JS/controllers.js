@@ -4,37 +4,6 @@ function CountryQuickStatsController($scope,$http) {
 	//$http.jsonp('http://statcompiler.blueraster.net/API/DHS/getCountries/?callback=JSON_CALLBACK&f=json').success(function(data, status, headers, config){
 	//	$scope.Countries = data.DATA;
 	//});
-		
-		
-	/*local_resources.getJsonByName(Global.Database,"getCountries",function(result){
-		$scope.Countries = result.DATA;
-		$scope.Flags = [];
-		for (var index = 0; index < $scope.Countries.length; index++) {
-			$scope.Flags.push(Global.GetCountryDataByCountry[$scope.Countries[index][0]].Flag);
-		}
-	});	*/
-	
-	
-		
-		
-	//if (Global.getCountries == null) {
-	/*	$http.get('data/getCountries.json').success(function(data){
-			local_resources.getJsonByName(Global.Database,"getCountries",function(result){
-				$scope.Countries = data.DATA;
-				$scope.Flags = [];
-				for (var index = 0; index < $scope.Countries.length; index++) {
-				$scope.Flags.push(Global.GetCountryDataByCountry[$scope.Countries[index][0]].Flag);
-			}
-			});
-			//$scope.Countries = data.DATA;
-			//Global.getCountries = data.DATA;
-			//$scope.Flags = [];
-			//for (var index = 0; index < $scope.Countries.length; index++) {
-				//$scope.Flags.push(Global.GetCountryDataByCountry[$scope.Countries[index][0]].Flag);
-			//}
-		}); 
-	}*/
-	
 	$scope.Countries = Global.getCountries;
 	$scope.Flags = [];
 	for (var index = 0; index < $scope.Countries.length; index++) {
@@ -49,33 +18,12 @@ function CountriesHomepageController($scope, $routeParams, $http) {
 	$scope.previous = $routeParams.Previous;
 	$scope.Flag = Global.getCountryDetailsByCountryCode[$routeParams.CountryId].Flag;
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getCountryData/?CountryCode='+$routeParams.CountryId+ '&callback=JSON_CALLBACK&f=json').success(function(data,status,headers,config){
-	/*if (Global.getSurveyDetailsBySurveyId== null) {
-		$http.get('data/getSurveyDetailsBySurveyId.json').success(function(data){
-			Global.getSurveyDetailsBySurveyId= data;
-		});		
+
+	temp = Global.getCountryDetailsByCountryCode[$routeParams.CountryId].Surveys;
+	$scope.Surveys = [];
+	for(var index = 0; index < temp.length; index++) {
+		$scope.Surveys.push(Global.getSurveyDetailsBySurveyId[temp[index]]);
 	}
-	if (Global.GetCountryDataByCountry == null) {
-		$http.get('data/getCountryDetailsByCountryCode.json').success(function(data){
-			Global.GetCountryDataByCountry = data;
-			var temp = data[$routeParams.CountryId].Surveys;
-			$scope.Surveys = [];
-			for(var index = 0; index < temp.length; index++) {
-				$scope.Surveys.push(Global.getSurveyDetailsBySurveyId[temp[index]]);
-			}
-		});
-	} else {*/
-			temp = Global.getCountryDetailsByCountryCode[$routeParams.CountryId].Surveys;
-			$scope.Surveys = [];
-			for(var index = 0; index < temp.length; index++) {
-				$scope.Surveys.push(Global.getSurveyDetailsBySurveyId[temp[index]]);
-			}
-	//}
-	
-	
-	
-	
-	
-	
 	
 	if (Global.getDataByCountry[$routeParams.CountryId]) {
 		var any = Math.floor(Math.random()*Global.getDataByCountry[$routeParams.CountryId].FACTS.length);
@@ -116,13 +64,6 @@ function CountriesIndicatorsController($scope, $routeParams, $http) {
 
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getDataByCountry/?callback=JSON_CALLBACK&f=json').success(function(data,status,headers,config){
 	
-	/*if (Global.getDataByCountry == null) {
-		$http.get('data/dataByCountry.json').success(function(data){
-			Global.getDataByCountry = data;
-		});
-	}
-	*/
-	//$http.get('data/dataByCountry.json').success(function(data){
 		$scope.CountryData = Global.getDataByCountry[$routeParams.CountryId];
 		if ($scope.CountryData != undefined) {
 			$scope.indicatorYears = $scope.CountryData.YEARS;
@@ -146,22 +87,13 @@ function CountriesIndicatorsController($scope, $routeParams, $http) {
 			$scope.dataSize = 'none';
 		}
 		
-		$scope.Flag = Global.getCountryDetailsByCountryCode[$routeParams.CountryId].Flag;
-	//});
+	$scope.Flag = Global.getCountryDetailsByCountryCode[$routeParams.CountryId].Flag;
 	
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getQuickStats/?callback=JSON_CALLBACK&f=json').success(function(data,status,headers,config){
 	//	$scope.indicatorLabels = data.DATA;
 	//});
 	
-	/*if (Global.getQuickStats == null) {
-		$http.get('data/getQuickStats.json').success(function(data){
-			$scope.indicatorLabels = data.DATA;
-			Global.getQuickStats = data.DATA;
-		});
-	} else {*/
-	$scope.indicatorLabels = Global.getQuickStats
-	//}
-	
+	$scope.indicatorLabels = Global.getQuickStats	
 
 	$scope.CountryName = $routeParams.CountryName;
 	$scope.CountryId = $routeParams.CountryId	;
@@ -204,18 +136,8 @@ function IndicatorListController($scope,$http) {
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getQuickStats/?callback=JSON_CALLBACK&f=json').success(function(data,status,headers,config){
 	//	$scope.Indicators = data.DATA;
 	//});
-	/*local_resources.getJsonByName(Global.Database,"getQuickStats",function(result){
-		$scope.Indicators = result.DATA;
-	});*/
-	
-/*	if (Global.getQuickStats == null) {
-		$http.get('data/getQuickStats.json').success(function(data){
-			$scope.Indicators = data.DATA;
-			Global.getQuickStats = data.DATA;
-		});
-	} else {*/
-		$scope.Indicators = Global.getQuickStats; //Global.getQuickStats
-	//}
+	$scope.Indicators = Global.getQuickStats; //Global.getQuickStats
+
 }
 
 function IndicatorCountriesController($scope,$http,$routeParams,$timeout) {
@@ -223,14 +145,7 @@ function IndicatorCountriesController($scope,$http,$routeParams,$timeout) {
 	//	$scope.IndicatorValues = data[$routeParams.IndicatorId].DATA;
 	//});
 
-	/*if (Global.getDataByIndicator == null) {
-		$http.get('data/getDataByIndicator.json').success(function(data){
-			$scope.IndicatorValues = data[$routeParams.IndicatorId];
-			Global.getDataByIndicator = data;
-		});
-	} else {*/
 	$scope.IndicatorValues = Global.getDataByIndicator[$routeParams.IndicatorId]; 
-	//}
 	$scope.Flags = Global.getCountryDetailsByCountryCode;
 	
 	$scope.IndicatorId = $routeParams.IndicatorId;
@@ -901,30 +816,12 @@ function HomePageController($http, $scope, $timeout) {
 	});
 
 	mySlider.setup();
-	//mySlider.begin();
 	
 	$timeout(function() {
 		var viewportHeight = parseInt($(window).innerHeight(),10);
 		var newHeight = viewportHeight-158;
 		$("<style>.swipe li { height: "+newHeight+"px; }</style>" ).appendTo( "head" );
 	});		
-
-	/*if (Global.getSurveyDetailsBySurveyId== null) {
-		$http.get('data/getSurveyDetailsBySurveyId.json').success(function(data){
-			Global.getSurveyDetailsBySurveyId= data;
-		});		
-	}
-	
-	if (Global.getDataByCountry == null) {
-		$http.get('data/getDataByCountry.json').success(function(data){
-			Global.getDataByCountry = data;
-		});
-	}
-	if (Global.GetCountryDataByCountry == null) {
-		$http.get('data/getCountryDetailsByCountryCode.json').success(function(data){
-			Global.GetCountryDataByCountry = data;
-		});
-	}*/
 	
 	// Check if I am online or Offline
 	Online = 'Offline';
