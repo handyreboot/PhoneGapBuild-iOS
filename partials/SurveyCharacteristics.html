@@ -1,0 +1,17 @@
+<header class="mainHeaderView">
+	    <h3 ng-class="{true:'SurveyTitle',false:'SurveyTitleSmall'}[Header.length < 15]">{{Header}} {{Type}}</h3>
+    	<div id="ios-arrow-left" onclick='backButton("{{backUrl}}")' title="Back"></div>
+</header> 
+  
+  <div class='surveyCharacteristicsBody'>
+  	<div class='surveySectionHeader'>
+  		<span class='surveySectionTitle'>Survey Characteristics</span>
+  	</div>
+  	<div>
+  		<ul>
+  			<li ng-repeat='item in Characteristics'>
+  				{{item[1]}}
+  			</li>
+  		</ul>
+  	</div>
+  </div>	

@@ -1,0 +1,10 @@
+<header class="mainHeaderView">
+			<a class='indicatorInfo' href="#/Home/IndicatorInfo/List" style='position:absolute;top:0;right:5px;'></a>
+	    <h3>Indicators</h3>
+    	<div id="ios-arrow-left" onclick="backButton('#/Home')" title="Back"></div>
+</header>    
+<ul class="primary-menu simple">
+	<li ng-repeat="item in Indicators">
+		<a href='#/Home/Indicators/{{item[0]}}/{{item[1]}}' ng-class="{true:'IndicatorLabel',false:'otherIndicatorLabel'}[item[0].length < 90]">{{item[0]}}</a>
+	</li>
+</ul>

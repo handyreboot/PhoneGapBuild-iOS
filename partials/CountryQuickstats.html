@@ -1,0 +1,13 @@
+<header class="mainHeaderView">
+    	<h3>Quickstats</h3>
+    	<div id="ios-arrow-left" onclick="backButton('#/Home')" title="Back"></div>
+</header>    
+    
+<ul id="countries" class="tableBody">
+  <li ng-repeat="country in Countries" onclick='changeView("Countries/{{country[3]}}/{{country[0]}}/Quickstats/Country")'>
+    <!--<img class='tableImage' height="30px" width='40px;' ng-src="img/flags/{{country[0]}}.png">-->
+    <img class='tableImage' ng-src="data:image/png;base64,{{Flags[$index]}}" height="30" width="40">
+    <span class="countryLabel" >{{country[3]}}</span>
+ 		<span class="clear"></span>
+  </li>
+</ul>

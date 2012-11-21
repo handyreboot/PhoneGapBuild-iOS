@@ -1,0 +1,162 @@
+<header class="mainHeaderView">
+    	<div id="ios-arrow-left" onclick="backButton('#/Home/Indicators')" title="Back"></div>
+    	
+		<ul class="tabs">
+	    	<li ng-click="setClass(0)" ng-class='chart'>Chart</li>
+	    	<li ng-click="setClass(1)" ng-class='table'>Table</li> 
+		</ul>
+		
+		<div id="button" title="Sort" ng-click="togglePopover()">Sort
+		<ul class="popover" ng-class='PopupSort'>
+			<li><input name="hightolow" id="hightolow" type="radio" ng-model='sorter' value='A' ng-change='changeSortDesriptor(this)'><label for="hightolow">World (Desc)</label></li>
+			<li><input name="region" id="region" type="radio" ng-model='sorter' value='D' ng-change='changeSortDesriptor(this)'><label for="region">Region (Desc)</label></li>
+			<li><input name="lowtohigh" id="lowtohigh" type="radio" ng-model='sorter' value='B' ng-change='changeSortDesriptor(this)'><label for="lowtohigh">World (Asc)</label></li>
+			<li><input name="region" id="region" type="radio" ng-model='sorter' value='E' ng-change='changeSortDesriptor(this)'><label for="region">Region (Asc)</label></li>
+			<li><input name="alphabetical" id="alphabetical" type="radio" ng-model='sorter' value='C' ng-change='changeSortDesriptor(this)'><label for="alphabetical">World (Alpha)</label></li>
+			<li><input name="alphabetical" id="alphabetical" type="radio" ng-model='sorter' value='F' ng-change='changeSortDesriptor(this)'><label for="alphabetical">Region (Alpha)</label></li>
+		</ul>
+		</div>
+</header>    
+<div id="indicators">  
+	<h1 id="indicatorTitle" class="indicator-title" ng-bind="IndicatorLabel"></h1>
+	
+    <ng-switch on='CurrentView'>
+    	<!-- TABLE VIEW -->
+      <div class='tableBodyIndicator' ng-switch-when="Table">
+    		<div class='surveySectionTitle'>Country<span>Total</span></div>
+        <div ng-repeat="item in IndicatorValues | filter: missingData | orderBy:chartOrdering:reverse" class="tableCell">
+        <a href="#/Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}">
+        	<img class='tableImage' height="30px" width='40px;' ng-src="data:image/png;base64,{{Flags[item.countryCode].Flag}}">
+        	<span ng-cloak ng-class="{true:'indicatorCountryLabelSmall',false:'indicatorCountryLabel'}[item.label.length > 20]">{{item.label}}</span>
+        	<div ng-cloak class='indicatorCountrySubLabel'>{{item.year}}</div>
+        	<span ng-cloak class='indicatorValueLabel'>{{item.val | removeDecimals}}</span>
+        	<span class="clear"></span>
+        </a>	
+        </div>
+      </div>
+      <!-- END TABLE VIEW -->
+      <!-- TABLE REGION VIEW -->
+    	<div ng-switch-when='TableRegion'>
+    			<!-- Region 1 -->
+    			<div class='surveySectionTitle'>Country<span>Total</span></div>
+    			<span class='surveySectionTitle'>Sub Saharan Africa</span>
+    			<div ng-repeat="item in IndicatorValues | filter: region1 | orderBy:chartOrdering:reverse" class="tableCell" >
+    			<a href="#/Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}">
+    				<img class='tableImage' height="30px" width='40px;' ng-src="data:image/png;base64,{{Flags[item.countryCode].Flag}}">
+    				<span ng-cloak ng-class="{true:'indicatorCountryLabelSmall',false:'indicatorCountryLabel'}[item.label.length > 20]">{{item.label}}</span>
+    				<div ng-cloak class='indicatorCountrySubLabel'>{{item.year}}</div>
+    				<span ng-cloak class='indicatorValueLabel'>{{item.val | removeDecimals}}</span>
+    				<span class="clear"></span>
+    			</a>	
+    			</div>
+    			<!-- Region 1 -->
+    			<!-- Region 2 -->
+    			<span class='surveySectionTitle'>North Africa/ West Asia/ Europe</span>
+    			<div ng-repeat="item in IndicatorValues | filter: region2 | orderBy:chartOrdering:reverse" class="tableCell" >
+    			<a href="#/Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}">
+    				<img class='tableImage' height="30px" width='40px;' ng-src="data:image/png;base64,{{Flags[item.countryCode].Flag}}">
+    				<span ng-cloak ng-class="{true:'indicatorCountryLabelSmall',false:'indicatorCountryLabel'}[item.label.length > 20]">{{item.label}}</span>
+    				<div ng-cloak class='indicatorCountrySubLabel'>{{item.year}}</div>
+    				<span ng-cloak class='indicatorValueLabel'>{{item.val | removeDecimals}}</span>
+    				<span class="clear"></span>
+    			</a>
+    			</div>
+    			<!-- Region 2 -->
+    			<!-- Region 3 -->
+    			<span class='surveySectionTitle'>Central Asia</span>
+    			<div ng-repeat="item in IndicatorValues | filter: region3 | orderBy:chartOrdering:reverse" class="tableCell" >
+    			<a href="#/Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}">
+    				<img class='tableImage' height="30px" width='40px;' ng-src="data:image/png;base64,{{Flags[item.countryCode].Flag}}">
+    				<span ng-cloak ng-class="{true:'indicatorCountryLabelSmall',false:'indicatorCountryLabel'}[item.label.length > 20]">{{item.label}}</span>
+    				<div ng-cloak class='indicatorCountrySubLabel'>{{item.year}}</div>
+    				<span ng-cloak class='indicatorValueLabel'>{{item.val | removeDecimals}}</span>
+    				<span class="clear"></span>
+    			</a>	
+    			</div>
+    			<!-- Region 3 -->
+    			<!-- Region 4 -->
+    			<span class='surveySectionTitle'>South & Southeast Asia</span>
+    			<div ng-repeat="item in IndicatorValues | filter: region4 | orderBy:chartOrdering:reverse" class="tableCell" >
+    			<a href="#/Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}">
+    				<img class='tableImage' height="30px" width='40px;' ng-src="data:image/png;base64,{{Flags[item.countryCode].Flag}}">
+    				<span ng-cloak ng-class="{true:'indicatorCountryLabelSmall',false:'indicatorCountryLabel'}[item.label.length > 20]">{{item.label}}</span>
+    				<div ng-cloak class='indicatorCountrySubLabel'>{{item.year}}</div>
+    				<span ng-cloak class='indicatorValueLabel'>{{item.val | removeDecimals}}</span>
+    				<span class="clear"></span>
+    			</a>
+    			</div>
+    			<!-- Region 4 -->
+    			<!-- Region 5 -->
+    			<span class='surveySectionTitle'>Latin America and the Caribbean</span>
+    			<div ng-repeat="item in IndicatorValues | filter: region5 | orderBy:chartOrdering:reverse" class="tableCell" >
+    			<a href="#/Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}">
+    				<img class='tableImage' height="30px" width='40px;' ng-src="data:image/png;base64,{{Flags[item.countryCode].Flag}}">
+    				<span ng-cloak ng-class="{true:'indicatorCountryLabelSmall',false:'indicatorCountryLabel'}[item.label.length > 20]">{{item.label}}</span>
+    				<div ng-cloak class='indicatorCountrySubLabel'>{{item.year}}</div>
+    				<span ng-cloak class='indicatorValueLabel'>{{item.val | removeDecimals}}</span>
+    				<span class="clear"></span>
+    			</a>	
+    			</div>
+    			<!-- Region 5 -->
+    	</div>
+    	<!-- END TABLE REGION VIEW -->
+      <!-- CHART VIEW -->
+      <div ng-switch-when="Chart">
+    		<div class='chartBodyIndicator' id="charts">
+    			<div ng-repeat="item in IndicatorValues | filter: missingChartData | orderBy:chartOrdering:reverse" class="chartCell indicatorBody" onclick='changeView("Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}")'>
+    					<div class='chartLabelLeft'>{{item.label}} {{item.year}}</div><div class='chartLabelRight'>{{item.val | removeDecimals}}</div>
+    					<div style='width:87%;height:100%;'>
+    						<div style='height:100%;width:{{item.chartvalue | number:1}}%;' class='{{setColor($index)}}'></div>
+    					</div>
+    					<span class="clear"></span>
+    			</div>
+    		</div>
+    	</div>		
+    	<!-- END CHART VIEW -->
+    	<!-- CHART REGION VIEW -->
+    	<div ng-switch-when='ChartRegion'>
+    			<!-- Region 1 -->
+    			<span class='surveySectionTitle'>Sub Saharan Africa</span>
+    			<div ng-repeat="item in IndicatorValues | filter: region1 | orderBy:chartOrdering:reverse" class="chartCell indicatorBody" onclick='changeView("Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}")'>
+    					<div class='chartLabelLeft'>{{item.label}} {{item.year}}</div><div class='chartLabelRight'>{{item.val | removeDecimals}}</div>
+    					<div style='width:87%;height:100%;'><div style='height:100%;width:{{item.chartvalue | number:1}}%;' class='{{setColor($index)}}'></div></div>
+    					<span class="clear"></span>
+    			</div>
+    			<!-- Region 1 -->
+    			<!-- Region 2 -->
+    			<span class='surveySectionTitle'>North Africa/ West Asia/ Europe</span>
+    			<div ng-repeat="item in IndicatorValues | filter: region2 | orderBy:chartOrdering:reverse" class="chartCell indicatorBody" onclick='changeView("Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}")'>
+    					<div class='chartLabelLeft'>{{item.label}} {{item.year}}</div><div class='chartLabelRight'>{{item.val | removeDecimals}}</div>
+    					<div style='width:87%;height:100%;'><div style='height:100%;width:{{item.chartvalue | number:1}}%;' class='{{setColor($index)}}'></div></div>				
+    					<span class="clear"></span>
+    			</div>
+    			<!-- Region 2 -->
+    			<!-- Region 3 -->
+    			<span class='surveySectionTitle'>Central Asia</span>
+    			<div ng-repeat="item in IndicatorValues | filter: region3 | orderBy:chartOrdering:reverse" class="chartCell indicatorBody" onclick='changeView("Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}")'>
+    					<div class='chartLabelLeft'>{{item.label}} {{item.year}}</div><div class='chartLabelRight'>{{item.val | removeDecimals}}</div>
+    					<div style='width:87%;height:100%;'><div style='height:100%;width:{{item.chartvalue | number:1}}%;' class='{{setColor($index)}}'></div></div>				
+    					<span class="clear"></span>
+    			</div>
+    			<!-- Region 3 -->
+    			<!-- Region 4 -->
+    			<span class='surveySectionTitle'>South & Southeast Asia</span>
+    			<div ng-repeat="item in IndicatorValues | filter: region4 | orderBy:chartOrdering:reverse" class="chartCell indicatorBody" onclick='changeView("Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}")'>
+    					<div class='chartLabelLeft'>{{item.label}} {{item.year}}</div><div class='chartLabelRight'>{{item.val | removeDecimals}}</div>
+    					<div style='width:87%;height:100%;'><div style='height:100%;width:{{item.chartvalue | number:1}}%;' class='{{setColor($index)}}'></div></div>
+    					<span class="clear"></span>
+    			</div>
+    			<!-- Region 4 -->
+    			<!-- Region 5 -->
+    			<span class='surveySectionTitle'>Latin America and the Caribbean</span>
+    			<div ng-repeat="item in IndicatorValues | filter: region5 | orderBy:chartOrdering:reverse" class="chartCell indicatorBody" onclick='changeView("Home/Countries/{{item.label}}/{{item.countryCode}}/TableChart/{{IndicatorLabel}}/{{IndicatorId}}")'>
+    					<div class='chartLabelLeft'>{{item.label}} {{item.year}}</div><div class='chartLabelRight'>{{item.val | removeDecimals}}</div>
+    					<div style='width:87%;height:100%;'><div style='height:100%;width:{{item.chartvalue | number:1}}%;' class='{{setColor($index)}}'></div></div>				
+    					<span class="clear"></span>	
+    			</div>
+    			<!-- Region 5 -->
+    	</div>
+    	<!-- END CHART REGION VIEW -->
+    </ng-switch><!-- End Switch -->  
+     
+</div><!-- End Indicators Div -->     

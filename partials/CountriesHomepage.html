@@ -1,0 +1,19 @@
+<header class="mainHeaderView">
+  <h3 ng-class="{true:'headerViewTitleCountriesOnlySmall',false:'headerViewTitleCountriesOnly'}[CountryLabel.length >= 20]" ng-bind="CountryLabel"></h3> 
+  <img class='headerViewImage' height="30px" width='40px;' ng-src="data:image/png;base64,{{Flag}}">
+  <div id="ios-arrow-left" onclick='backButton("{{prevUrl}}")' title="Back"></div>
+</header>
+<div class="facts">
+	<h1>Did You Know ?</h1>
+	<p ng-bind='Fact'></p>
+</div>
+<ul class="primary-menu">
+	<li><a href='#/{{nextUrl}}'>Quickstats</a></li>
+	<li class="menu-parent">Surveys
+		<ul>
+			<li ng-repeat='item in Surveys' onclick='changeView("{{surveyUrl}}/{{item.SURVEYID}}/{{surveyUrl2}}")'>
+			<span>{{item.COUNTRYNAME}} {{item.SURVEYTYPE}} {{item.SURVEYYEAR}}</span>
+			</li>
+		</ul>
+	</li>
+</ul>

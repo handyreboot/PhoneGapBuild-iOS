@@ -1,0 +1,20 @@
+<header class="mainHeaderView">
+	<h3>Recent</h3>
+ 	<div id="ios-arrow-left" onclick="backButton('#/Home/Surveys')" title="Back"></div>
+ 	<div id="button" title="Sort" ng-click="togglePopover()">Sort
+		<ul class="popoverSurveys">
+			<li><input name="hightolow" id="hightolow" type="radio" ng-model='sorter' value='A' ng-change='changeSortDesriptor(this)'><label for="hightolow">Newest</label></li>
+			<li><input name="lowtohigh" id="lowtohigh" type="radio" ng-model='sorter' value='B' ng-change='changeSortDesriptor(this)'><label for="lowtohigh">Oldest</label></li>
+			<li><input name="alphabetical" id="alphabetical" type="radio" ng-model='sorter' value='C' ng-change='changeSortDesriptor(this)'><label for="alphabetical">Alphabetical</label></li>
+		</ul>
+	</div>
+</header>
+
+<ul class='tableBody'>
+	<li ng-repeat='survey in Surveys | filter: recentSurveys | orderBy:ordering:reverse' onclick='changeView("Home/Surveys/{{survey.COUNTRYNAME}}/{{survey.COUNTRYCODE}}/{{survey.SURVEYID}}/Recent")'>
+		<div>
+		<span class="indicatorCountryLabel" ng-class="{true:'individualSurvey',false:'individualSurveyShort'}[survey[0].length < 30]">{{survey.COUNTRYNAME}} {{survey.SURVEYTYPE}} {{survey.SURVEYYEAR}}</span>
+		<span class="indicatorCountrySubLabel">{{survey.SURVEYSTART}} - {{survey.SURVEYEND}}</span>
+		</div>
+	</li>
+</ul>

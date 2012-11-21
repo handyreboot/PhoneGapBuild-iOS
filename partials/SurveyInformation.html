@@ -1,0 +1,91 @@
+<header class="mainHeaderView">
+	<div id="ios-arrow-left" onclick='backButton("{{backUrl}}")' title="Back"></div>
+	
+	<ul id="info-pub" class="tabs">
+	  <li ng-click="setClass(0)" ng-class='Information'>Information</li>
+	  <li ng-click="setClass(1)" ng-class='Publication'>Publications</li>
+	</ul>
+</header>
+<h1 class="indicator-title" ng-class="{true:'SurveyTitle',false:'SurveyTitleSmall'}[data[5].length < 15]" ng-bind='HeaderLabel'></h1>
+
+<ng-switch on='Information'>
+  	
+  	<div class='surveyInfoBody' ng-switch-when='selectedOption'>
+  		
+  		<span class='surveySectionTitle'>Survey Information</span>
+  		
+  		<div>
+  			<div class='informationDiv'>
+  				<span class='infoLabel'>Country:</span>
+  				<span class='infoValue'>{{data.COUNTRYNAME}}</span>
+  			</div>
+  			<div class='informationDiv'>
+  				<span class='infoLabel'>Implementing Partner:</span>
+  				<span class='infoValue'>{{data.IMPLEMENTINGPARTNER}}</span>
+  			</div>
+  			<div class='informationDiv'>
+  				<span class='infoLabel'>Survey Type:</span>
+  				<span class='infoValue'>{{data.SURVEYTYPE}}</span>
+  			</div>
+  			<div class='informationDiv'>
+  				<span class='infoLabel'>Sample Size</span>
+  				<table style="margin-left:10px;">
+  					<tr>
+  						<td style='font: 14px/15px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif;'>Households:</td>
+  						<td style='font-size: 14px;color:#53507B;'>{{data.SAMPLE_HH}}</td>
+  					</tr>
+  					<tr>
+  						<td style='font: 14px/15px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif;'>Women:</td>
+  						<td style='font-size: 14px;color:#53507B;'>{{data.SAMPLE_WOMEN}}</td>
+  					</tr>
+  					<tr>
+  						<td style='font: 14px/15px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif;'>Men:</td>
+  						<td style='font-size: 14px;color:#53507B;'>{{data.SAMPLE_MEN}}</td>
+  					</tr>
+  				</table>
+  			</div>
+  			<div class='informationDiv'>
+  				<span class='infoLabel'>Status:</span>
+  				<span class='infoValue'>{{data.SURVEYSTATUS}}</span>
+  			</div>
+  			<div class='informationDiv'>
+  				<span class='infoLabel'>Field Work:</span>
+  				<span class='infoValue'>{{data.SURVEYSTART}} - {{data.SURVEYEND}}</span>
+  			</div>
+  			<div class='informationDiv'>
+  				<span class='infoLabel'>Survey Datasets:</span>
+  				<span class='infoValue'>{{data.AVAILABILITY}}</span>
+  			</div>
+  			
+  			<span class='surveySectionTitle'>Survey Characteristics</span>
+  			
+  			<div>
+	  			<ul>
+		  			<li ng-repeat='item in Characteristics'>
+			  			{{item.Label}}
+			  		</li>
+			  	</ul>
+			  	<br class="clear" />
+			  </div>
+  		</div>
+  	</div>
+  	<div class='surveyInfoBody' ng-switch-when=''>
+  		<span class='surveySectionTitle'>Survey Publications</span>
+  		<!-- Online -->
+  		<div ng-class="{true:'pubsShow',false:'pubsHide'}[Online == 'Online']">
+	  			<ul class='noBullets'>
+		  			<li ng-repeat='item in Publications' style='padding-bottom: 5px;margin-right: -30px !important;' onclick='window.open("{{item.url}}")'>
+		  				<span><img alt='{{item.pdfTitle}}' src='{{item.thumbnail}}' height='110px;'/></span>
+		  				<span><a href="{{item.url}}" target="_blank">{{item.title}}</a></span>
+		  				<!-- <a href="javascript:void(0)" target="_blank" onclick="navigator.app.loadUrl('http://www.google.com', { openExternal:true } ); ">{{item.title}}</a>-->
+		  			</li>			  			
+			  	</ul>
+			</div>
+			<!-- Offline -->
+			<div ng-class="{true:'pubsShow',false:'pubsHide'}[Online == 'Offline']">
+				<div class='facts'>This Feature is currently only available when the device is connected to the internet.</div>
+			</div>
+			
+  	</div>
+  	
+</ng-switch>

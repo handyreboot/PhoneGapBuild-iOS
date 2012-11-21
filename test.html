@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en' ng-app='measureDHS'>
+	<head>
+	<title>MEASURE DHS</title>
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="initial-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta charset='utf-8'> 
+	<link rel="apple-touch-icon-precomposed" href="img/apple-mobile-icon.png" />
+	
+	<script src="libs/angular.min.js"></script>
+	<script src="libs/jquery-1.7.2.min.js"></script>
+	<script src="libs/jquery.carousel.min.js"></script>
+	<script src="JS/app.js"></script>
+	<script src="JS/controllers.js"></script>
+	<script src="JS/handlers.js"></script>
+	<script src="phonegap.js"></script> 
+	<script src="childbrowser.js"></script>
+	<script src="JS/ga.js"></script>
+  <script>
+	  /*
+	  var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-5275645-4']);
+    _gaq.push(['_setDomainName', 'none']);
+    _gaq.push(['_trackPageview', 'MEASURE DHS']);
+    */
+  </script>
+	<script>
+		// Check to make sure the Cordova JS is ready to use before attempting to use it
+		document.addEventListener("deviceready",onDeviceReady,false);
+	</script>
+	
+	<script type="text/javascript">
+	//This dynamically changes the padding in the data tables to adjust for different title heights
+		$(document).ready(function () {
+		    $(".mainDiv").css("padding-top", $('#indicatorTitle').outerHeight(true)+"px"); // Works
+		    $('#indicatorTitle').css("color", "red");  // Works
+		    $("div").css("border", "3px solid red"); // Works
+		});
+	</script>
+	
+	<link href="CSS/table.css" rel="stylesheet" />
+	<link href="CSS/jquery.carousel.css" rel="stylesheet" />
+	</head>
+	<body onload="">
+		<div ng-controller="footerController">
+			<div class='mainDiv' ng-view></div>
+			<h1 id ="indicatorTitle">This is a Title</h1>
+			<footer>
+				<ul>
+					<li ng-class='Info'><a href="#/Home" class="home">Home</a>
+					<li ng-class='Country'><a href="#/Home/Countries" class="stats">Quickstats</a>
+					<li ng-class='Indicator'><a href="#/Home/Indicators" class="indicators">Indicators</a>
+					<li ng-class='Recent'><a href="#/Home/Surveys" class="recent">Surveys</a>
+					<li ng-class='Topic'><a href="#" class="countries">Maps</a>
+				</ul>
+			</footer>
+		</div>	
+	</body><!-- Country, Indicator, Recent, Topic, Info -->
+</html>

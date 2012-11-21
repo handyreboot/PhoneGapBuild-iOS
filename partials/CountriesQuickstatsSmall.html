@@ -1,0 +1,16 @@
+<div class="tableView" style="background-color:#efefef;">
+    <div class='headerView'>
+    	<div align='center' class='headerViewTitle'>Countries</div>
+    	<img class='headerViewBackButton' onclick="backButton('#/Home')" src='img/back-button.png' height='30px' width='50.5px' />
+    </div>
+    <div class="tableBody">
+      <!--Body content-->
+      	<!-- If using Query and/or filter, use this, ng-repeat="phone in phones | filter:query | orderBy:orderProp" -->
+        <div ng-repeat="country in Countries" style='border: 1px solid #e0e0e0;background-color: #efefef;height: 30px;' onclick='changeView("Home/Countries/{{country[3]}}/{{country[0]}}/Country")'>
+        	<span style='float:right;margin-top:9px;margin-right:5px;'><img src='img/right-arrow.png' height="12px" width="12px"/></span>
+          <img style='margin-top:6px;margin-left: 5px;float: left;' height="18px" width='24px;' ng-src="img/flags/{{country[0]}}.png"><!-- class='tableImage' -->
+          <span ng-class="{true:'temp1',false:'temp2'}[country[3].length < 22]" >{{country[3]}}</span>
+          <!-- Temp CSS on Line 169 Table file -->
+        </div>
+    </div>
+</div>

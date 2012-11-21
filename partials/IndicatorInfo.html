@@ -1,0 +1,11 @@
+<header class="mainHeaderView">
+	    <h3>About Indicators</h3>
+    	<div id="ios-arrow-left" onclick='backButton("{{prevUrl}}")' title="Back"></div>
+</header>   
+<ul>
+	<li ng-repeat="item in Indicators" style='background: #eee;'>
+		<span class="indicatorInfoLabel">{{item[0]}}</span>
+		<span class="indicatorInfoSubLabel">{{Defs[$index]}}</span>
+		<hr>
+	</li>
+</ul>

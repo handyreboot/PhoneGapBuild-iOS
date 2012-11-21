@@ -1,0 +1,54 @@
+<header class="mainHeaderView">
+  <h3 ng-cloak ng-class="{true:'headerViewTitleCountriesOnlySmall',false:'headerViewTitleCountriesOnly'}[CountryName.length >= 20]" ng-bind="CountryName"></h3>
+  <img class='headerViewImage' height="30px" width='40px;' ng-src="data:image/png;base64,{{Flag}}">
+  <div id="ios-arrow-left" onclick='backButton("{{prevUrl}}")' title="Back"></div>
+</header>	
+	
+<div class="tableBody">
+	<ng-switch on='dataSize'>
+		<div ng-switch-when='MoreThanOne'>
+			<table id="indicator-table">
+				<!-- Labels and Year Buttons for Table -->
+				<tr class="title">
+					<th style="width:50%;"><a class='indicatorInfo' href="{{indicatorUrl}}"></a>Indicator</th>
+					<th class="data-column left" style="width:25%;">
+						<button ng-class="{true:'countryButtonOff',false:'countryButtonOn'}[decrementIsDisabled]" ng-click="decreaseYears()" ng-disabled="decrementIsDisabled">&lsaquo;</button>
+						{{indicatorYears[counter-1]}}
+					</th>
+					<th class="data-column right" style="width:25%;">
+						{{indicatorYears[counter]}}
+						<button ng-class="{true:'countryButtonOff',false:'countryButtonOn'}[incrementIsDisabled]" ng-click="increaseYears()" ng-disabled="incrementIsDisabled">&rsaquo;</button>
+					</th>
+				</tr>
+				<!-- Labels and Year Buttons for Table -->
+				<tr ng-repeat="item in indicatorValues">
+					<td style='width: 50%;'>{{indicatorLabels[$index][0]}}</td>
+					<td class="data-column" style='width: 25%;'>{{item[indicatorYears[counter-1]] | replaceNulls}}</td>
+					<td class="data-column" style='width: 25%;'>{{item[indicatorYears[counter]] | replaceNulls}}</td>
+				</tr>
+	
+			</table>
+		</div>
+		<div ng-switch-when='OnlyOne'>
+			<table id="indicator-table">
+				<!-- Labels and Year Buttons for Table -->
+				<tr class="title">
+					<th style='width: 60%;'><a class='indicatorInfo' href="{{indicatorUrl}}"></a>Indicator</th>
+					<th class="data-column" style='width: 40%;'>
+						<span class="indicatorMetaDataHeader">{{indicatorYears[counter]}}</span>
+					</th>
+				</tr>
+				<!-- Labels and Year Buttons for Table -->
+				<tr ng-repeat="item in indicatorValues">
+					<td style='width: 60%;'>{{indicatorLabels[$index][0]}}</td>
+					<td class="data-column" style='width: 40%;'>{{item[indicatorYears[counter]] | replaceNulls}}</td>
+				</tr>
+			</table>
+		</div>
+		<div ng-switch-when="none">
+			<div class="facts">
+				<p>At this time there is no information available for {{CountryName}}. Please check again at a future date.</p>
+			</div>
+		</div>	
+	</ng-switch>
+</div>
