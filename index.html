@@ -22,7 +22,7 @@
 	<script type="text/javascript" src='JS/app.js'></script>
 	<script type="text/javascript" src='JS/controllers.js'></script>
 	<script type="text/javascript" src='JS/handlers.js'></script>
-	<script type="text/javascript" src='phonegaps.js'></script>
+	<script type="text/javascript" src='phonegap.js'></script>
 	<script type="text/javascript" src='childbrowser.js'></script>
 	
 	<script type="text/javascript" >
@@ -32,6 +32,7 @@
 			var AppLoaded = false;
 			
 			function onDeviceReady() {
+				alert('Here');
 				document.addEventListener("online", onOnline, false);
 				document.addEventListener("offline", onOffline, false);
 			}	
