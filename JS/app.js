@@ -51,17 +51,22 @@ angular.module('filters',[]).
 		return function(number, result) {
 				if (number == '' || number == undefined)
 					return ' - ';	
-				else if (number % 1.0 == 0)
-					return Math.floor(number);
-				else
+				else if (number % 1.0 === 0) {
+					if (result.indexOf('per 1,000 live births') === -1)
+						return number +".0";
+					else
+						return number;	
+				} else	
 					return number;	
 		};
 	}).
-	filter('removeDecimals',function(){
-		return function(number) {
-			if (number % 1.0 == 0)
-				return Math.floor(number);
-			else
+	filter('formatValues',function(){
+		return function(number, label) {
+			if (label.indexOf('per 1,000 live births') !== -1)
 				return number;
+			else if (number % 1.0 === 0) 
+				return number+".0";		
+			else 
+				return number;	
 		};
 	});

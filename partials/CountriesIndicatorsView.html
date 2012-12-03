@@ -23,8 +23,8 @@
 				<!-- Labels and Year Buttons for Table -->
 				<tr ng-repeat="item in indicatorValues">
 					<td style='width: 50%;'>{{indicatorLabels[$index][0]}}</td>
-					<td class="data-column" style='width: 25%;'>{{item[indicatorYears[counter-1]] | replaceNulls}}</td>
-					<td class="data-column" style='width: 25%;'>{{item[indicatorYears[counter]] | replaceNulls}}</td>
+					<td class="data-column" style='width: 25%;'>{{item[indicatorYears[counter-1]] | replaceNulls:indicatorLabels[$index][0] }}</td>
+					<td class="data-column" style='width: 25%;'>{{item[indicatorYears[counter]] | replaceNulls:indicatorLabels[$index][0] }}</td>
 				</tr>
 	
 			</table>
@@ -41,7 +41,7 @@
 				<!-- Labels and Year Buttons for Table -->
 				<tr ng-repeat="item in indicatorValues">
 					<td style='width: 60%;'>{{indicatorLabels[$index][0]}}</td>
-					<td class="data-column" style='width: 40%;'>{{item[indicatorYears[counter]] | replaceNulls}}</td>
+					<td class="data-column" style='width: 40%;'>{{item[indicatorYears[counter]] | replaceNulls :indicatorLabels[$index][0]}}</td>
 				</tr>
 			</table>
 		</div>
