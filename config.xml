@@ -18,7 +18,7 @@
 	<author href="http://www.measuredhs.com" email="mobile@measuredhs.com">MEASURE DHS</author>
 
 	<!-- PhoneGap Version -->
-	<preference name="phonegap-version" value="2.1.0" />  
+	<preference name="phonegap-version" value="2.2.0" />  
 
 	<!-- Plug-ins -->
 	<!-- <gap:plugin name="ChildBrowser" /> -->
