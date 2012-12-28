@@ -780,7 +780,7 @@ function HomePageController($http, $scope, $timeout) {
 	});
 	
 	// Create Database On Initial Load
-	if (!AppLoaded) {
+	/*if (!AppLoaded) {
 		AppLoaded = true;
 		Global.Database = local_resources.createDatabase("DHSDB",1.0,"DHSDB",5000000);
 		local_resources.createTables(Global.Database,function(response){
@@ -834,5 +834,7 @@ function HomePageController($http, $scope, $timeout) {
 				}
 			}); // End Select Rows Test	
 		}); // End Create Tables
-	}
+		
+		
+	 } // End if App Loaded */
 }
