@@ -1,55 +1,61 @@
 <widget 
-	xmlns="http://www.w3.org/ns/widgets" 
-	xmlns:gap="http://phonegap.com/ns/1.0" 
-	id="com.USAID.MeasureDHS" 
-	version="1.0">
+	xmlns     = "http://www.w3.org/ns/widgets"
+  xmlns:gap = "http://phonegap.com/ns/1.0"
+  id        = "com.USAID.MeasureDHS"
+  version   = "1.1">
+	<!-- version: Version Number of the App to show up in PhoneGap and in Stores, Release Should be 1.0 --> 
+	<!-- id: package identifier that must match your keys and what is in declared when creating provisioning profile -->    
+  <name>measureDHS</name>
 
-	<!-- Development Package Name -->
-	<!-- id="com.USAID.MeasureDHS" -->
+  <description>
+    Quick access to survey information and statistics from the USAID-funded Demographic and Health Surveys.  MEASURE DHS has carried 		out more than 300 surveys in 90+ countries. The surveys collect information on fertility and family planning, maternal and child health, child mortality, nutrition, malaria, HIV/AIDS, and many other health topics. MEASURE DHS Mobile provides indicator tables, charts, maps, and trend data from the Demographic and Health Surveys,  as well as survey information, and quick links to survey-related publications.
+  </description>
 
-	<!-- Production Package Name -->
-	<!-- id="com.icfi.MeasureDHS" -->	
+  <author href="http://www.measuredhs.com" email="mobile@measuredhs.com">MEASURE DHS</author>
 
-
-	<name>measureDHS</name>
-	<description>
-		Quick access to survey information and statistics from the USAID-funded Demographic and Health Surveys.  MEASURE DHS has carried 		out more than 300 surveys in 90+ countries. The surveys collect information on fertility and family planning, maternal and child health, child mortality, nutrition, malaria, HIV/AIDS, and many other health topics. MEASURE DHS Mobile provides indicator tables, charts, maps, and trend data from the Demographic and Health Surveys,  as well as survey information, and quick links to survey-related publications.
-	</description>
-	<author href="http://www.measuredhs.com" email="mobile@measuredhs.com">MEASURE DHS</author>
-
-	<!-- PhoneGap Version -->
-	<preference name="phonegap-version" value="2.2.0" />  
-
-	<!-- Plug-ins -->
-	<!-- <gap:plugin name="ChildBrowser" /> -->
-	
-	<!-- Preferences -->
-	<preference name="fullscreen" value="false"/>
-	<preference name="webviewbounce" value="false"/>
-	<preference name="permissions" value="none"/>
-
-	<!-- iOS Icons -->
-	<icon src="icons/ios/icon.png" width="57" height="57" />
-	<icon src="icons/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
-	<icon src="icons/ios/icon_at_2x.png" width="114" height="114" />
-
+  <!-- Enable This Permission -->
+  <feature name="http://api.phonegap.com/1.0/device" />
+  <!-- Preferences -->
+  <preference name="fullscreen" value="false"/>
+  <preference name="webviewbounce" value="false"/>
+  <!-- If Using no Permissions, uncomment the following line -->
+  <!-- <preference name="permissions" value="none"/> -->
+  <!-- Omit the following line to default to newest stable release -->
+  <preference name="phonegap-version" value="2.3.0" />
+  <preference name="orientation"      value="default" />
+  <preference name="target-device"    value="universal" />
+  <preference name="fullscreen"       value="false" />
+  <!-- Plugins used in the application - Latest Version's -->
+  <gap:plugin name="ChildBrowser" />
+  <gap:plugin name="Analytics" />
+  <!-- Icons must use this naming convention -->
+  <!-- iOS Icons -->
+	<icon src="res/icon/ios/icon.png" gap:platform="ios" width="57" height="57" />
+	<icon src="res/icon/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
+	<icon src="res/icon/ios/icon_at_2x.png" gap:platform="ios" width="114" height="114" />
 	<!-- Android Icons -->
-	<icon src="icons/android/ldpi.png" gap:platform="android" gap:density="ldpi" />
-	<icon src="icons/android/mdpi.png" gap:platform="android" gap:density="mdpi" />
-	<icon src="icons/android/hdpi.png" gap:platform="android" gap:density="hdpi" />
-	<icon src="icons/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
-	
-	<!-- iOS Splash Screens -->
-	<gap:splash src="splash/ios/Default.png" width="320" height="480" />
-	<gap:splash src="splash/ios/Default_at_2x.png" width="640" height="960" />
-	<gap:splash src="splash/ios/Default_iphone5.png" width="640" height="1136" />
-	<gap:splash src="splash/ios/Default-Landscape.png" width="1024" height="768" />
-	<gap:splash src="splash/ios/Default-Portrait.png" width="768" height="1024" />
-	
+	<icon src="res/icon/android/ldpi.png"  gap:platform="android" gap:density="ldpi" />
+	<icon src="res/icon/android/mdpi.png"  gap:platform="android" gap:density="mdpi" />
+	<icon src="res/icon/android/hdpi.png"  gap:platform="android" gap:density="hdpi" />
+	<icon src="res/icon/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+  <!-- Windows Icons
+  <icon src="res/icon/windows-phone/icon-48.png"  gap:platform="winphone" />
+  <icon src="res/icon/windows-phone/icon-173.png" gap:platform="winphone"   gap:role="background" />
+  -->
+  <!-- Splashscreen must use this format and size otherwise it may not work no all platforms -->
+  <!-- iOS Splash Screens -->
+	<gap:splash src="res/screen/ios/Default.png" width="320" height="480" />
+	<gap:splash src="res/screen/ios/Default_at_2x.png" width="640" height="960" />
+	<gap:splash src="res/screen/ios/Default_iphone5.png" width="640" height="1136" />
+	<gap:splash src="res/screen/ios/Default-Landscape.png" width="1024" height="768" />
+	<gap:splash src="res/screen/ios/Default-Portrait.png" width="768" height="1024" />
 	<!-- Android Splash Screens -->
-	<gap:splash src="splash/android/ldpi.png" gap:platform="android" gap:density="ldpi" />
-	<gap:splash src="splash/android/mdpi.png" gap:platform="android" gap:density="mdpi" />
-	<gap:splash src="splash/android/hdpi.png" gap:platform="android" gap:density="hdpi" />
-	<gap:splash src="splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
-
+	<gap:splash src="res/screen/android/ldpi.png" gap:platform="android" gap:density="ldpi" /><!-- at least 426 x 320 -->
+	<gap:splash src="res/screen/android/mdpi.png" gap:platform="android" gap:density="mdpi" /><!-- at least 470 x 320 -->
+	<gap:splash src="res/screen/android/hdpi.png" gap:platform="android" gap:density="hdpi" /><!-- at least 640 x 480 -->
+	<gap:splash src="res/screen/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /><!-- at least 960 x 720 -->
+	<!-- Windows Splash Screens
+  <gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
+  -->
+  
 </widget>

@@ -1,73 +1,69 @@
 <!DOCTYPE html>
 <html lang='en' ng-app='measureDHS'>
 	<head>
-	<title>MEASURE DHS</title>
-	<meta name="format-detection" content="telephone=no" />
-	<meta name="viewport" content="initial-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<meta charset='utf-8'> 
-	<link rel="apple-touch-icon-precomposed" href="img/apple-mobile-icon.png" />
-	
-	<!-- Linking in ArcGIS Code -->
-	<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.2/js/dojo/dijit/themes/claro/claro.css" />
-  <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.2/js/esri/css/esri.css" />
-  <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.2compact"></script> 
-  <!-- Linking in ArcGIS Code -->
-	
-	<script type="text/javascript" src='libs/angular.min.js'></script>
-	<script type="text/javascript" src='libs/jquery-1.7.2.min.js'></script>
-	<script type="text/javascript" src='libs/async.min.js'></script>
-	<script type="text/javascript" src='JS/local-resources.js'></script>
-	<script type="text/javascript" src='JS/app.js'></script>
-	<script type="text/javascript" src='JS/controllers.js'></script>
-	<script type="text/javascript" src='JS/handlers.js'></script>
-	<script type="text/javascript" src='phonegap.js'></script>
-	<script type="text/javascript" src='childbrowser.js'></script>
-	
-	<script type="text/javascript" >
-		// Check to make sure the Cordova JS is ready to use before attempting to use it
-			document.addEventListener("deviceready",onDeviceReady,false);
-			var Online = "Offline";
-			var AppLoaded = false;
-			
-			function onDeviceReady() {
-				document.addEventListener("online", onOnline, false);
-				document.addEventListener("offline", onOffline, false);
-			}	
-			function onOnline() {
-				Online = "Online";
-			}
-			function onOffline() {
-				Online = "Offline";
-			}
-			//onorientationchange doesn't always fire in a timely manner in Android so check for both orientationchange and resize
-			var supportsOrientationChange = "onorientationchange" in window, orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
-			window.addEventListener(orientationEvent, function() {
-				if(map) {
-					map.reposition();
-					map.resize();
-				}
-			}, false);	
-	</script>
-	<script type="text/javascript"  src='libs/swipe.min.js' ></script>
-	<link href="CSS/swipe.css" rel="stylesheet" />
-	<link href="CSS/table.css" rel="stylesheet" />
-	
+    <title>MEASURE DHS</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon-precomposed" href="img/apple-mobile-icon.png" />
+    <meta charset='utf-8'>
+
+    <!-- Linking in ArcGIS Code -->
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.2/js/dojo/dijit/themes/claro/claro.css" />
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.2/js/esri/css/esri.css" />
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.2compact"></script>
+    <!-- Linking in ArcGIS Code -->
+
+    <script type="text/javascript" src="phonegap.js"></script>
+    <!-- Plugin Files -->
+    <script type="text/javascript" src="childbrowser.js"></script>
+    <script src="GAPlugin.js"></script>
+    <!-- Plugin Files -->
+
+    <!-- My JavaScript Files -->
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src='libs/angular.min.js'></script>
+    <script type="text/javascript" src='libs/jquery-1.7.2.min.js'></script>
+    <script type="text/javascript" src='libs/async.min.js'></script>
+    <script type="text/javascript" src='js/local-resources.js'></script>
+    <script type="text/javascript" src='js/app.js'></script>
+    <script type="text/javascript" src='js/controllers.js'></script>
+    <script type="text/javascript" src='js/handlers.js'></script>
+    <!-- My JavaScript Files -->
+
+    <!-- Carousel Plugin -->
+    <script src='libs/swipe.min.js' ></script>
+    <link href="css/swipe.css" rel="stylesheet" />
+    <link href="css/table.css" rel="stylesheet" />
+    <!-- Carousel Plugin -->
+
+    <script type="text/javascript" >
+      phonegapAPI.initialize();
+      var Online = "Offline";
+      var AppLoaded = false;
+    </script>
+
 	</head>
 	<body>
-		<div ng-controller="footerController">
-			<div class='mainDiv' ng-view></div>
-			<footer>
-				<ul>
-					<li ng-class='Home'><a href="#/Home" class="home">Home</a>
-					<li ng-class='Quickstats'><a href="#/Home/Countries" class="stats">Quickstats</a>
-					<li ng-class='Indicators'><a href="#/Home/Indicators" class="indicators">Indicators</a>
-					<li ng-class='Surveys'><a href="#/Home/Surveys" class="recent">Surveys</a>
-					<li ng-class='Maps'><a href="#/Home/Maps" class="countries">Maps</a>
-				</ul>
-			</footer>
-		</div>	
-	</body><!-- Country, Indicator, Recent, Topic, Info -->
+    <div ng-controller="footerController">
+      <div class='mainDiv' ng-view></div>
+      <footer>
+        <ul>
+          <li ng-class='Home'><a href="#/Home" class="home">Home</a>
+          <li ng-class='Quickstats'><a href="#/Home/Countries" class="stats">Quickstats</a>
+          <li ng-class='Indicators'><a href="#/Home/Indicators" class="indicators">Indicators</a>
+          <li ng-class='Surveys'><a href="#/Home/Surveys" class="recent">Surveys</a>
+          <li ng-class='Maps'><a href="#/Home/Maps" class="countries">Maps</a>
+        </ul>
+      </footer>
+    </div>
+		<!--<a href="javascript:void(0)" onclick="window.plugins.childBrowser.showWebPage('http://measuredhs.com/pubs/pdf/FR265/FR265.pdf',{ showLocationBar: true });">
+      Child Browser Test
+    </a>
+    <br>
+    <a href="javascript:void(0)" onclick="app.gaEvent()">
+      Google Analytics Test
+    </a>-->
+	</body>
 </html>
-
