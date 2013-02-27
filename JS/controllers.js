@@ -748,8 +748,6 @@ function IndicatorInfoController($scope,$routeParams,$http) {
 
 function HomePageController($http, $scope, $timeout) {
 
-  alert('loaded');
-
 	/*var slider = $('#mySlider').carousel({
 		elements: {
 			prevNext: false,

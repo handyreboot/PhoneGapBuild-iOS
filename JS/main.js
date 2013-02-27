@@ -2,6 +2,7 @@
 var phonegapAPI = (function() {
 	return {	
 		initialize: function() {
+      alert('TRY THIS');
 			// Check to make sure the PhoneGap JS is ready to use before attempting to use it
 			document.addEventListener('deviceready',this.deviceReady,false);
 		},
