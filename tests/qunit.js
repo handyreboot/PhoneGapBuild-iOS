@@ -1670,7 +1670,7 @@ QUnit.jsDump = (function() {
 	return jsDump;
 }());
 
-// from Sizzle.js
+// from Sizzle.JS
 function getText( elems ) {
 	var i, elem,
 		ret = "";
@@ -1691,7 +1691,7 @@ function getText( elems ) {
 	return ret;
 }
 
-// from jquery.js
+// from jquery.JS
 function inArray( elem, array ) {
 	if ( array.indexOf ) {
 		return array.indexOf( elem );
