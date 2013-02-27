@@ -1,7 +1,6 @@
 // Initialize PhoneGap API then initialize the App
 var phonegapAPI =  {
 		initialize: function() {
-      alert('TRY THIS');
 			// Check to make sure the PhoneGap JS is ready to use before attempting to use it
 			document.addEventListener('deviceready',this.deviceReady,false);
 		},
@@ -22,7 +21,6 @@ var phonegapAPI =  {
 var app = {
 		initialize: function() {
 			//Begin Here
-      alert("WTF");
       app.gaPlugin = window.plugins.gaPlugin;
       app.gaPlugin.init(function(){alert('GA Ready!');},function(error){},"UA-5275645-4",10);
 	  },
