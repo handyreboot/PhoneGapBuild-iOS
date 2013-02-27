@@ -22,7 +22,7 @@
   <!-- If Using no Permissions, uncomment the following line -->
   <!-- <preference name="permissions" value="none"/> -->
   <!-- Omit the following line to default to newest stable release -->
-  <preference name="phonegap-version" value="2.3.0" />
+  <preference name="phonegap-version" value="2.2.0" />
   <preference name="orientation"      value="default" />
   <preference name="target-device"    value="universal" />
   <preference name="fullscreen"       value="false" />
