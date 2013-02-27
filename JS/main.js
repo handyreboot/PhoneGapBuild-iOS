@@ -1,6 +1,5 @@
 // Initialize PhoneGap API then initialize the App
-var phonegapAPI = (function() {
-	return {	
+var phonegapAPI =  {
 		initialize: function() {
       alert('TRY THIS');
 			// Check to make sure the PhoneGap JS is ready to use before attempting to use it
@@ -18,8 +17,7 @@ var phonegapAPI = (function() {
       }, false);
 			app.initialize();
 		}
-	} // End of returned object
-})();
+};
 
 var app = {
 		initialize: function() {
