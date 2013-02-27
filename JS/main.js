@@ -22,6 +22,7 @@ var phonegapAPI =  {
 var app = {
 		initialize: function() {
 			//Begin Here
+      alert("WTF");
       app.gaPlugin = window.plugins.gaPlugin;
       app.gaPlugin.init(function(){alert('GA Ready!');},function(error){},"UA-5275645-4",10);
 	  },
