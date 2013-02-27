@@ -1,8 +1,9 @@
 <widget 
 	xmlns     = "http://www.w3.org/ns/widgets"
   xmlns:gap = "http://phonegap.com/ns/1.0"
-  id        = "com.USAID.MeasureDHS"
+  id        = "com.blueraster.template"
   version   = "1.1">
+  <!-- com.USAID.MeasureDHS -->
 	<!-- version: Version Number of the App to show up in PhoneGap and in Stores, Release Should be 1.0 --> 
 	<!-- id: package identifier that must match your keys and what is in declared when creating provisioning profile -->    
   <name>measureDHS - iOS</name>
