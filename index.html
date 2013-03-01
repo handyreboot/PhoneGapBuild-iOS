@@ -39,9 +39,11 @@
     <!-- Carousel Plugin -->
 
     <script type="text/javascript" >
-      phonegapAPI.initialize();
       var Online = "Offline";
       var AppLoaded = false;
+      require(["dojo/domReady!"],function(){
+        phonegapAPI.initialize();
+      });
     </script>
 
 	</head>
