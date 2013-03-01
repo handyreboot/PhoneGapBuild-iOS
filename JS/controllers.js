@@ -474,7 +474,7 @@ function SurveyInformationController($scope, $routeParams, $http) {
 	$scope.data = Global.getSurveyDetailsBySurveyId[$routeParams.SurveyId];	
 	
 	$scope.HeaderLabel = $scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR;
-		
+
 	$scope.Characteristics = Global.getSurveyCharacteristicsBySurveyId[$routeParams.SurveyId];
 	
 	$scope.Publications = Global.getPublicationsBySurveyId[$routeParams.SurveyId];
@@ -527,6 +527,9 @@ function footerController($scope,$route,$window, $location) {
 		
 		switch ($route.current.$route.templateUrl) {
 			case 'partials/Homepage.html' :
+				/* Set the App Footer position to Absolute for this view TODO Android Specific Code Here
+				$('#AppFooter').css("position","absolute");
+				$('#AppFooter').css("left","");	*/
 				$scope.Quickstats = '';
 				$scope.Indicators = '';
 				$scope.Surveys = '';
@@ -534,6 +537,9 @@ function footerController($scope,$route,$window, $location) {
 				$scope.Maps = '';
 				break;
 			case 'partials/CountryQuickstats.html' :
+				/* Set the App Footer position to Fixed for this view TODO Android Specific Code Here
+				$('#AppFooter').css("position","fixed");
+				$('#AppFooter').css("left","0");*/
 				$scope.Quickstats = 'selected';
 				$scope.Indicators = '';
 				$scope.Surveys = '';
@@ -541,6 +547,9 @@ function footerController($scope,$route,$window, $location) {
 				$scope.Maps = '';
 				break;
 			case 'partials/Surveys.html' :
+				/* Set the App Footer position to Fixed for this view TODO Android Specific Code Here
+				$('#AppFooter').css("position","fixed");
+				$('#AppFooter').css("left","0");*/
 				$scope.Quickstats = '';
 				$scope.Indicators = '';
 				$scope.Surveys = 'selected';
@@ -548,6 +557,9 @@ function footerController($scope,$route,$window, $location) {
 				$scope.Maps = '';
 				break;
 			case 'partials/IndicatorList.html' :
+				/* Set the App Footer position to Fixed for this view TODO Android Specific Code Here
+				$('#AppFooter').css("position","fixed");
+				$('#AppFooter').css("left","0");*/
 				$scope.Quickstats = '';
 				$scope.Indicators = 'selected';
 				$scope.Surveys = '';
@@ -555,6 +567,9 @@ function footerController($scope,$route,$window, $location) {
 				$scope.Maps = '';
 				break;
 			case 'partials/Map.html' :
+				/* Set the App Footer position to Absolute for this view TODO Android Specific Code Here
+				$('#AppFooter').css("position","absolute");
+				$('#AppFooter').css("left","");*/
 				$scope.Quickstats = '';
 				$scope.Indicators = '';
 				$scope.Surveys = '';
@@ -569,6 +584,15 @@ function footerController($scope,$route,$window, $location) {
 function MappingController($http,$timeout,$scope) {
 	
 	Online = 'Offline';
+	//onorientationchange doesn't always fire in a timely manner in Android so check for both orientationchange and resize
+	var supportsOrientationChange = "onorientationchange" in window, orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+	window.addEventListener(orientationEvent, function() {
+		if(map) {
+			map.reposition();
+			map.resize();
+		}
+	}, false);
+
 	$http.jsonp('http://www.measuredhs.com/API/DHS/getQuickStats/?callback=JSON_CALLBACK&f=json').success(function(data,status,headers,config){
 		Online = 'Online';
 		dojo.require("esri.map");
@@ -757,21 +781,46 @@ function HomePageController($http, $scope, $timeout) {
 	slider.init();
 	*/
 	
+	/* Set the App Footer position to Absolute for this view TODO Android Specific Code Here
+	$('#AppFooter').css("position","absolute");*/
+
 	var mySlider = new Swipe(document.getElementById('mySlider'),{
 		callback: function(event, index, elem) {
 			var node = dojo.query('.on');
 			dojo.removeClass(node[0],'on');
 			dojo.addClass('_'+index,'on');
+
+			/* TODO This Code is ONLY FOR ANDROID < 4.0
+			$("#swipeGallery li").each(function() {
+				if (this.id === elem.id) {
+					$(this).css("display","block");
+				} else {
+					$(this).css("display","none");
+		    }
+	    });*/
+
 		}
 	});
 
 	mySlider.setup();
 	
 	$timeout(function() {
-		var viewportHeight = parseInt($(window).innerHeight(),10);
+    /*   TODO Android Specific Code Here
+     var viewportHeight = parseInt($(window).outerHeight(),10);
+     */
+		var viewportHeight = parseInt($(window).innerHeight(),10); //iOS Version
 		var newHeight = viewportHeight-158;
-		$("<style>.swipe li { height: "+newHeight+"px; }</style>" ).appendTo( "head" );
-	});		
+		$("<style>.swipe li { height: "+newHeight+"px !important; }</style>" ).appendTo( "head" );
+		/* TODO This Code is ONLY FOR ANDROID < 4.0
+		$("#swipeGallery li").each(function() {
+			if(this.id == 'education') {
+				$(this).css("display","block");
+			} else {
+				$(this).css("display","none");
+			}
+		});
+		*/
+	});
 	
 	// Check if I am online or Offline
 	Online = 'Offline';
