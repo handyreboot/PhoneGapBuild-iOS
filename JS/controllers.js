@@ -748,8 +748,6 @@ function IndicatorInfoController($scope,$routeParams,$http) {
 
 function HomePageController($http, $scope, $timeout) {
 
-  document.addEventListener('deviceready',deviceReady,false);
-
 	/*var slider = $('#mySlider').carousel({
 		elements: {
 			prevNext: false,
@@ -784,6 +782,7 @@ function HomePageController($http, $scope, $timeout) {
 	// Create Database On Initial Load
 	if (!AppLoaded) {
 		AppLoaded = true;
+    document.addEventListener('deviceready',deviceReady,false);
 		Global.Database = local_resources.createDatabase("DHSDB",1.0,"DHSDB",5000000);
 		local_resources.createTables(Global.Database,function(response){
 			
