@@ -4,9 +4,10 @@ function deviceReady() {
 }
 
 function initializePlugins() {
-  alert('Device Ready');
-  Global.gaPlugin = window.plugins.gaPlugin;
-  Global.gaPlugin.init(function(){alert('GA Ready!');},function(error){alert(JSON.stringify(error));},"UA-5275645-4",10);
+  alert('initializePlugins');
+  console.dir(window.plugins);
+  var gaPlugin = window.plugins.gaPlugin;
+  gaPlugin.init(function(){alert('GA Ready!');},function(error){alert(JSON.stringify(error));},"UA-5275645-4",10);
 }
 
 // Plugin Support Functions
