@@ -748,6 +748,8 @@ function IndicatorInfoController($scope,$routeParams,$http) {
 
 function HomePageController($http, $scope, $timeout) {
 
+  phonegapAPI.initialize();
+
 	/*var slider = $('#mySlider').carousel({
 		elements: {
 			prevNext: false,
