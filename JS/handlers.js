@@ -4,15 +4,13 @@ function deviceReady() {
 }
 
 function initializePlugins() {
-  alert('initializePlugins');
-  console.dir(window.plugins);
-  var gaPlugin = window.plugins.gaPlugin;
-  gaPlugin.init(function(){alert('GA Ready!');},function(error){alert(JSON.stringify(error));},"UA-5275645-4",10);
+  Global.gaPlugin = window.plugins.gaPlugin;
+  Global.gaPlugin.init(function(){alert('GA Ready!');gaEvent();},function(error){alert(JSON.stringify(error));},"UA-5275645-4",10);
 }
 
 // Plugin Support Functions
 function gaEvent() {
-  Global.gaPlugin.trackEvent(function(){alert('Event Tracked!')},function(){alert('failure')},"Link","Click","Clicked Test Link",1);
+  Global.gaPlugin.trackEvent(function(){alert('Event Tracked!')},function(){alert('failure')},"Link","Click","Test From measureDHS",1);
 }
 
 // Plugin Support Functions
