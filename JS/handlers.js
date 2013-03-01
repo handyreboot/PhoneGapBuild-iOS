@@ -1,12 +1,12 @@
 // Device Ready for PhoneGap API
 function deviceReady() {
-  alert('Device Ready');
   initializePlugins();
 }
 
 function initializePlugins() {
+  alert('Device Ready');
   Global.gaPlugin = window.plugins.gaPlugin;
-  Global.gaPlugin.init(function(){alert('GA Ready!');},function(error){},"UA-5275645-4",10);
+  Global.gaPlugin.init(function(){alert('GA Ready!');},function(error){alert(JSON.stringify(error));},"UA-5275645-4",10);
 }
 
 // Plugin Support Functions
