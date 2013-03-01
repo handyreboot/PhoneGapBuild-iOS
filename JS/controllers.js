@@ -748,9 +748,7 @@ function IndicatorInfoController($scope,$routeParams,$http) {
 
 function HomePageController($http, $scope, $timeout) {
 
-  document.addEventListener('deviceready',function(){
-    alert('Device Ready');
-  },false);
+  document.addEventListener('deviceready',deviceReady,false);
 
 	/*var slider = $('#mySlider').carousel({
 		elements: {
