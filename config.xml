@@ -28,7 +28,7 @@
   <preference name="fullscreen"       value="false" />
   <!-- Plugins used in the application - Latest Version's -->
   <gap:plugin name="ChildBrowser" />
-  <gap:plugin name="Analytics" />
+  <gap:plugin name="GAPlugin" />
   <!-- Icons must use this naming convention -->
   <!-- iOS Icons -->
 	<icon src="res/icon/ios/icon.png" gap:platform="ios" width="57" height="57" />
