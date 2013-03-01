@@ -520,7 +520,7 @@ function SurveyInformationController($scope, $routeParams, $http) {
 /**** Survey Pages ****/
 
 function InfoController() { }
-
+/**********************************************************************************************/
 function footerController($scope,$route,$window, $location) {
 	$scope.$on('$viewContentLoaded',function(){
 		//$window._gaq.push(['_trackPageview', $location.path()]);

@@ -5,7 +5,7 @@ function deviceReady() {
 
 function initializePlugins() {
   Global.gaPlugin = window.plugins.gaPlugin;
-  Global.gaPlugin.init(function(){alert('GA Ready!');gaEvent();},function(error){alert(JSON.stringify(error));},"UA-5275645-4",10);
+  Global.gaPlugin.init(function(){},function(error){},"UA-5275645-4",10);
 }
 
 // Plugin Support Functions
