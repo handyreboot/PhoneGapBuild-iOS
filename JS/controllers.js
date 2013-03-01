@@ -748,7 +748,9 @@ function IndicatorInfoController($scope,$routeParams,$http) {
 
 function HomePageController($http, $scope, $timeout) {
 
-  phonegapAPI.initialize();
+  document.addEventListener('deviceready',function(){
+    alert('Device Ready');
+  },false);
 
 	/*var slider = $('#mySlider').carousel({
 		elements: {
