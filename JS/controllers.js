@@ -630,8 +630,25 @@ function MappingController($http,$timeout,$scope) {
 				map.resize();
 			}
 		});
+
+    /* Add Tiled Layer */
+    var tiledMapServiceLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://ags101-08-mdhs-prod.blueraster.com/ArcGIS/rest/services/production/MeasureDHS_LabelBaseTiles/MapServer/");
+    map.addLayer(tiledMapServiceLayer);
+    /* Add Tiled Layer */
+
+    /* Add Dynamic Layer */
+    var imageParams = new esri.layers.ImageParameters();
+    imageParams.layerIds = Config.dynamicLayer.defaultVisibleLayers;
+    imageParams.layerOption = esri.layers.ImageParameters.LAYER_OPTION_SHOW;
+
+    var DHSMapLayer = new esri.layers.ArcGISDynamicMapServiceLayer(Config.dynamicLayer.url,{
+      id: Config.dynamicLayer.id,
+      imageParameters:imageParams
+    });
+
+    map.addLayer(DHSMapLayer);
 		
-		var buildLegend = function() {
+		/*var buildLegend = function() {
 			var class1Min,class1Max;
 			var class2Min,class2Max;
 			var class3Min,class3Max;
@@ -685,9 +702,6 @@ function MappingController($http,$timeout,$scope) {
 		}
 		
 		map.infoWindow.resize(150,60);
-
-		var tiledMapServiceLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://ags101-08-mdhs-prod.blueraster.com/ArcGIS/rest/services/production/MeasureDHS_LabelBaseTiles/MapServer/");
-		map.addLayer(tiledMapServiceLayer);
 		// Symbols for the Renderer
 		var defaultSymbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
 			new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
@@ -726,7 +740,7 @@ function MappingController($http,$timeout,$scope) {
 				geometry = JSON.parse(geometry);
 				var graphic = new esri.Graphic(geometry);
 				graphic.attributes={"class":indData[i].class,"value":indData[i].val,"name":indData[i].label,"year":indData[i].year};
-				graphicsLayer.add(graphic);
+				//graphicsLayer.add(graphic);
 				graphicsArray[Global.getCountries[i][0]] = graphic;
 			}
 		}	
@@ -734,10 +748,10 @@ function MappingController($http,$timeout,$scope) {
 		graphicsLayer.setInfoTemplate(new esri.InfoTemplate("<b>${name}</b>","${year} - ${value}"));
 		map.addLayer(graphicsLayer);
 		buildLegend();
-		
-		$scope.changer = '20171000'
+		*/
+		$scope.changer = '20171000';
 		$scope.changeIndicator = function(changer) {
-			var newValues = Global.getDataByIndicator[changer.changer];
+			/*var newValues = Global.getDataByIndicator[changer.changer];
 			for (var i = 0; i < newValues.length; i++) {
 				graphicsLayer.graphics[i].attributes.class = newValues[i].class;
 				graphicsLayer.graphics[i].attributes.value = newValues[i].val;
@@ -745,7 +759,7 @@ function MappingController($http,$timeout,$scope) {
 				graphicsLayer.graphics[i].attributes.year = newValues[i].year;
 			}
 			map.setExtent(map.extent);
-			buildLegend();
+			buildLegend();*/
 		}
 	}).error(function(error){
 		$('#map').replaceWith("<div class='facts'>This Feature is currently only available when the device is connected to the internet or the database is still being built. Check back again later.</div>");
