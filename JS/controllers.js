@@ -601,21 +601,16 @@ function MappingController($http,$timeout,$scope) {
 		dojo.require("esri.renderer");
 		dojo.require("esri.layers.graphics");
 		dojo.require("dojo.number")
-		
-		var initialExtent = new esri.geometry.Extent({
-			"xmin" : -2200000,
-			"ymin" : -4500000,
-			"xmax" : 6800000,
-			"ymax" : 4500000,
-			"spatialReference" : {
-				"wkid" : 102100
-			}
-		});
 
+    var options;
+		if (window.innerWidth < 450)
+      options = Config.mapDefaults.phone;
+    else
+      options = Config.mapDefaults;
 		
 		map = new esri.Map("map" , {
-			extent : initialExtent,
-			fitExtent : true,
+      center: [options.centerX,options.centerY],
+      zoom: options.zoom,
 			logo : true,
 			wrapAround180: false
 		});

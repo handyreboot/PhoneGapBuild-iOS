@@ -74,23 +74,23 @@
   		<!-- Online -->
   		<div ng-class="{true:'pubsShow',false:'pubsHide'}[Online == 'Online']">
 	  			<ul class='noBullets'>
-            <!-- Android Version
-            onclick='window.open("{{item.url}}")'
-            <!-- Android Version -->
-            <!-- iOS Version -->
 		  			<li ng-repeat='item in Publications' style='padding-bottom: 5px;margin-right: -30px !important;'>
-            <!-- iOS Version -->
 		  			  <span>
+                <!-- Android Version
+                onclick='window.open("{{item.url}}")'
+                <!-- Android Version -->
+                <!-- iOS Version -->
                 <img alt='{{item.pdfTitle}}' src='{{item.thumbnail}}' height='110px;' onclick="window.plugins.childBrowser.showWebPage('{{item.url}}',{ showLocationBar: true })"/>
+                <!-- iOS Version -->
               </span>
-		  				<!-- Android Version
-		  				<span><a href="{{item.url}}" target="_blank">{{item.title}}</a></span>
-		  				<!-- Android Version -->
-              <!-- iOS Version -->
               <span>
+                <!-- Android Version
+                <span><a href="{{item.url}}" target="_blank">{{item.title}}</a></span>
+                <!-- Android Version -->
+                <!-- iOS Version -->
                 <a href="javascript:void(0)" onclick="window.plugins.childBrowser.showWebPage('{{item.url}}',{ showLocationBar: true })">{{item.title}}</a>
+                <!-- iOS Version -->
               </span>
-              <!-- iOS Version -->
 		  			</li>
 			  	</ul>
 			</div>

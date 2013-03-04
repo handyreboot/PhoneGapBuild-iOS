@@ -5,3 +5,15 @@ Config.dynamicLayer = {
   url: "http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer",
   defaultVisibleLayers: [1,3]
 }
+
+Config.mapDefaults = {
+  centerX: 30,
+  centerY: 40,
+  zoom: 3
+}
+
+Config.mapDefaults.phone = {
+  centerX: 20,
+  centerY: 0,
+  zoom: 1
+}
