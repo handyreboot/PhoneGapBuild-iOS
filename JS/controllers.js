@@ -475,16 +475,13 @@ function SurveyInformationController($scope, $routeParams, $http) {
 	//});
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getSurveyCharacteristics/?callback=JSON_CALLBACK&f=json&SurveyIds='+$routeParams.SurveyId).success(function(data,status,header,config){
 
-  gaEvent("Surveys","Id: "+$routeParams.SurveyId+", Label: "+$scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR);
+	$scope.data = Global.getSurveyDetailsBySurveyId[$routeParams.SurveyId];
 
-	$scope.data = Global.getSurveyDetailsBySurveyId[$routeParams.SurveyId];	
+  gaEvent("Surveys","Id: "+$routeParams.SurveyId+", Label: "+$scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR);
 	
 	$scope.HeaderLabel = $scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR;
-
 	$scope.Characteristics = Global.getSurveyCharacteristicsBySurveyId[$routeParams.SurveyId];
-	
 	$scope.Publications = Global.getPublicationsBySurveyId[$routeParams.SurveyId];
-	
 	// Set the default selected tab
 	$scope.Information = 'selectedOption';
 	// Set the style for the selected tab
