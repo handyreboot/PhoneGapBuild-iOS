@@ -758,10 +758,10 @@ function MappingController($http,$timeout,$scope) {
 		}
 
     $scope.togglePopover = function() {
-      if (document.getElementsByClassName('popover')[0].style.display != 'block')
-        document.getElementsByClassName('popover')[0].style.display = 'block';
+      if (document.getElementsByClassName('popoverMap')[0].style.display != 'block')
+        document.getElementsByClassName('popoverMap')[0].style.display = 'block';
       else
-        document.getElementsByClassName('popover')[0].style.display = 'none';
+        document.getElementsByClassName('popoverMap')[0].style.display = 'none';
     }
 
 	}).error(function(error){

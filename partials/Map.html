@@ -1,9 +1,9 @@
 <header class="mainHeaderView">
   <h3>Map</h3>
  	<div id="ios-arrow-left" onclick="backButton('#/Home')" title="Back"></div>
-  <div id="button" title="Sort" ng-click="togglePopover()">Options
-    <div class="popover" ng-class='PopupSort'>
-      <select style='max-width:300px;float:left;' ng-model="changer" ng-change="changeIndicator(this)">
+  <div id="button" ng-click="togglePopover()">Options
+    <div class="popoverMap" ng-class='PopupSort'>
+      <select style='max-width:215px;float:left;' ng-model="changer" ng-change="changeIndicator(this)">
         <option value='20171000'>Total fertility rate (children per women)</option>
         <option value='34202000'>Percentage of married women currently using any method of family planning</option>
         <option value='34202001'>Percentage of married women currently using any modern method of family planning</option>
