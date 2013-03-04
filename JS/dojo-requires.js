@@ -1,6 +1,7 @@
 dojo.require("dijit.dijit"); // optimize: load dijit layer
 dojo.require("dijit.layout.BorderContainer");
 dojo.require("dijit.layout.ContentPane");
+dojo.require("dijit.TitlePane");
 dojo.require("esri.map");
 dojo.require("esri.virtualearth.VETiledLayer");
 dojo.require("dijit.TitlePane");

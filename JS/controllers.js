@@ -600,7 +600,7 @@ function MappingController($http,$timeout,$scope) {
 		dojo.require("esri.tasks.query");
 		dojo.require("esri.renderer");
 		dojo.require("esri.layers.graphics");
-		dojo.require("dojo.number")
+		dojo.require("dojo.number");
 
     var options;
 		if (window.innerWidth < 450)
@@ -614,7 +614,7 @@ function MappingController($http,$timeout,$scope) {
 			logo : true,
 			wrapAround180: false
 		});
-				
+
 		// Make Sure the Map is sized appropriately
 		$timeout(function() {
 			var viewportHeight = $(window).innerHeight();
@@ -756,6 +756,14 @@ function MappingController($http,$timeout,$scope) {
 			map.setExtent(map.extent);
 			buildLegend();*/
 		}
+
+    $scope.togglePopover = function() {
+      if (document.getElementsByClassName('popover')[0].style.display != 'block')
+        document.getElementsByClassName('popover')[0].style.display = 'block';
+      else
+        document.getElementsByClassName('popover')[0].style.display = 'none';
+    }
+
 	}).error(function(error){
 		$('#map').replaceWith("<div class='facts'>This Feature is currently only available when the device is connected to the internet or the database is still being built. Check back again later.</div>");
 	});

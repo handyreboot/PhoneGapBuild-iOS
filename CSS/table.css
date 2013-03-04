@@ -30,26 +30,6 @@ span {
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
-/* CSS for the Map */
-.mapDiv {
-	height:100% !important; 
-	width: 100% !important;
-}
-#map {
-	width:100%;
-  height:100%; 
-  background-color:#CCC9C4;
-}
-.page-map #mapcontent, #map {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-}
-.esriSimpleSlider {
-	top:20px !important;
-	left: 20px !important;
-}
-/* End CSS for the Map */
 /* CSS for the HomePage */
 .mainDiv, .ng-scope {
 	margin: 0;
@@ -1561,33 +1541,6 @@ only screen and (-webkit-device-pixel-ratio:1.5) {
 .pubsHide {
 	display: none;
 }
-
-/******** Legend *************/
-.LegendColor1 {
-	background: rgba(203, 201, 226,.5);
-	height: 10px;
-	width:10px;
-	border: 1px solid #000;
-}
-.LegendColor2 {
-	background: rgba(158, 154, 200,.5);
-	height: 10px;
-	width:10px;
-	border: 1px solid #000;
-}
-.LegendColor3 {
-	background: rgba(117, 107, 177,.5);
-	height: 10px;
-	width:10px;
-	border: 1px solid #000;
-}
-.LegendColor4 {
-	background: rgba(84, 39, 143,.5);
-	height: 10px;
-	width:10px;
-	border: 1px solid #000;
-}
-
 /************************** Carousel CSS ******************************/
 /*.carousel-handles {
 	margin: 1em 0 0 0;

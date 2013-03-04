@@ -9,6 +9,9 @@
     <link rel="apple-touch-icon-precomposed" href="img/apple-mobile-icon.png" />
     <meta charset='utf-8'>
 
+    <script>
+      var dojoConfig = { parseOnLoad: true };
+    </script>
     <!-- Linking in ArcGIS Code -->
     <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/claro/claro.css" />
     <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css" />
@@ -36,6 +39,7 @@
     <script src='libs/swipe.min.js' ></script>
     <link href="CSS/swipe.css" rel="stylesheet" />
     <link href="CSS/table.css" rel="stylesheet" />
+    <link href="CSS/map.css" rel="stylesheet" />
     <!-- Carousel Plugin -->
 
     <script type="text/javascript" >
@@ -44,7 +48,7 @@
     </script>
 
 	</head>
-	<body>
+	<body class="claro">
     <div ng-controller="footerController">
       <div class='mainDiv' ng-view></div>
       <footer>

@@ -7,7 +7,7 @@ Config.dynamicLayer = {
 }
 
 Config.mapDefaults = {
-  centerX: 30,
+  centerX: 20,
   centerY: 40,
   zoom: 3
 }
@@ -15,5 +15,5 @@ Config.mapDefaults = {
 Config.mapDefaults.phone = {
   centerX: 20,
   centerY: 0,
-  zoom: 1
+  zoom: 2
 }
