@@ -13,6 +13,8 @@ function CountryQuickStatsController($scope,$http) {
 }
 function CountriesHomepageController($scope, $routeParams, $http) {
 
+  gaEvent("Country",$routeParams.CountryName);
+
 	$scope.CountryLabel = $routeParams.CountryName;
 	$scope.CountryId = $routeParams.CountryId;
 	$scope.previous = $routeParams.Previous;
@@ -63,29 +65,30 @@ function CountriesHomepageController($scope, $routeParams, $http) {
 function CountriesIndicatorsController($scope, $routeParams, $http) {
 
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getDataByCountry/?callback=JSON_CALLBACK&f=json').success(function(data,status,headers,config){
-	
-		$scope.CountryData = Global.getDataByCountry[$routeParams.CountryId];
-		if ($scope.CountryData != undefined) {
-			$scope.indicatorYears = $scope.CountryData.YEARS;
-			$scope.indicatorValues = $scope.CountryData.DATA;
-			$scope.counter = $scope.indicatorYears.length - 1;
-			$scope.Previous = $routeParams.Previous; 
-			// Init variables to bind whether button is enabled or disabled
-			if ($scope.counter-2 < 0)
-				$scope.decrementIsDisabled = true;
-			else
-				$scope.decrementIsDisabled = false;	
-			
-				$scope.incrementIsDisabled = true;
-			
-			// If only one year available, only show one view, else show two
-			if ($scope.indicatorYears.length > 1)
-				$scope.dataSize = 'MoreThanOne';
-			else
-				$scope.dataSize = 'OnlyOne';	
-		} else {
-			$scope.dataSize = 'none';
-		}
+	gaEvent("Quickstats",$routeParams.CountryName);
+
+  $scope.CountryData = Global.getDataByCountry[$routeParams.CountryId];
+  if ($scope.CountryData != undefined) {
+    $scope.indicatorYears = $scope.CountryData.YEARS;
+    $scope.indicatorValues = $scope.CountryData.DATA;
+    $scope.counter = $scope.indicatorYears.length - 1;
+    $scope.Previous = $routeParams.Previous;
+    // Init variables to bind whether button is enabled or disabled
+    if ($scope.counter-2 < 0)
+      $scope.decrementIsDisabled = true;
+    else
+      $scope.decrementIsDisabled = false;
+
+      $scope.incrementIsDisabled = true;
+
+    // If only one year available, only show one view, else show two
+    if ($scope.indicatorYears.length > 1)
+      $scope.dataSize = 'MoreThanOne';
+    else
+      $scope.dataSize = 'OnlyOne';
+  } else {
+    $scope.dataSize = 'none';
+  }
 		
 	$scope.Flag = Global.getCountryDetailsByCountryCode[$routeParams.CountryId].Flag;
 	
@@ -144,6 +147,8 @@ function IndicatorCountriesController($scope,$http,$routeParams,$timeout) {
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getDataByIndicator/?callback=JSON_CALLBACK&f=json').success(function(data,status,header,config){
 	//	$scope.IndicatorValues = data[$routeParams.IndicatorId].DATA;
 	//});
+
+  gaEvent("Indicators",$routeParams.IndicatorLabel);
 
 	$scope.IndicatorValues = Global.getDataByIndicator[$routeParams.IndicatorId]; 
 	$scope.Flags = Global.getCountryDetailsByCountryCode;
@@ -468,8 +473,9 @@ function SurveyInformationController($scope, $routeParams, $http) {
 
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getSurveys/?callback=JSON_CALLBACK&f=json&SurveyIds='+$routeParams.SurveyId).success(function(data,status,header,config){
 	//});
-	
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getSurveyCharacteristics/?callback=JSON_CALLBACK&f=json&SurveyIds='+$routeParams.SurveyId).success(function(data,status,header,config){
+
+  gaEvent("Surveys","Id: "+$routeParams.SurveyId+", Label: "+$scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR);
 
 	$scope.data = Global.getSurveyDetailsBySurveyId[$routeParams.SurveyId];	
 	
@@ -523,8 +529,6 @@ function InfoController() { }
 /**********************************************************************************************/
 function footerController($scope,$route,$window, $location) {
 	$scope.$on('$viewContentLoaded',function(){
-		//$window._gaq.push(['_trackPageview', $location.path()]);
-		
 		switch ($route.current.$route.templateUrl) {
 			case 'partials/Homepage.html' :
 				/* Set the App Footer position to Absolute for this view TODO Android Specific Code Here

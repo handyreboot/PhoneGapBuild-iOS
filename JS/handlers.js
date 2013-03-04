@@ -9,8 +9,8 @@ function initializePlugins() {
 }
 
 // Plugin Support Functions
-function gaEvent() {
-  Global.gaPlugin.trackEvent(function(){alert('Event Tracked!')},function(){alert('failure')},"Link","Click","Test From measureDHS",1);
+function gaEvent(eventAction,eventLabel) {
+  Global.gaPlugin.trackEvent(function(){alert('Event Tracked!')},function(){alert('failure')},"Page",eventAction,eventLabel,1);
 }
 
 // Plugin Support Functions
