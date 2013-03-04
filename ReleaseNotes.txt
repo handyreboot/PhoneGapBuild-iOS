@@ -1,0 +1,11 @@
++ Some Files have Android Specific Code commented out, those files are:
+	- controllers.js
+	- SurveryInformation.html
+
+
++ Release Package Name
+	- com.icfi.MeasureDHS
+
++ Android Keystore
+	- Keystore, and Key_Info.txt located under Projects > Macro > Mobile
+	
