@@ -75,17 +75,21 @@
   		<div ng-class="{true:'pubsShow',false:'pubsHide'}[Online == 'Online']">
 	  			<ul class='noBullets'>
             <!-- Android Version
-            <li ng-repeat='item in Publications' style='padding-bottom: 5px;margin-right: -30px !important;' onclick='window.open("{{item.url}}")'>
+            onclick='window.open("{{item.url}}")'
             <!-- Android Version -->
             <!-- iOS Version -->
-		  			<li ng-repeat='item in Publications' style='padding-bottom: 5px;margin-right: -30px !important;' onclick="window.plugins.childBrowser.showWebPage('{{item.url}}',{ showLocationBar: true })">
+		  			<li ng-repeat='item in Publications' style='padding-bottom: 5px;margin-right: -30px !important;'>
             <!-- iOS Version -->
-		  			  <span><img alt='{{item.pdfTitle}}' src='{{item.thumbnail}}' height='110px;'/></span>
+		  			  <span>
+                <img alt='{{item.pdfTitle}}' src='{{item.thumbnail}}' height='110px;' onclick="window.plugins.childBrowser.showWebPage('{{item.url}}',{ showLocationBar: true })"/>
+              </span>
 		  				<!-- Android Version
 		  				<span><a href="{{item.url}}" target="_blank">{{item.title}}</a></span>
 		  				<!-- Android Version -->
               <!-- iOS Version -->
-              <span><a href="javascript:void(0)" target="_blank" onclick="window.plugins.childBrowser.showWebPage('{{item.url}}',{ showLocationBar: true })">{{item.title}}</a></span>
+              <span>
+                <a href="javascript:void(0)" onclick="window.plugins.childBrowser.showWebPage('{{item.url}}',{ showLocationBar: true })">{{item.title}}</a>
+              </span>
               <!-- iOS Version -->
 		  			</li>
 			  	</ul>
