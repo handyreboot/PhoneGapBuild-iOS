@@ -690,11 +690,73 @@ function MappingController($http,$timeout,$scope) {
     var ldo = new esri.layers.LayerDrawingOptions();
     ldo.renderer = renderer;
     ldos[3] = ldo;
-    console.dir(DHSMapLayer);
+
+    //esri.config.defaults.io.proxyUrl = "http://staging.blueraster.com/proxy/proxy.php";
 
     DHSMapLayer.setLayerDrawingOptions(ldos);
 
-		
+		var buildLegend = function(indData){
+      for (var i = 0; i < Global.getCountries.length;i++) {
+        var class1Min,class1Max,
+            class2Min,class2Max,
+            class3Min,class3Max,
+            class4Min,class4Max;
+        var c1First = c2First = c3First = c4First = true;
+        console.dir(indData[i]);
+        switch(indData[i].class){
+          case 1:
+            renderer.addValue(indData[i].countryCode,class1);
+            if (c1First) {
+              class1Min = class1Max = indData[i].val;
+              c1First = false;
+            }
+            class1Min = Math.min(class1Min,indData[i].val);
+            class1Max = Math.max(class1Max,indData[i].val);
+            break;
+          case 2:
+            renderer.addValue(indData[i].countryCode,class2);
+            if (c2First) {
+              class2Min = class2Max = indData[i].val;
+              c2First = false;
+            }
+            class2Min = Math.min(class2Min,indData[i].val);
+            class2Max = Math.max(class2Max,indData[i].val);
+            break;
+          case 3:
+            renderer.addValue(indData[i].countryCode,class3);
+            if (c3First) {
+              class3Min = class3Max = indData[i].val;
+              c3First = false;
+            }
+            class3Min = Math.min(class3Min,indData[i].val);
+            class3Max = Math.max(class3Max,indData[i].val);
+            break;
+          case 4:
+            renderer.addValue(indData[i].countryCode,class4);
+            if (c4First) {
+              class4Min = class4Max = indData[i].val;
+              c4First = false;
+            }
+            class4Min = Math.min(class4Min,indData[i].val);
+            class4Max = Math.max(class4Max,indData[i].val);
+            break;
+        }
+      }
+      var ldos = [];
+      var ldo = new esri.layers.LayerDrawingOptions();
+      ldo.renderer = renderer;
+      ldos[3] = ldo;
+      DHSMapLayer.setLayerDrawingOptions(ldos);
+      $scope.c1min = class1Min;
+      $scope.c1max = class1Max;
+      $scope.c2min = class2Min;
+      $scope.c2max = class2Max;
+      $scope.c3min = class3Min;
+      $scope.c3max = class3Max;
+      $scope.c4min = class4Min;
+      $scope.c4max = class4Max;
+    }
+
 		/*var buildLegend = function() {
 			var class1Min,class1Max;
 			var class2Min,class2Max;
@@ -771,15 +833,15 @@ function MappingController($http,$timeout,$scope) {
 		*/
 		$scope.changer = '20171000';
 		$scope.changeIndicator = function(changer) {
-			/*var newValues = Global.getDataByIndicator[changer.changer];
-			for (var i = 0; i < newValues.length; i++) {
-				graphicsLayer.graphics[i].attributes.class = newValues[i].class;
-				graphicsLayer.graphics[i].attributes.value = newValues[i].val;
-				graphicsLayer.graphics[i].attributes.name = newValues[i].label;
-				graphicsLayer.graphics[i].attributes.year = newValues[i].year;
-			}
+			var newValues = Global.getDataByIndicator[changer.changer];
 			map.setExtent(map.extent);
-			buildLegend();*/
+			buildLegend(newValues);
+      /*for (var i = 0; i < newValues.length; i++) {
+      graphicsLayer.graphics[i].attributes.class = newValues[i].class;
+      graphicsLayer.graphics[i].attributes.value = newValues[i].val;
+      graphicsLayer.graphics[i].attributes.name = newValues[i].label;
+      graphicsLayer.graphics[i].attributes.year = newValues[i].year;*/
+
 		}
 
     $scope.togglePopover = function() {
