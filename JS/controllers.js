@@ -643,6 +643,57 @@ function MappingController($http,$timeout,$scope) {
     });
 
     map.addLayer(DHSMapLayer);
+
+    // Symbols for the Renderer
+    var defaultSymbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
+    new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
+    new dojo.Color([0,0,0,0]),0),new dojo.Color([255,0,0,0]));
+
+    var class1 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
+    new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([203, 201, 226,0.5]));
+
+    var class2 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
+    new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([158, 154, 200,0.5]));
+
+    var class3 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
+    new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([117, 107, 177,0.5]));
+
+    var class4 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
+    new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([84, 39, 143,0.5]));
+
+    // Set up the renderer
+    var renderer = new esri.renderer.UniqueValueRenderer(defaultSymbol,"DHS_CC");
+
+    var indData = Global.getDataByIndicator["20171000"];
+    for (var i = 0; i < Global.getCountries.length;i++) {
+      switch(indData[i].class){
+        case 1:
+          renderer.addValue(indData[i].countryCode,class1);
+          break;
+        case 2:
+          renderer.addValue(indData[i].countryCode,class2);
+          break;
+        case 3:
+          renderer.addValue(indData[i].countryCode,class3);
+          break;
+        case 4:
+          renderer.addValue(indData[i].countryCode,class4);
+          break;
+      }
+    }
+
+    var ldos = [];
+    var ldo = new esri.layers.LayerDrawingOptions();
+    ldo.renderer = renderer;
+    ldos[3] = ldo;
+    console.dir(DHSMapLayer);
+
+    DHSMapLayer.setLayerDrawingOptions(ldos);
+
 		
 		/*var buildLegend = function() {
 			var class1Min,class1Max;
@@ -698,33 +749,6 @@ function MappingController($http,$timeout,$scope) {
 		}
 		
 		map.infoWindow.resize(150,60);
-		// Symbols for the Renderer
-		var defaultSymbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
-			new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-			new dojo.Color([0,0,0,0]), 1),new dojo.Color([255,0,0,0]));
-		
-		var class1 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
-			new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-			new dojo.Color([0,0,0,0]), 1),new dojo.Color([203, 201, 226,0.5]));
-			
-		var class2 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
-			new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-			new dojo.Color([0,0,0,0]), 1),new dojo.Color([158, 154, 200,0.5]));
-			
-		var class3 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
-			new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-			new dojo.Color([0,0,0,0]), 1),new dojo.Color([117, 107, 177,0.5]));
-			
-		var class4 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
-			new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-			new dojo.Color([0,0,0,0]), 1),new dojo.Color([84, 39, 143,0.5]));			
-			
-		// Set up the renderer
-		var renderer = new esri.renderer.UniqueValueRenderer(defaultSymbol, "class");
-		renderer.addValue("1",class1);
-		renderer.addValue("2",class2);
-		renderer.addValue("3",class3);
-		renderer.addValue("4",class4);	
 			
 		var graphicsLayer = new esri.layers.GraphicsLayer();	
 		var geometry;
