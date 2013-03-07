@@ -603,6 +603,8 @@ function MappingController($http,$timeout,$scope) {
 		dojo.require("esri.layers.graphics");
 		dojo.require("dojo.number");
 
+    //esri.config.defaults.io.proxyUrl = "http://staging.blueraster.com/proxy/proxy.php";
+
     var options;
 		if (window.innerWidth < 450)
       options = Config.mapDefaults.phone;
@@ -669,31 +671,6 @@ function MappingController($http,$timeout,$scope) {
     var renderer = new esri.renderer.UniqueValueRenderer(defaultSymbol,"DHS_CC");
 
     var indData = Global.getDataByIndicator["20171000"];
-    for (var i = 0; i < Global.getCountries.length;i++) {
-      switch(indData[i].class){
-        case 1:
-          renderer.addValue(indData[i].countryCode,class1);
-          break;
-        case 2:
-          renderer.addValue(indData[i].countryCode,class2);
-          break;
-        case 3:
-          renderer.addValue(indData[i].countryCode,class3);
-          break;
-        case 4:
-          renderer.addValue(indData[i].countryCode,class4);
-          break;
-      }
-    }
-
-    var ldos = [];
-    var ldo = new esri.layers.LayerDrawingOptions();
-    ldo.renderer = renderer;
-    ldos[3] = ldo;
-
-    //esri.config.defaults.io.proxyUrl = "http://staging.blueraster.com/proxy/proxy.php";
-
-    DHSMapLayer.setLayerDrawingOptions(ldos);
 
 		var buildLegend = function(indData){
       for (var i = 0; i < Global.getCountries.length;i++) {
@@ -702,7 +679,6 @@ function MappingController($http,$timeout,$scope) {
             class3Min,class3Max,
             class4Min,class4Max;
         var c1First = c2First = c3First = c4First = true;
-        console.dir(indData[i]);
         switch(indData[i].class){
           case 1:
             renderer.addValue(indData[i].countryCode,class1);
@@ -756,6 +732,8 @@ function MappingController($http,$timeout,$scope) {
       $scope.c4min = class4Min;
       $scope.c4max = class4Max;
     }
+
+    buildLegend(indData);
 
 		/*var buildLegend = function() {
 			var class1Min,class1Max;
