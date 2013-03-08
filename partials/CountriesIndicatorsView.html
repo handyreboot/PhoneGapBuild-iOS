@@ -7,10 +7,15 @@
 <div class="tableBody">
 	<ng-switch on='dataSize'>
 		<div ng-switch-when='MoreThanOne'>
+      <div id="indicatorDescription" class="indicatorDescription" ng-click="hideDescription()">
+        <div id="indicatorDescriptionContent">
+          Tap to Close
+        </div>
+      </div>
 			<table id="indicator-table">
 				<!-- Labels and Year Buttons for Table -->
 				<tr class="title">
-					<th style="width:50%;"><a class='indicatorInfo' href="{{indicatorUrl}}"></a>Indicator</th>
+					<th style="width:50%;"><!--<a class='indicatorInfo' href="{{indicatorUrl}}"></a>-->Indicator</th>
 					<th class="data-column left" style="width:25%;">
 						<button ng-class="{true:'countryButtonOff',false:'countryButtonOn'}[decrementIsDisabled]" ng-click="decreaseYears()" ng-disabled="decrementIsDisabled">&lsaquo;</button>
 						{{indicatorYears[counter-1]}}
@@ -22,7 +27,8 @@
 				</tr>
 				<!-- Labels and Year Buttons for Table -->
 				<tr ng-repeat="item in indicatorValues">
-					<td style='width: 50%;'>{{indicatorLabels[$index][0]}}</td>
+          <td class="indicatorInfo" ng-click="showInfo($index)"></td>
+					<td style='width: 48%;'>{{indicatorLabels[$index][0]}}</td>
 					<td class="data-column" style='width: 25%;'>{{item[indicatorYears[counter-1]] | replaceNulls:indicatorLabels[$index][0] }}</td>
 					<td class="data-column" style='width: 25%;'>{{item[indicatorYears[counter]] | replaceNulls:indicatorLabels[$index][0] }}</td>
 				</tr>
@@ -30,16 +36,22 @@
 			</table>
 		</div>
 		<div ng-switch-when='OnlyOne'>
+      <div id="indicatorDescription" class="indicatorDescription" ng-click="hideDescription()">
+        <div id="indicatorDescriptionContent">
+          Tap to Close
+        </div>
+      </div>
 			<table id="indicator-table">
 				<!-- Labels and Year Buttons for Table -->
 				<tr class="title">
-					<th style='width: 60%;'><a class='indicatorInfo' href="{{indicatorUrl}}"></a>Indicator</th>
+					<th style='width: 60%;'><!--<a class='indicatorInfo' href="{{indicatorUrl}}"></a>-->Indicator</th>
 					<th class="data-column" style='width: 40%;'>
 						<span class="indicatorMetaDataHeader">{{indicatorYears[counter]}}</span>
 					</th>
 				</tr>
 				<!-- Labels and Year Buttons for Table -->
 				<tr ng-repeat="item in indicatorValues">
+          <td class="indicatorInfo" ng-click="showInfo($index)"></td>
 					<td style='width: 60%;'>{{indicatorLabels[$index][0]}}</td>
 					<td class="data-column" style='width: 40%;'>{{item[indicatorYears[counter]] | replaceNulls :indicatorLabels[$index][0]}}</td>
 				</tr>

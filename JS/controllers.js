@@ -124,6 +124,15 @@ function CountriesIndicatorsController($scope, $routeParams, $http) {
 		if ($scope.counter < $scope.indicatorYears.length-1)
 			$scope.incrementIsDisabled = false;		
 	}
+
+  // Show Info about Indicator
+  $scope.showInfo = function(index){
+    document.getElementById("indicatorDescription").style.visibility = "visible";
+  }
+
+  $scope.hideDescription = function() {
+    document.getElementById("indicatorDescription").style.visibility = "hidden";
+  }
 	
 	// Set up previous Url
 	if ($routeParams.Previous == 'Country') {
