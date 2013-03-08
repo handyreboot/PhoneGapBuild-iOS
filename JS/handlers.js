@@ -10,7 +10,7 @@ function initializePlugins() {
 
 // Plugin Support Functions
 function gaEvent(eventAction,eventLabel) {
-  Global.gaPlugin.trackEvent(function(){alert('Event Tracked!')},function(){alert('failure')},"Page",eventAction,eventLabel,1);
+  Global.gaPlugin.trackEvent(function(){/*Success*/},function(){/*Failure*/},"Page",eventAction,eventLabel,1);
 }
 
 // Plugin Support Functions

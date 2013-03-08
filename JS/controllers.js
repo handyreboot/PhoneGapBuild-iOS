@@ -13,7 +13,7 @@ function CountryQuickStatsController($scope,$http) {
 }
 function CountriesHomepageController($scope, $routeParams, $http) {
 
-  //gaEvent("Country",$routeParams.CountryName);
+  gaEvent("Country",$routeParams.CountryName);
 
 	$scope.CountryLabel = $routeParams.CountryName;
 	$scope.CountryId = $routeParams.CountryId;
@@ -65,7 +65,7 @@ function CountriesHomepageController($scope, $routeParams, $http) {
 function CountriesIndicatorsController($scope, $routeParams, $http) {
 
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getDataByCountry/?callback=JSON_CALLBACK&f=json').success(function(data,status,headers,config){
-	//gaEvent("Quickstats",$routeParams.CountryName);
+	gaEvent("Quickstats",$routeParams.CountryName);
 
   $scope.CountryData = Global.getDataByCountry[$routeParams.CountryId];
   if ($scope.CountryData != undefined) {
@@ -157,7 +157,7 @@ function IndicatorCountriesController($scope,$http,$routeParams,$timeout) {
 	//	$scope.IndicatorValues = data[$routeParams.IndicatorId].DATA;
 	//});
 
-  //gaEvent("Indicators",$routeParams.IndicatorLabel);
+  gaEvent("Indicators",$routeParams.IndicatorLabel);
 
 	$scope.IndicatorValues = Global.getDataByIndicator[$routeParams.IndicatorId]; 
 	$scope.Flags = Global.getCountryDetailsByCountryCode;
@@ -486,7 +486,7 @@ function SurveyInformationController($scope, $routeParams, $http) {
 
 	$scope.data = Global.getSurveyDetailsBySurveyId[$routeParams.SurveyId];
 
-  //gaEvent("Surveys","Id: "+$routeParams.SurveyId+", Label: "+$scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR);
+  gaEvent("Surveys","Id: "+$routeParams.SurveyId+", Label: "+$scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR);
 	
 	$scope.HeaderLabel = $scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR;
 	$scope.Characteristics = Global.getSurveyCharacteristicsBySurveyId[$routeParams.SurveyId];
