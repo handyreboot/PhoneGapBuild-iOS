@@ -1057,13 +1057,15 @@ li.menu-parent ul {
 .indicatorDescription div {
   position: relative;
   margin: 100px auto 0 auto;
-  height: 100px;
   width: 80%;
   background-color: #fff;
   border: 1px solid #000;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+}
+#updateData {
+  visibility: hidden;
 }
 .chartLabelLeft, .chartLabelRight {
 	font: 14px/15px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif;

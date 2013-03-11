@@ -13,7 +13,7 @@ function CountryQuickStatsController($scope,$http) {
 }
 function CountriesHomepageController($scope, $routeParams, $http) {
 
-  gaEvent("Country",$routeParams.CountryName);
+  //gaEvent("Country",$routeParams.CountryName);
 
 	$scope.CountryLabel = $routeParams.CountryName;
 	$scope.CountryId = $routeParams.CountryId;
@@ -65,7 +65,7 @@ function CountriesHomepageController($scope, $routeParams, $http) {
 function CountriesIndicatorsController($scope, $routeParams, $http) {
 
 	//$http.jsonp('http://www.measuredhs.com/API/DHS/getDataByCountry/?callback=JSON_CALLBACK&f=json').success(function(data,status,headers,config){
-	gaEvent("Quickstats",$routeParams.CountryName);
+	//gaEvent("Quickstats",$routeParams.CountryName);
 
   $scope.CountryData = Global.getDataByCountry[$routeParams.CountryId];
   if ($scope.CountryData != undefined) {
@@ -127,8 +127,14 @@ function CountriesIndicatorsController($scope, $routeParams, $http) {
 
   // Show Info about Indicator
   // TODO CSS for this guy is position: fixed, may need to be adjusted for Android, do some testing
+  var defs;
+  $http.get('data/indicatorDefinitions.json').success(function(data) {
+    defs = data.Defs;
+  });
+
   $scope.showInfo = function(index){
     document.getElementById("indicatorDescription").style.visibility = "visible";
+    document.getElementById("indicatorDescriptionContent").innerHTML = "<p>"+defs[index]+"</p>";
   }
 
   $scope.hideDescription = function() {
@@ -158,7 +164,7 @@ function IndicatorCountriesController($scope,$http,$routeParams,$timeout) {
 	//	$scope.IndicatorValues = data[$routeParams.IndicatorId].DATA;
 	//});
 
-  gaEvent("Indicators",$routeParams.IndicatorLabel);
+  //gaEvent("Indicators",$routeParams.IndicatorLabel);
 
 	$scope.IndicatorValues = Global.getDataByIndicator[$routeParams.IndicatorId]; 
 	$scope.Flags = Global.getCountryDetailsByCountryCode;
@@ -487,7 +493,7 @@ function SurveyInformationController($scope, $routeParams, $http) {
 
 	$scope.data = Global.getSurveyDetailsBySurveyId[$routeParams.SurveyId];
 
-  gaEvent("Surveys","Id: "+$routeParams.SurveyId+", Label: "+$scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR);
+  //gaEvent("Surveys","Id: "+$routeParams.SurveyId+", Label: "+$scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR);
 	
 	$scope.HeaderLabel = $scope.data.COUNTRYNAME+" "+$scope.data.SURVEYTYPE+" "+$scope.data.SURVEYYEAR;
 	$scope.Characteristics = Global.getSurveyCharacteristicsBySurveyId[$routeParams.SurveyId];
@@ -532,7 +538,16 @@ function SurveyInformationController($scope, $routeParams, $http) {
 }
 /**** Survey Pages ****/
 
-function InfoController() { }
+function InfoController($scope,$http) {
+  $http.jsonp('http://www.measuredhs.com/API/DHS/getQuickStats/?callback=JSON_CALLBACK&f=json').success(function(data,status,headers,config){
+    document.getElementById('updateData').style.visibility = 'visible';
+  });
+
+  // Show Last Date Updated
+  var date = new Date(localStorage.getItem('Update'));
+  $scope.currentDate = (date.getMonth()+1)+'/'+date.getDate()+'/'+date.getFullYear()+' - '+date.getHours()+':'+date.getMinutes();
+  console.log($scope.currentDate);
+}
 /**********************************************************************************************/
 function footerController($scope,$route,$window, $location) {
 	$scope.$on('$viewContentLoaded',function(){
@@ -976,5 +991,8 @@ function HomePageController($http, $scope, $timeout) {
 				}
 			}); // End Select Rows Test	
 		}); // End Create Tables
+
+    // Update TimeStamp to show last update time
+    localStorage.setItem('Update',new Date());
 	}
 }
