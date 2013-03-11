@@ -628,7 +628,7 @@ function MappingController($http,$timeout,$scope) {
 		dojo.require("esri.layers.graphics");
 		dojo.require("dojo.number");
 
-    //esri.config.defaults.io.proxyUrl = "http://staging.blueraster.com/proxy/proxy.php";
+    esri.config.defaults.io.proxyUrl = "http://staging.blueraster.com/proxy/proxy.php";
 
     var options;
 		if (window.innerWidth < 450)
