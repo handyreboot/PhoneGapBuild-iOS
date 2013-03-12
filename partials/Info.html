@@ -14,12 +14,12 @@
 	<li id="facebook">
 		<!--<a href='https://www.facebook.com/MEASUREDHS' target="_blank">Facebook</a>-->
 		<!-- For iOS Only -->
-		<a href='fb://profile/61536500527' target="_blank">Facebook</a>
+		<a href='javascript:void(0)' onclick="window.plugins.childBrowser.showWebPage('https://www.facebook.com/MEASUREDHS',{showLocationBar: true});">Facebook</a>
 	</li>
 	<li id="twitter">
 		<!--<a href='http://twitter.com/measuredhs' target="_blank">Twitter</a>-->
     <!--<a href="twitter://post?message=hello%20world">Twitter</a>-->
-    <a href="javascript:void(0)" onclick="window.plugins.childBrowser.showWebPage('https://twitter.com/measuredhs',{ showLocationBar: true })">Follow</a>
+    <a href="javascript:void(0)" onclick="window.plugins.childBrowser.showWebPage('https://twitter.com/measuredhs',{`showLocationBar:true})">Follow</a>
 
     <!--<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>-->
 	</li>
@@ -31,5 +31,7 @@
   <br>
   <span id='lastUpdated'>{{currentDate}}</span>
 </div>
-
+<!--
 <a href="twitter://user?screen_name=MEASUREDHS">Twitter</a>
+<a href='fb://profile/61536500527'>Facebook</a>
+-->

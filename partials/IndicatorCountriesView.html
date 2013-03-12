@@ -5,6 +5,8 @@
 	    	<li ng-click="setClass(0)" ng-class='chart'>Chart</li>
 	    	<li ng-click="setClass(1)" ng-class='table'>Table</li> 
 		</ul>
+
+    <span class="indicatorInfo" ng-click="showInfo()" style='position:absolute;top:0px;right:45px;z-index:55;'></span>
 		
 		<div id="button" title="Sort" ng-click="togglePopover()">Sort
 		<ul class="popover" ng-class='PopupSort'>
@@ -16,8 +18,15 @@
 			<li><input name="alphabetical" id="alphabetical" type="radio" ng-model='sorter' value='F' ng-change='changeSortDesriptor(this)'><label for="alphabetical">Region (Alpha)</label></li>
 		</ul>
 		</div>
-</header>    
-<div id="indicators">  
+</header>
+
+<div id="indicatorDescription" class="indicatorDescription" ng-click="hideDescription()">
+  <div id="indicatorDescriptionContent">
+
+  </div>
+</div>
+
+<div id="indicators">
 	<h1 id="indicatorTitle" class="indicator-title" ng-bind="IndicatorLabel"></h1>
 	
     <ng-switch on='CurrentView'>

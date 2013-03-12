@@ -134,7 +134,7 @@ function CountriesIndicatorsController($scope, $routeParams, $http) {
 
   $scope.showInfo = function(index){
     document.getElementById("indicatorDescription").style.visibility = "visible";
-    document.getElementById("indicatorDescriptionContent").innerHTML = "<p>"+defs[index]+"</p>";
+    document.getElementById("indicatorDescriptionContent").innerHTML = "<p>"+defs[index]+"</p><br><center>Tap To Close</center><br>";
   }
 
   $scope.hideDescription = function() {
@@ -247,6 +247,20 @@ function IndicatorCountriesController($scope,$http,$routeParams,$timeout) {
 		else	
 			document.getElementsByClassName('popover')[0].style.display = 'none';
 	}
+
+  var defs;
+  $http.get('data/indicatorDefinitions.json').success(function(data) {
+    defs = data.Defs;
+  });
+
+  $scope.showInfo = function(){
+    document.getElementById("indicatorDescription").style.visibility = "visible";
+    document.getElementById("indicatorDescriptionContent").innerHTML = "<p>"+defs[Config.indicatorDefsLookup[$scope.IndicatorLabel]]+"</p><br><center>Tap To Close</center><br>";
+  }
+
+  $scope.hideDescription = function() {
+    document.getElementById("indicatorDescription").style.visibility = "hidden";
+  }
 	
 	// Filters to filter out rows with missing Data
 	$scope.missingData = function(item) {
@@ -676,19 +690,19 @@ function MappingController($http,$timeout,$scope) {
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
     new dojo.Color([0,0,0,0]),0),new dojo.Color([255,0,0,0]));
 
-    var class1 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
+    var class1Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
     new dojo.Color([0,0,0,0]), 1),new dojo.Color([203, 201, 226,0.5]));
 
-    var class2 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
+    var class2Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
     new dojo.Color([0,0,0,0]), 1),new dojo.Color([158, 154, 200,0.5]));
 
-    var class3 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
+    var class3Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
     new dojo.Color([0,0,0,0]), 1),new dojo.Color([117, 107, 177,0.5]));
 
-    var class4 = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
+    var class4Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
     new dojo.Color([0,0,0,0]), 1),new dojo.Color([84, 39, 143,0.5]));
 
@@ -698,6 +712,11 @@ function MappingController($http,$timeout,$scope) {
     var indData = Global.getDataByIndicator["20171000"];
 
 		var buildLegend = function(indData){
+      //var class1Data = [], class2Data = [], class3Data = [], class4Data = [];
+      //renderer.addValue({value:"'AO' OR 'BJ'",symbol:class4Symbol});
+      //renderer.addValue(class2Data.join(','),class2Symbol);
+      //renderer.addValue(class3Data.join(','),class3Symbol);
+      //renderer.addValue(class4Data.join(','),class4Symbol);
       for (var i = 0; i < Global.getCountries.length;i++) {
         var class1Min,class1Max,
             class2Min,class2Max,
@@ -706,7 +725,7 @@ function MappingController($http,$timeout,$scope) {
         var c1First = c2First = c3First = c4First = true;
         switch(indData[i].class){
           case 1:
-            renderer.addValue(indData[i].countryCode,class1);
+            renderer.addValue(indData[i].countryCode,class1Symbol);
             if (c1First) {
               class1Min = class1Max = indData[i].val;
               c1First = false;
@@ -715,7 +734,7 @@ function MappingController($http,$timeout,$scope) {
             class1Max = Math.max(class1Max,indData[i].val);
             break;
           case 2:
-            renderer.addValue(indData[i].countryCode,class2);
+            renderer.addValue(indData[i].countryCode,class2Symbol);
             if (c2First) {
               class2Min = class2Max = indData[i].val;
               c2First = false;
@@ -724,7 +743,7 @@ function MappingController($http,$timeout,$scope) {
             class2Max = Math.max(class2Max,indData[i].val);
             break;
           case 3:
-            renderer.addValue(indData[i].countryCode,class3);
+            renderer.addValue(indData[i].countryCode,class3Symbol);
             if (c3First) {
               class3Min = class3Max = indData[i].val;
               c3First = false;
@@ -733,7 +752,7 @@ function MappingController($http,$timeout,$scope) {
             class3Max = Math.max(class3Max,indData[i].val);
             break;
           case 4:
-            renderer.addValue(indData[i].countryCode,class4);
+            renderer.addValue(indData[i].countryCode,class4Symbol);
             if (c4First) {
               class4Min = class4Max = indData[i].val;
               c4First = false;

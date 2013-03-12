@@ -17,3 +17,30 @@ Config.mapDefaults.phone = {
   centerY: 0,
   zoom: 2
 }
+
+Config.indicatorDefsLookup = {
+  "Total fertility rate (children per women)":0,
+  "Percentage of married women currently using any method of family planning":1,
+  "Percentage of married women currently using any modern method of family planning":2,
+  "Percentage of married women with an unmet need for family planning (Revised)":3,
+  "Median age at first marriage for women age 25-49 (years)":4,
+  "Median age at first sex for women age 25-49 (years)":5,
+  "Infant mortality rate (per 1,000 live births)":6,
+  "Under-five mortality rate (per 1,000 live births)":7,
+  "Percentage of live births delivered at a health facility":8,
+  "Percentage of children underweight (-2 SD)":9,
+  "Percentage of children stunted (-2 SD)":10,
+  "Percentage of children wasted (-2 SD)":11,
+  "Percentage of children fully immunized":12,
+  "Percentage of children with diarrhea who received either ORS or RHS":13,
+  "Median exclusive breastfeeding duration (months)":14,
+  "Percentage of children <5 sleeping under an ITN the night before the survey":15,
+  "HIV prevalence among general population: Both sexes":16,
+  "HIV prevalence among general population: Women":17,
+  "HIV prevalence among general population: Men":18,
+  "Population receiving an HIV test and receiving test results in the last 12 months: Women":19,
+  "Population receiving an HIV test and receiving test results in the last 12 months: Men":20,
+  "Percentage of women who are literate":21,
+  "Percentage of respondents with secondary or higher education":22,
+  "Percentage of households with electricity":23
+}
