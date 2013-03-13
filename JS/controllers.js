@@ -717,51 +717,61 @@ function MappingController($http,$timeout,$scope) {
       //renderer.addValue(class2Data.join(','),class2Symbol);
       //renderer.addValue(class3Data.join(','),class3Symbol);
       //renderer.addValue(class4Data.join(','),class4Symbol);
-      for (var i = 0; i < Global.getCountries.length;i++) {
-        var class1Min,class1Max,
-            class2Min,class2Max,
-            class3Min,class3Max,
-            class4Min,class4Max;
-        var c1First = c2First = c3First = c4First = true;
-        switch(indData[i].class){
-          case 1:
-            renderer.addValue(indData[i].countryCode,class1Symbol);
-            if (c1First) {
-              class1Min = class1Max = indData[i].val;
-              c1First = false;
-            }
-            class1Min = Math.min(class1Min,indData[i].val);
-            class1Max = Math.max(class1Max,indData[i].val);
-            break;
-          case 2:
-            renderer.addValue(indData[i].countryCode,class2Symbol);
-            if (c2First) {
-              class2Min = class2Max = indData[i].val;
-              c2First = false;
-            }
-            class2Min = Math.min(class2Min,indData[i].val);
-            class2Max = Math.max(class2Max,indData[i].val);
-            break;
-          case 3:
-            renderer.addValue(indData[i].countryCode,class3Symbol);
-            if (c3First) {
-              class3Min = class3Max = indData[i].val;
-              c3First = false;
-            }
-            class3Min = Math.min(class3Min,indData[i].val);
-            class3Max = Math.max(class3Max,indData[i].val);
-            break;
-          case 4:
-            renderer.addValue(indData[i].countryCode,class4Symbol);
-            if (c4First) {
-              class4Min = class4Max = indData[i].val;
-              c4First = false;
-            }
-            class4Min = Math.min(class4Min,indData[i].val);
-            class4Max = Math.max(class4Max,indData[i].val);
-            break;
+      var class1Min,class1Max,
+      class2Min,class2Max,
+      class3Min,class3Max,
+      class4Min,class4Max;
+      var c1First = c2First = c3First = c4First = true;
+      renderer.addValue('BR',class1Symbol);
+      renderer.addValue('PE',class2Symbol);
+      renderer.addValue('CO',class3Symbol);
+      renderer.addValue('BO',class4Symbol);
+      //renderer.addValue(indData[4].countryCode,class1Symbol);
+      //renderer.addValue(indData[5].countryCode,class2Symbol);
+      //renderer.addValue(indData[6].countryCode,class3Symbol);
+      //renderer.addValue(indData[7].countryCode,class4Symbol);
+      /*for (var i = 0; i < Global.getCountries.length;i++) {
+        if (i > 7){} else {
+          switch(indData[i].class){
+            case 1:
+              renderer.addValue(indData[i].countryCode,class1Symbol);
+              if (c1First) {
+                class1Min = class1Max = indData[i].val;
+                c1First = false;
+              }
+              class1Min = Math.min(class1Min,indData[i].val);
+              class1Max = Math.max(class1Max,indData[i].val);
+              break;
+            case 2:
+              renderer.addValue(indData[i].countryCode,class2Symbol);
+              if (c2First) {
+                class2Min = class2Max = indData[i].val;
+                c2First = false;
+              }
+              class2Min = Math.min(class2Min,indData[i].val);
+              class2Max = Math.max(class2Max,indData[i].val);
+              break;
+            case 3:
+              renderer.addValue(indData[i].countryCode,class3Symbol);
+              if (c3First) {
+                class3Min = class3Max = indData[i].val;
+                c3First = false;
+              }
+              class3Min = Math.min(class3Min,indData[i].val);
+              class3Max = Math.max(class3Max,indData[i].val);
+              break;
+            case 4:
+              renderer.addValue(indData[i].countryCode,class4Symbol);
+              if (c4First) {
+                class4Min = class4Max = indData[i].val;
+                c4First = false;
+              }
+              class4Min = Math.min(class4Min,indData[i].val);
+              class4Max = Math.max(class4Max,indData[i].val);
+              break;
+          }
         }
-      }
+      }*/
       var ldos = [];
       var ldo = new esri.layers.LayerDrawingOptions();
       ldo.renderer = renderer;
