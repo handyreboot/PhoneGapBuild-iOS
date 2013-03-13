@@ -692,19 +692,19 @@ function MappingController($http,$timeout,$scope) {
 
     var class1Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([253, 204, 138,0.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([253, 204, 138,1]));
 
     var class2Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([252, 141, 89,0.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([252, 141, 89,1]));
 
     var class3Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([227, 74, 51,0.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([227, 74, 51,1]));
 
     var class4Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([179, 0, 0,0.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([179, 0, 0,1]));
 
     // Set up the renderer
     var renderer = new esri.renderer.UniqueValueRenderer(defaultSymbol,"DHS_CC");
@@ -723,9 +723,9 @@ function MappingController($http,$timeout,$scope) {
       class3Min,class3Max,
       class4Min,class4Max;
       var c1First = c2First = c3First = c4First = true;
-      renderer.addValue('BR',class1Symbol);
-      renderer.addValue('PE',class2Symbol);
-      /*for (var i = 0; i < Global.getCountries.length;i++) {
+      //renderer.addValue('BR',class1Symbol);
+      //renderer.addValue('PE',class2Symbol);
+      for (var i = 0; i < Global.getCountries.length;i++) {
         switch(indData[i].class){
           case 1:
             renderer.addValue(indData[i].countryCode,class1Symbol);
@@ -764,7 +764,7 @@ function MappingController($http,$timeout,$scope) {
             class4Max = Math.max(class4Max,indData[i].val);
             break;
         }
-      }*/
+      }
       var ldos = [];
       var ldo = new esri.layers.LayerDrawingOptions();
       ldo.renderer = renderer;
