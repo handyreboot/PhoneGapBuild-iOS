@@ -1,7 +1,12 @@
 <header class="mainHeaderView">
   <h3>Map</h3>
  	<div id="ios-arrow-left" onclick="backButton('#/Home')" title="Back"></div>
-  <div id="button" ng-click="togglePopover()">Options
+  <div id="button" ng-click="togglePopover()">Options</div>
+</header>
+	
+<div class='mapDiv'>
+  <div id="map">
+    <h1 id="indicatorTitle" class="indicator-title" ng-bind="currentIndicator"></h1>
     <div class="popoverMap" ng-class='PopupSort'>
       <select style='max-width:215px;float:left;' ng-model="changer" ng-change="changeIndicator(this)">
         <option value='20171000'>Total fertility rate (children per women)</option>
@@ -46,18 +51,5 @@
         </table>
       </div>
     </div>
-  </div>
-</header>
-	
-<div class='mapDiv'>
-  <div id="map">
-    <h1 id="indicatorTitle" class="indicator-title" ng-bind="currentIndicator"></h1>
-    <select style='position: absolute; top: 220px; left: 20px;z-index: 555;'>
-      <option>A</option>
-      <option>B</option>
-      <option>C</option>
-      <option>D</option>
-      <option>E</option>
-    </select>
   </div>
 </div>
