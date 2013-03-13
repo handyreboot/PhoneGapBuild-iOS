@@ -800,8 +800,8 @@ function MappingController($http,$timeout,$scope) {
       class4Min,class4Max;
       var c1First = true, c2First = true, c3First = true,c4First = true;
       var c1 = [], c2 = [], c3 = [], c4 = [];
-      renderer.addValue('BR',class1Symbol);
-      renderer.addValue('BD',class4Symbol);
+      //renderer.addValue('BR',class1Symbol);
+      //renderer.addValue('BD',class4Symbol);
       for (var i = 0; i < Global.getCountries.length;i++) {
         switch(indData[i].class){
           case 1:

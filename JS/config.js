@@ -3,7 +3,7 @@ var Config = {};
 Config.dynamicLayer = {
   id: "DHSMap",
   url: "http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer",
-  defaultVisibleLayers: [3]
+  defaultVisibleLayers: [1,3]
 }
 
 Config.mapDefaults = {
