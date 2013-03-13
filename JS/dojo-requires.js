@@ -17,3 +17,4 @@ dojo.require("dojox.charting.plot2d.Lines");
 dojo.require("dojox.charting.axis2d.Default");
 dojo.require("dojox.charting.themes.Shrooms");
 dojo.require("dojox.charting.plot2d.Markers");
+dojo.require("dojox.charting.action2d.Tooltip");

@@ -71,3 +71,56 @@ Config.indicatorByCode = {
   '11115002':'Percentage of respondents with secondary or higher education',
   '8142001':'Percentage of households with electricity'
 }
+
+Config.dynamicLayerInfo = [{
+  "id": 3,
+  "source": {
+    "type": "mapLayer",
+    "mapLayerId": 3
+  },
+  "drawingInfo": {
+    "serviceUrl":"",
+    "renderer": {
+      "type": "uniqueValue",
+      "field1": "DHS_CC",
+      "defaultSymbol": {
+        "color": [255, 0, 0, 0],
+        "outline": {
+          "color": [0, 0, 0, 0],
+          "width": 9,
+          "type": "esriSLS",
+          "style": "esriSLSSolid"
+        },
+        "type": "esriSFS",
+        "style": "esriSFSSolid"
+      },
+      "uniqueValueInfos": [{
+        "value": "BR",
+        "symbol": {
+          "color": [253, 204, 138, 255],
+          "outline": {
+            "color": [0, 0, 0, 0],
+            "width": 0.75,
+            "type": "esriSLS",
+            "style": "esriSLSSolid"
+          },
+          "type": "esriSFS",
+          "style": "esriSFSSolid"
+        }
+      }, {
+        "value": "BD",
+        "symbol": {
+          "color": [179, 0, 0, 255],
+          "outline": {
+            "color": [0, 0, 0, 0],
+            "width": 0.75,
+            "type": "esriSLS",
+            "style": "esriSLSSolid"
+          },
+          "type": "esriSFS",
+          "style": "esriSFSSolid"
+        }
+      }]
+    }
+  }
+}];

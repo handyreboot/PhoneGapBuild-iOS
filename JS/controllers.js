@@ -736,7 +736,7 @@ function MappingController($http,$timeout,$scope) {
             map.infoWindow.setFeatures([results[0].feature]);
             map.infoWindow.show(evt.mapPoint);
             document.getElementsByClassName("footer")[0].style.width = "175px";
-            document.getElementsByClassName("footer")[0].innerHTML = "Click Arrow for More...";
+            document.getElementsByClassName("footer")[0].innerHTML = "Click Arrow for Details...";
 
             var openButton = document.getElementsByClassName("titleButton")[3];
             var handle = dojo.connect(openButton,"onclick",function(){
@@ -755,9 +755,11 @@ function MappingController($http,$timeout,$scope) {
                 type: "Lines",
                 markers: true
               });
-              chart.addAxis("x", {labelFunc:function(n){return (n.replace(",",""));},minorTicks:true,minorLabels:true});
+              console.dir(chartData);
+              chart.addAxis("x", {labelFunc:function(n){return (n.replace(",",""));},minorTicks: true,minorLabels:true});
               chart.addAxis("y", {labelFunc:function(n){return (n);}, vertical: true, minorTicks: true});
               chart.addSeries("Indicator Values",chartData);
+              new dojox.charting.action2d.Tooltip(chart,"default");
               chart.render();
             });
 
