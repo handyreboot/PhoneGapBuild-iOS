@@ -1055,6 +1055,7 @@ li.menu-parent ul {
   background-color: rgba(0,0,0,.10);
 }
 .indicatorDescriptionLower {
+  z-index: 120;
   position: fixed;
   top: 20px;
   left: 0px;

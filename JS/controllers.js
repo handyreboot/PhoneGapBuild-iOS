@@ -687,6 +687,38 @@ function MappingController($http,$timeout,$scope) {
 
     map.addLayer(DHSMapLayer);
 
+    // SOme Defualts for the Map
+    var currentData = Global.getDataByIndicator["20171000"];
+    $scope.currentIndicator = Config.indicatorByCode["20171000"];
+
+    // Set up Identify
+    var identifyTask = new esri.tasks.IdentifyTask(Config.dynamicLayer.url);
+    var params = new esri.tasks.IdentifyParameters();
+    params.tolerance = 7;
+    params.returnGeometry = false;
+    params.layerIds = Config.dynamicLayer.defaultVisibleLayers;
+    params.layerOption = esri.tasks.IdentifyParameters.LAYER_OPTION_ALL;
+    params.width = map.width;
+    params.height = map.height;
+
+    dojo.connect(map,"onClick",function(evt){
+      params.geometry = evt.mapPoint;
+      params.mapExtent = map.extent;
+      var deferred = identifyTask.execute(params);
+
+      deferred.addCallback(function(results){
+        dojo.forEach(currentData,function(item){
+          if (results[0].feature.attributes.DHS_CC == item.countryCode){
+            var content = $scope.currentIndicator+" - "+item.year+": <strong>"+item.val+"</strong>";
+            map.infoWindow.setTitle("<strong>"+item.label+"</strong>");
+            map.infoWindow.setContent(content);
+            map.infoWindow.show(evt.mapPoint);
+          }
+        });
+      });
+
+    });
+
     // Symbols for the Renderer
     var defaultSymbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
@@ -711,23 +743,15 @@ function MappingController($http,$timeout,$scope) {
     // Set up the renderer
     var renderer = new esri.renderer.UniqueValueRenderer(defaultSymbol,"DHS_CC");
 
-    var indData = Global.getDataByIndicator["20171000"];
-    $scope.currentIndicator = Config.indicatorByCode["20171000"];
-
 		var buildLegend = function(indData){
-      //var class1Data = [], class2Data = [], class3Data = [], class4Data = [];
-      //renderer.addValue({value:"'AO' OR 'BJ'",symbol:class4Symbol});
-      //renderer.addValue(class2Data.join(','),class2Symbol);
-      //renderer.addValue(class3Data.join(','),class3Symbol);
-      //renderer.addValue(class4Data.join(','),class4Symbol);
       var class1Min,class1Max,
       class2Min,class2Max,
       class3Min,class3Max,
       class4Min,class4Max;
       var c1First = c2First = c3First = c4First = true;
-      //renderer.addValue('BR',class1Symbol);
-      //renderer.addValue('PE',class2Symbol);
-      for (var i = 0; i < Global.getCountries.length;i++) {
+      renderer.addValue('BR',class1Symbol);
+      renderer.addValue('PE',class2Symbol);
+      /*for (var i = 0; i < Global.getCountries.length;i++) {
         switch(indData[i].class){
           case 1:
             renderer.addValue(indData[i].countryCode,class1Symbol);
@@ -766,7 +790,7 @@ function MappingController($http,$timeout,$scope) {
             class4Max = Math.max(class4Max,indData[i].val);
             break;
         }
-      }
+      }*/
       var ldos = [];
       var ldo = new esri.layers.LayerDrawingOptions();
       ldo.renderer = renderer;
@@ -782,7 +806,7 @@ function MappingController($http,$timeout,$scope) {
       $scope.c4max = class4Max;
     }
 
-    buildLegend(indData);
+    buildLegend(currentData);
 
 		/*var buildLegend = function() {
 			var class1Min,class1Max;
@@ -860,9 +884,9 @@ function MappingController($http,$timeout,$scope) {
 		*/
 		$scope.changer = '20171000';
 		$scope.changeIndicator = function(changer) {
-			var newValues = Global.getDataByIndicator[changer.changer];
+      currentData = Global.getDataByIndicator[changer.changer];
 			map.setExtent(map.extent);
-			buildLegend(newValues);
+			buildLegend(currentData);
       $scope.currentIndicator = Config.indicatorByCode[changer.changer];
       /*for (var i = 0; i < newValues.length; i++) {
       graphicsLayer.graphics[i].attributes.class = newValues[i].class;

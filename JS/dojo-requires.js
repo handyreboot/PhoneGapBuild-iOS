@@ -10,3 +10,4 @@ dojo.require("esri.arcgis.utils");
 dojo.require("dijit.form.Button");
 dojo.require("esri.toolbars.draw");
 dojo.require("esri.dijit.Print");
+dojo.require("esri.tasks.identify");
