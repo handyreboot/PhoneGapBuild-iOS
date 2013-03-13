@@ -644,8 +644,6 @@ function MappingController($http,$timeout,$scope) {
 		dojo.require("esri.layers.graphics");
 		dojo.require("dojo.number");
 
-    //esri.config.defaults.io.proxyUrl = "http://staging.blueraster.com/proxy/proxy.php";
-
     var options;
 		if (window.innerWidth < 450)
       options = Config.mapDefaults.phone;
@@ -710,14 +708,51 @@ function MappingController($http,$timeout,$scope) {
       var deferred = identifyTask.execute(params);
 
       deferred.addCallback(function(results){
-        var content, infoTemplate;
+        var content, infoTemplate,countryData,indicatorYears,indicatorValues,location,yearValue,chartValue,chartData = [];
         dojo.forEach(currentData,function(item){
           if (results[0].feature.attributes.DHS_CC == item.countryCode){
-            content = $scope.currentIndicator+" - "+item.year+": <br>"+item.val+"";
+            location = Config.indicatorDefsLookup[$scope.currentIndicator];
+            countryData = Global.getDataByCountry[results[0].feature.attributes.DHS_CC];
+            indicatorYears = countryData.YEARS;
+            indicatorValues = countryData.DATA;
+            dojo.forEach(indicatorYears,function(year){
+              dojo.forEach(indicatorValues,function(value,index){
+                if (index == location){
+                  chartValue = (value[year] === undefined ? 0 : value[year]);
+                  if (typeof year == "string")
+                    yearValue = parseInt(year.slice(0,4));
+                  else
+                    yearValue = year;
+                  chartData.push({x:yearValue,y:chartValue});
+                }
+              });
+            });
+            content = $scope.currentIndicator+" - "+item.year+": <br>"+item.val+"<br><br><div id='chartDiv' class='chartPopup'>Loading data...</div>";
             infoTemplate = new esri.InfoTemplate(item.label,content);
             results[0].feature.setInfoTemplate(infoTemplate);
             map.infoWindow.setFeatures([results[0].feature]);
             map.infoWindow.show(evt.mapPoint);
+
+            var openButton = document.getElementsByClassName("titleButton")[3];
+            var handle = dojo.connect(openButton,"onclick",function(){
+              dojo.disconnect(handle);
+              if (Global.chart !== undefined) {
+                Global.chart.destroy();
+              }
+              dojo.byId("chartDiv").innerHTML = "";
+              var theme = dojo.getObject("dojox.charting.themes.Shrooms");
+              Global.chart = new dojox.charting.Chart("chartDiv");
+              Global.chart.setTheme(theme);
+              Global.chart.addPlot("default",{
+                type: "Lines",
+                markers: true
+              });
+              Global.chart.addAxis("x", {labelFunc:function(n){return (n.replace(",",""));},minorTicks:true,minorLabels:true});
+              Global.chart.addAxis("y", {labelFunc:function(n){return (n);}, vertical: true, minorTicks: true});
+              Global.chart.addSeries("Indicator Values",chartData);
+              Global.chart.render();
+            });
+
           }
         });
       });
@@ -753,13 +788,15 @@ function MappingController($http,$timeout,$scope) {
       class2Min,class2Max,
       class3Min,class3Max,
       class4Min,class4Max;
-      var c1First = c2First = c3First = c4First = true;
+      var c1First = true, c2First = true, c3First = true,c4First = true;
+      var c1 = [], c2 = [], c3 = [], c4 = [];
       renderer.addValue('BR',class1Symbol);
-      renderer.addValue('PE',class2Symbol);
+      renderer.addValue('BD',class4Symbol);
       /*for (var i = 0; i < Global.getCountries.length;i++) {
         switch(indData[i].class){
           case 1:
             renderer.addValue(indData[i].countryCode,class1Symbol);
+            c1.push(indData[i].countryCode);
             if (c1First) {
               class1Min = class1Max = indData[i].val;
               c1First = false;
@@ -769,6 +806,7 @@ function MappingController($http,$timeout,$scope) {
             break;
           case 2:
             renderer.addValue(indData[i].countryCode,class2Symbol);
+            c2.push(indData[i].countryCode);
             if (c2First) {
               class2Min = class2Max = indData[i].val;
               c2First = false;
@@ -778,6 +816,7 @@ function MappingController($http,$timeout,$scope) {
             break;
           case 3:
             renderer.addValue(indData[i].countryCode,class3Symbol);
+            c3.push(indData[i].countryCode);
             if (c3First) {
               class3Min = class3Max = indData[i].val;
               c3First = false;
@@ -787,6 +826,7 @@ function MappingController($http,$timeout,$scope) {
             break;
           case 4:
             renderer.addValue(indData[i].countryCode,class4Symbol);
+            c4.push(indData[i].countryCode);
             if (c4First) {
               class4Min = class4Max = indData[i].val;
               c4First = false;
@@ -796,6 +836,12 @@ function MappingController($http,$timeout,$scope) {
             break;
         }
       }*/
+      var uniqueInfo = [
+        {symbol:class1Symbol,values:c1,labels:c1},
+        {symbol:class2Symbol,values:c2,labels:c2},
+        {symbol:class3Symbol,values:c3,labels:c3},
+        {symbol:class4Symbol,values:c4,labels:c4}
+      ];
       var ldos = [];
       var ldo = new esri.layers.LayerDrawingOptions();
       ldo.renderer = renderer;

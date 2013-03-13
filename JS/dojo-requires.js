@@ -12,3 +12,8 @@ dojo.require("esri.toolbars.draw");
 dojo.require("esri.dijit.Print");
 dojo.require("esri.tasks.identify");
 dojo.require("esri.dijit.PopupMobile");
+dojo.require("dojox.charting.Chart");
+dojo.require("dojox.charting.plot2d.Lines");
+dojo.require("dojox.charting.axis2d.Default");
+dojo.require("dojox.charting.themes.Shrooms");
+dojo.require("dojox.charting.plot2d.Markers");
