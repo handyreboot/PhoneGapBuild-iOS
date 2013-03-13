@@ -8,7 +8,8 @@
   <div id="map">
     <h1 id="indicatorTitle" class="indicator-title" ng-bind="currentIndicator"></h1>
     <div class="popoverMap">
-      <select style='max-width:215px;float:left;' ng-model="changer" ng-change="changeIndicator(this)">
+      <img src="./img/close_24x24.png" height="24px" width="24px" ng-click="hidePopover()"/>
+      <select style='max-width:215px;float:left;margin-top: 14px;' ng-model="changer" ng-change="changeIndicator(this)">
         <option value='20171000'>Total fertility rate (children per women)</option>
         <option value='34202000'>Percentage of married women currently using any method of family planning</option>
         <option value='34202001'>Percentage of married women currently using any modern method of family planning</option>

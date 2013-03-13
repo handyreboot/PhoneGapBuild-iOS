@@ -134,7 +134,8 @@ function CountriesIndicatorsController($scope, $routeParams, $http) {
 
   $scope.showInfo = function(index){
     document.getElementById("indicatorDescription").style.visibility = "visible";
-    document.getElementById("indicatorDescriptionContent").innerHTML = "<p>"+defs[index]+"</p><br><center>Tap To Close</center><br>";
+    document.getElementById("indicatorDescriptionContent").innerHTML = "<img src='./img/close_24x24.png' height='24px' width='24px' ng-click='hideDescription()'/>"+
+    "<p>"+defs[index]+"</p>";
   }
 
   $scope.hideDescription = function() {
@@ -255,7 +256,8 @@ function IndicatorCountriesController($scope,$http,$routeParams,$timeout) {
 
   $scope.showInfo = function(){
     document.getElementById("indicatorDescription").style.visibility = "visible";
-    document.getElementById("indicatorDescriptionContent").innerHTML = "<p>"+defs[Config.indicatorDefsLookup[$scope.IndicatorLabel]]+"</p><br><center>Tap To Close</center><br>";
+    document.getElementById("indicatorDescriptionContent").innerHTML = "<img src='./img/close_24x24.png' height='24px' width='24px' ng-click='hideDescription()'/>"+
+    "<p>"+defs[Config.indicatorDefsLookup[$scope.IndicatorLabel]]+"</p>";
   }
 
   $scope.hideDescription = function() {
@@ -875,6 +877,10 @@ function MappingController($http,$timeout,$scope) {
         document.getElementsByClassName('popoverMap')[0].style.display = 'block';
       else
         document.getElementsByClassName('popoverMap')[0].style.display = 'none';
+    }
+
+    $scope.hidePopover = function() {
+      document.getElementsByClassName('popoverMap')[0].style.display = 'none';
     }
 
 	}).error(function(error){
