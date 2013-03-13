@@ -692,19 +692,19 @@ function MappingController($http,$timeout,$scope) {
 
     var class1Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([203, 201, 226,0.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([253, 204, 138,0.6]));
 
     var class2Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([158, 154, 200,0.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([252, 141, 89,0.6]));
 
     var class3Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([117, 107, 177,0.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([227, 74, 51,0.5]));
 
     var class4Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([84, 39, 143,0.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([179, 0, 0,0.5]));
 
     // Set up the renderer
     var renderer = new esri.renderer.UniqueValueRenderer(defaultSymbol,"DHS_CC");
@@ -723,9 +723,9 @@ function MappingController($http,$timeout,$scope) {
       class4Min,class4Max;
       var c1First = c2First = c3First = c4First = true;
       renderer.addValue('BR',class1Symbol);
-      renderer.addValue('PE',class2Symbol);
-      renderer.addValue('CO',class3Symbol);
-      renderer.addValue('BO',class4Symbol);
+      //renderer.addValue('PE',class2Symbol);
+      //renderer.addValue('CO',class3Symbol);
+      //renderer.addValue('BO',class4Symbol);
       //renderer.addValue(indData[4].countryCode,class1Symbol);
       //renderer.addValue(indData[5].countryCode,class2Symbol);
       //renderer.addValue(indData[6].countryCode,class3Symbol);
