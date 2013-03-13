@@ -11,3 +11,4 @@ dojo.require("dijit.form.Button");
 dojo.require("esri.toolbars.draw");
 dojo.require("esri.dijit.Print");
 dojo.require("esri.tasks.identify");
+dojo.require("esri.dijit.PopupMobile");

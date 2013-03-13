@@ -651,12 +651,15 @@ function MappingController($http,$timeout,$scope) {
       options = Config.mapDefaults.phone;
     else
       options = Config.mapDefaults;
+
+    var popup = new esri.dijit.PopupMobile(null, dojo.create("div"));
 		
 		map = new esri.Map("map" , {
       center: [options.centerX,options.centerY],
       zoom: options.zoom,
 			logo : true,
-			wrapAround180: false
+			wrapAround180: false,
+      infoWindow: popup
 		});
 
 		// Make Sure the Map is sized appropriately
@@ -707,11 +710,13 @@ function MappingController($http,$timeout,$scope) {
       var deferred = identifyTask.execute(params);
 
       deferred.addCallback(function(results){
+        var content, infoTemplate;
         dojo.forEach(currentData,function(item){
           if (results[0].feature.attributes.DHS_CC == item.countryCode){
-            var content = $scope.currentIndicator+" - "+item.year+": <strong>"+item.val+"</strong>";
-            map.infoWindow.setTitle("<strong>"+item.label+"</strong>");
-            map.infoWindow.setContent(content);
+            content = $scope.currentIndicator+" - "+item.year+": <br>"+item.val+"";
+            infoTemplate = new esri.InfoTemplate(item.label,content);
+            results[0].feature.setInfoTemplate(infoTemplate);
+            map.infoWindow.setFeatures([results[0].feature]);
             map.infoWindow.show(evt.mapPoint);
           }
         });
