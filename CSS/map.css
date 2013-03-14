@@ -35,26 +35,36 @@
   width: 90px;
 }
 /******** Legend *************/
+#Legend {
+  position: absolute;
+  bottom: 55px;
+  left: 10px;
+  z-index: 41;
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
 .LegendColor1 {
-  background: rgba(203, 201, 226,.5);
+  background: rgba(253,204,138,1);
   height: 10px;
   width:10px;
   border: 1px solid #000;
 }
 .LegendColor2 {
-  background: rgba(158, 154, 200,.5);
+  background: rgba(252,141,89,1);
   height: 10px;
   width:10px;
   border: 1px solid #000;
 }
 .LegendColor3 {
-  background: rgba(117, 107, 177,.5);
+  background: rgba(227,74,51,1);
   height: 10px;
   width:10px;
   border: 1px solid #000;
 }
 .LegendColor4 {
-  background: rgba(84, 39, 143,.5);
+  background: rgba(179,0,0,1);
   height: 10px;
   width:10px;
   border: 1px solid #000;

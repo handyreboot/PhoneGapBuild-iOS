@@ -651,6 +651,8 @@ function MappingController($http,$timeout,$scope) {
       },
       getImageUrl: function(extent,width,height,callback){
         var params = {
+          // Move To
+          //serviceUrl: "http://ags101.blueraster.net/arcgis/rest/services/sdr/spatialDataExport/MapServer/",
           dynamicLayers: JSON.stringify(Config.dynamicLayerInfo),
           transparent:true,
           dpi: 96,
@@ -664,8 +666,8 @@ function MappingController($http,$timeout,$scope) {
           //width: width,
           //height:height
         }
-        //size	1316,569
         callback(Config.dynamicLayer.url+"/export?"+dojo.objectToQuery(params));
+        //callback(this.url+"/export?"+dojo.objectToQuery(params));
       }
     });
     // Custom Extended Layer
@@ -708,9 +710,12 @@ function MappingController($http,$timeout,$scope) {
     imageParams.layerIds = Config.dynamicLayer.defaultVisibleLayers;
     imageParams.layerOption = esri.layers.ImageParameters.LAYER_OPTION_SHOW;
 
-    // Add SOE URL here //Config.dynamicLayer.url
+    // Add SOE URL here
+    // Config.dynamicLayer.url
     // http://ags101.blueraster.net/arcgis/rest/services/sdr/spatialDataExport/MapServer/exts/DynamicLayersRESTSOE/
-    var DHSMapLayer = new CustomDynamicLayer(Config.dynamicLayer.url,{
+    // CustomDynamicLayer
+    // esri.layers.ArcGISDynamicMapServiceLayer
+    var DHSMapLayer = new CustomDynamicLayer("http://ags101.blueraster.net/arcgis/rest/services/sdr/spatialDataExport/MapServer/exts/DynamicLayersRESTSOE",{
       id: Config.dynamicLayer.id,
       imageParameters:imageParams
     });
@@ -724,9 +729,9 @@ function MappingController($http,$timeout,$scope) {
     // Set up Identify
     var identifyTask = new esri.tasks.IdentifyTask(Config.dynamicLayer.url);
     var params = new esri.tasks.IdentifyParameters();
-    params.tolerance = 7;
+    params.tolerance = 10;
     params.returnGeometry = false;
-    params.layerIds = Config.dynamicLayer.defaultVisibleLayers;
+    params.layerIds = [3];
     params.layerOption = esri.tasks.IdentifyParameters.LAYER_OPTION_ALL;
     params.width = map.width;
     params.height = map.height;
@@ -737,7 +742,7 @@ function MappingController($http,$timeout,$scope) {
       var deferred = identifyTask.execute(params);
 
       deferred.addCallback(function(results){
-        var content, infoTemplate,countryData,indicatorYears,indicatorValues,location,yearValue,chartValue,chartData = [];
+        var content, infoTemplate,countryData,indicatorYears,indicatorValues,location,yearValue,chartValue,chartData = [],chartLabels = [];
         dojo.forEach(currentData,function(item){
           if (results[0].feature.attributes.DHS_CC == item.countryCode){
             location = Config.indicatorDefsLookup[$scope.currentIndicator];
@@ -752,7 +757,9 @@ function MappingController($http,$timeout,$scope) {
                     yearValue = parseInt(year.slice(0,4));
                   else
                     yearValue = year;
-                  chartData.push({x:yearValue,y:chartValue});
+                  //chartData.push({x:yearValue,y:chartValue});
+                  chartData.push(chartValue);
+                  chartLabels.push(yearValue); // For Bar Charts
                 }
               });
             });
@@ -768,22 +775,23 @@ function MappingController($http,$timeout,$scope) {
             var handle = dojo.connect(openButton,"onclick",function(){
               dojo.disconnect(handle);
               document.getElementsByClassName("esriMobileNavigationItem")[1].innerHTML = item.label;
-              if (chartData.length < 2){
+              // If Using Line Charts, Prevent Charts with Single Values as they have problems
+              /*if (chartData.length < 2){
                 document.getElementById("chartDiv").innerHTML = "There is not enough data for this country to create a chart, this is the only data currently available."+
                   "<br>"+chartData[0].x + ": "+chartData[0].y;
                 return;
-              }
+              }*/
               document.getElementById("chartDiv").innerHTML = "";
               var theme = dojo.getObject("dojox.charting.themes.Shrooms");
-              var chart = new dojox.charting.Chart("chartDiv");
+              var chart = new dojox.charting.Chart2D("chartDiv");
               chart.setTheme(theme);
               chart.addPlot("default",{
-                type: "Lines",
-                markers: true
+                type: "Columns",
+                markers: true,
+                gap: 3
               });
-              console.dir(chartData);
-              chart.addAxis("x", {labelFunc:function(n){return (n.replace(",",""));},minorTicks: true,minorLabels:true});
-              chart.addAxis("y", {labelFunc:function(n){return (n);}, vertical: true, minorTicks: true});
+              chart.addAxis("x", {labelFunc:function(n){return (chartLabels[(parseInt(n)-1)]);},minorTicks:false,minorLabels:false});
+              chart.addAxis("y", {labelFunc:function(n){return (n);}, min:0,vertical: true, minorTicks: true});
               chart.addSeries("Indicator Values",chartData);
               new dojox.charting.action2d.Tooltip(chart,"default");
               chart.render();
@@ -826,12 +834,12 @@ function MappingController($http,$timeout,$scope) {
       class4Min,class4Max;
       var c1First = true, c2First = true, c3First = true,c4First = true;
       var c1 = [], c2 = [], c3 = [], c4 = [];
-      renderer.addValue('BR',class1Symbol);
-      renderer.addValue('BD',class4Symbol);
+      //renderer.addValue('BR',class1Symbol);
+      //renderer.addValue('BD',class4Symbol);
       for (var i = 0; i < Global.getCountries.length;i++) {
         switch(indData[i].class){
           case 1:
-            //renderer.addValue(indData[i].countryCode,class1Symbol);
+            renderer.addValue(indData[i].countryCode,class1Symbol);
             c1.push(indData[i].countryCode);
             if (c1First) {
               class1Min = class1Max = indData[i].val;
@@ -841,7 +849,7 @@ function MappingController($http,$timeout,$scope) {
             class1Max = Math.max(class1Max,indData[i].val);
             break;
           case 2:
-            //renderer.addValue(indData[i].countryCode,class2Symbol);
+            renderer.addValue(indData[i].countryCode,class2Symbol);
             c2.push(indData[i].countryCode);
             if (c2First) {
               class2Min = class2Max = indData[i].val;
@@ -851,7 +859,7 @@ function MappingController($http,$timeout,$scope) {
             class2Max = Math.max(class2Max,indData[i].val);
             break;
           case 3:
-            //renderer.addValue(indData[i].countryCode,class3Symbol);
+            renderer.addValue(indData[i].countryCode,class3Symbol);
             c3.push(indData[i].countryCode);
             if (c3First) {
               class3Min = class3Max = indData[i].val;
@@ -861,7 +869,7 @@ function MappingController($http,$timeout,$scope) {
             class3Max = Math.max(class3Max,indData[i].val);
             break;
           case 4:
-            //renderer.addValue(indData[i].countryCode,class4Symbol);
+            renderer.addValue(indData[i].countryCode,class4Symbol);
             c4.push(indData[i].countryCode);
             if (c4First) {
               class4Min = class4Max = indData[i].val;
@@ -878,12 +886,14 @@ function MappingController($http,$timeout,$scope) {
         {symbol:class3Symbol,values:c3,labels:c3},
         {symbol:class4Symbol,values:c4,labels:c4}
       ];
-      //renderer.uniqueValueInfos = uniqueInfo;
+      renderer.uniqueValueInfos = uniqueInfo;
+      //Config.dynamicLayerInfo[1].drawingInfo.renderer.uniqueValueInfos = uniqueInfo;
       var ldos = [];
       var ldo = new esri.layers.LayerDrawingOptions();
       ldo.renderer = renderer;
       ldos[3] = ldo;
       DHSMapLayer.setLayerDrawingOptions(ldos);
+
 
       $scope.c1min = class1Min;
       $scope.c1max = class1Max;
