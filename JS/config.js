@@ -73,13 +73,18 @@ Config.indicatorByCode = {
 }
 
 Config.dynamicLayerInfo = [{
+  "id": 1,
+  "source": {
+    "type": "mapLayer",
+    "mapLayerId": 1
+  }
+}, {
   "id": 3,
   "source": {
     "type": "mapLayer",
     "mapLayerId": 3
   },
   "drawingInfo": {
-    "serviceUrl":"",
     "renderer": {
       "type": "uniqueValue",
       "field1": "DHS_CC",

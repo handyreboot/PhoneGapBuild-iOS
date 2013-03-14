@@ -644,6 +644,32 @@ function MappingController($http,$timeout,$scope) {
 		dojo.require("esri.layers.graphics");
 		dojo.require("dojo.number");
 
+    // Custom Extended Layer
+    dojo.declare("CustomDynamicLayer",esri.layers.ArcGISDynamicMapServiceLayer,{
+      constructor: function() {
+        // Do Constructor Stuff Here
+      },
+      getImageUrl: function(extent,width,height,callback){
+        var params = {
+          dynamicLayers: JSON.stringify(Config.dynamicLayerInfo),
+          transparent:true,
+          dpi: 96,
+          format:"png8",
+          layers:"show:1,3",
+          f:"image",
+          imageSR:102100,
+          bboxSR:102100,
+          bbox: extent.xmin + "," + extent.ymin + "," + extent.xmax + "," + extent.ymax,
+          size: width+","+height
+          //width: width,
+          //height:height
+        }
+        //size	1316,569
+        callback(Config.dynamicLayer.url+"/export?"+dojo.objectToQuery(params));
+      }
+    });
+    // Custom Extended Layer
+
     var options;
 		if (window.innerWidth < 450)
       options = Config.mapDefaults.phone;
@@ -684,7 +710,7 @@ function MappingController($http,$timeout,$scope) {
 
     // Add SOE URL here //Config.dynamicLayer.url
     // http://ags101.blueraster.net/arcgis/rest/services/sdr/spatialDataExport/MapServer/exts/DynamicLayersRESTSOE/
-    var DHSMapLayer = new esri.layers.ArcGISDynamicMapServiceLayer(Config.dynamicLayer.url,{
+    var DHSMapLayer = new CustomDynamicLayer(Config.dynamicLayer.url,{
       id: Config.dynamicLayer.id,
       imageParameters:imageParams
     });
@@ -800,8 +826,8 @@ function MappingController($http,$timeout,$scope) {
       class4Min,class4Max;
       var c1First = true, c2First = true, c3First = true,c4First = true;
       var c1 = [], c2 = [], c3 = [], c4 = [];
-      //renderer.addValue('BR',class1Symbol);
-      //renderer.addValue('BD',class4Symbol);
+      renderer.addValue('BR',class1Symbol);
+      renderer.addValue('BD',class4Symbol);
       for (var i = 0; i < Global.getCountries.length;i++) {
         switch(indData[i].class){
           case 1:
