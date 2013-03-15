@@ -110,6 +110,9 @@
   height: 200px;
   width: 275px;
 }
+.chartFont {
+  font: 14px/16px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif !important;
+}
 /** Custom Info Window CSS **/
 .myInfoWindow {
   position: absolute;

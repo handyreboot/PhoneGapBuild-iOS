@@ -707,10 +707,7 @@ function MappingController($http,$timeout,$scope) {
     imageParams.layerIds = Config.dynamicLayer.defaultVisibleLayers;
     imageParams.layerOption = esri.layers.ImageParameters.LAYER_OPTION_SHOW;
 
-    // Add SOE URL here
     // Config.dynamicLayer.url
-    // CustomDynamicLayer
-    // esri.layers.ArcGISDynamicMapServiceLayer
     var DHSMapLayer = new CustomDynamicLayer("http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer/exts/DynamicLayersRESTSOE",{
       id: Config.dynamicLayer.id,
       imageParameters:imageParams
@@ -766,7 +763,9 @@ function MappingController($http,$timeout,$scope) {
             document.getElementById("myInfoWindowContent").innerHTML = content;
 
             var theme = dojo.getObject("dojox.charting.themes.Shrooms");
+            console.dir(theme);
             var chart = new dojox.charting.Chart2D("chartDiv");
+            theme.axis.__proto__.tick.font = "normal normal normal 8pt GillSans-Light, Gill Sans Light,GillSans Light,Gill Sans,Gill Sans MT, Calibri, sans-serif";
             chart.setTheme(theme);
             chart.addPlot("default",{
               type: "Columns",
@@ -1080,7 +1079,7 @@ function CountryIndicatorSpecifics($scope,$routeParams,$timeout) {
       enabled: false
     },
     plotOptions: {
-      bar: {
+      column: {
         dataLabels: {
           enabled: true
         }
