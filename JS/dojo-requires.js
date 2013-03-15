@@ -11,7 +11,6 @@ dojo.require("dijit.form.Button");
 dojo.require("esri.toolbars.draw");
 dojo.require("esri.dijit.Print");
 dojo.require("esri.tasks.identify");
-dojo.require("esri.dijit.PopupMobile");
 dojo.require("dojox.charting.Chart2D");
 dojo.require("dojox.charting.plot2d.Columns");
 dojo.require("dojox.charting.axis2d.Default");

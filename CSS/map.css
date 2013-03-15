@@ -110,3 +110,33 @@
   height: 200px;
   width: 300px;
 }
+/** Custom Info Window CSS **/
+.myInfoWindow {
+  position: absolute;
+  display: none;
+  z-index: 158;
+  top: 70px;
+  background-color: #fff;
+  width: 90%;
+  height: 80%;
+  margin-left: 5%;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #707272;
+  padding: 0;
+  -moz-box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+}
+.myInfoWindow img {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  z-index: 120;
+}
+#myInfoWindowTitle {
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: underline;
+}

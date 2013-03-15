@@ -7,6 +7,11 @@
 <div class='mapDiv'>
   <div id="map">
     <h1 id="indicatorTitle" class="indicator-title" ng-bind="currentIndicator"></h1>
+    <div id="myInfoWindow" class='myInfoWindow'>
+      <img src='./img/close_24x24.png' height='24px' width='24px' ng-click='closeCustomInfoWindow()'/>
+      <div align='center' id='myInfoWindowTitle'></div>
+      <div id='myInfoWindowContent'></div>
+    </div>
     <div class="popoverMap">
       <p>Please Choose an Indicator</p>
       <select style='max-width:215px;float:left;margin-top: 14px;' ng-model="changer" ng-change="changeIndicator(this)">

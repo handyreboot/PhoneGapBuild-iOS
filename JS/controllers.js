@@ -678,15 +678,11 @@ function MappingController($http,$timeout,$scope) {
     else
       options = Config.mapDefaults;
 
-    if (!Global.popup)
-    Global.popup = new esri.dijit.PopupMobile(null, dojo.create("div"));
-
 		map = new esri.Map("map" , {
       center: [options.centerX,options.centerY],
       zoom: options.zoom,
 			logo : true,
-			wrapAround180: false,
-      infoWindow: Global.popup
+			wrapAround180: false
 		});
 
 		// Make Sure the Map is sized appropriately
@@ -763,39 +759,24 @@ function MappingController($http,$timeout,$scope) {
               });
             });
             content = $scope.currentIndicator+" - "+item.year+": <br>"+item.val+"<br><br><div id='chartDiv' class='chartPopup'></div>";
-            infoTemplate = new esri.InfoTemplate(item.label,content);
-            results[0].feature.setInfoTemplate(infoTemplate);
-            map.infoWindow.setFeatures([results[0].feature]);
-            map.infoWindow.show(evt.mapPoint);
-            document.getElementsByClassName("footer")[0].style.width = "175px";
-            document.getElementsByClassName("footer")[0].innerHTML = "Click Arrow for Details...";
+            // item.label,content
+            document.getElementById("myInfoWindow").style.display = "block";
+            document.getElementById("myInfoWindowTitle").innerHTML = item.label;
+            document.getElementById("myInfoWindowContent").innerHTML = content;
 
-            var openButton = document.getElementsByClassName("titleButton")[3];
-            var handle = dojo.connect(openButton,"onclick",function(){
-              dojo.disconnect(handle);
-              document.getElementsByClassName("esriMobileNavigationItem")[1].innerHTML = item.label;
-              // If Using Line Charts, Prevent Charts with Single Values as they have problems
-              /*if (chartData.length < 2){
-                document.getElementById("chartDiv").innerHTML = "There is not enough data for this country to create a chart, this is the only data currently available."+
-                  "<br>"+chartData[0].x + ": "+chartData[0].y;
-                return;
-              }*/
-              document.getElementById("chartDiv").innerHTML = "";
-              var theme = dojo.getObject("dojox.charting.themes.Shrooms");
-              var chart = new dojox.charting.Chart2D("chartDiv");
-              chart.setTheme(theme);
-              chart.addPlot("default",{
-                type: "Columns",
-                markers: true,
-                gap: 3
-              });
-              chart.addAxis("x", {labelFunc:function(n){return (chartLabels[(parseInt(n)-1)]);},minorTicks:false,minorLabels:false});
-              chart.addAxis("y", {labelFunc:function(n){return (n);}, min:0,vertical: true, minorTicks: true});
-              chart.addSeries("Indicator Values",chartData);
-              new dojox.charting.action2d.Tooltip(chart,"default");
-              chart.render();
+            var theme = dojo.getObject("dojox.charting.themes.Shrooms");
+            var chart = new dojox.charting.Chart2D("chartDiv");
+            chart.setTheme(theme);
+            chart.addPlot("default",{
+              type: "Columns",
+              markers: true,
+              gap: 3
             });
-
+            chart.addAxis("x", {labelFunc:function(n){return (chartLabels[(parseInt(n)-1)]);},minorTicks:false,minorLabels:false});
+            chart.addAxis("y", {labelFunc:function(n){return (n);}, min:0,vertical: true, minorTicks: true});
+            chart.addSeries("Indicator Values",chartData);
+            new dojox.charting.action2d.Tooltip(chart,"default");
+            chart.render();
           }
         });
       });
@@ -1003,6 +984,12 @@ function MappingController($http,$timeout,$scope) {
 
     $scope.hidePopover = function() {
       document.getElementsByClassName('popoverMap')[0].style.display = 'none';
+    }
+
+    $scope.closeCustomInfoWindow = function() {
+      document.getElementById("myInfoWindow").style.display = "none";
+      document.getElementById("myInfoWindowTitle").innerHTML = "";
+      document.getElementById("myInfoWindowContent").innerHTML = "";
     }
 
 	}).error(function(error){
