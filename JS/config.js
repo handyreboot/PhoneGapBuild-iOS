@@ -100,7 +100,7 @@ Config.dynamicLayerInfo = [{
         "style": "esriSFSSolid"
       },
       "uniqueValueInfos": [{
-        "value": "BR",
+        "value": "KE",
         "symbol": {
           "color": [253, 204, 138, 255],
           "outline": {
@@ -113,7 +113,7 @@ Config.dynamicLayerInfo = [{
           "style": "esriSFSSolid"
         }
       }, {
-        "value": "BD",
+        "value": "UG",
         "symbol": {
           "color": [179, 0, 0, 255],
           "outline": {
@@ -124,6 +124,19 @@ Config.dynamicLayerInfo = [{
           },
           "type": "esriSFS",
           "style": "esriSFSSolid"
+        }
+      },{
+        "value":"TZ",
+        "symbol":{
+          "color":[252,141,89,255],
+          "outline":{
+            "color":[0,0,0,0],
+            "width":0.75,
+            "type":"esriSLS",
+            "style":"esriSLSSolid"
+          },
+          "type":"esriSFS",
+          "style":"esriSFSSolid"
         }
       }]
     }
