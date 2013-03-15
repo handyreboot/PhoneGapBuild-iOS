@@ -93,7 +93,7 @@
   -webkit-box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
 }
-header .popoverMap:after {
+.popoverMap:after {
   content: ' ';
   position: absolute;
   width: 37px;

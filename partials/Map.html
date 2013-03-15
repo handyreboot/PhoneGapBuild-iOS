@@ -2,41 +2,40 @@
   <h3>Map</h3>
  	<div id="ios-arrow-left" onclick="backButton('#/Home')" title="Back"></div>
   <div id="button" ng-click="togglePopover()">Options</div>
-  <div class="popoverMap" ng-click="hidePopover()">
-    <p>Please Choose an Indicator</p>
-    <select style='max-width:215px;float:left;margin-top: 14px;' ng-model="changer" ng-change="changeIndicator(this)">
-      <option value='20171000'>Total fertility rate (children per women)</option>
-      <option value='34202000'>Percentage of married women currently using any method of family planning</option>
-      <option value='34202001'>Percentage of married women currently using any modern method of family planning</option>
-      <option value='216236002'>Percentage of married women with an unmet need for family planning (Revised)</option>
-      <option value='55166000'>Median age at first marriage for women age 25-49 (years)</option>
-      <option value='57166000'>Median age at first sex for women age 25-49 (years)</option>
-      <option value='70254002'>Infant mortality rate (per 1,000 live births)</option>
-      <option value='70254004'>Under-five mortality rate (per 1,000 live births)</option>
-      <option value='77282000'>Percentage of live births delivered at a health facility</option>
-      <option value='214528002'>Percentage of children underweight (-2 SD)</option>
-      <option value='214527002'>Percentage of children stunted (-2 SD)</option>
-      <option value='214529002'>Percentage of children wasted (-2 SD)</option>
-      <option value='82272010'>Percentage of children fully immunized</option>
-      <option value='87277003'>Percentage of children with diarrhea who received either ORS or RHS</option>
-      <option value='91317001'>Median exclusive breastfeeding duration (months)</option>
-      <option value='208490003'>Percentage of children < 5 sleeping under an ITN the night before the survey</option>
-      <option value='1091002003'>HIV prevalence among general population: Both sexes</option>
-      <option value='1091002002'>HIV prevalence among general population: Women</option>
-      <option value='1091002001'>HIV prevalence among general population: Men</option>
-      <option value='1115002002'>Population receiving an HIV test and receiving test results in the last 12 months: Women</option>
-      <option value='1115002001'>Population receiving an HIV test and receiving test results in the last 12 months: Men</option>
-      <option value='127383002'>Percentage of women who are literate</option>
-      <option value='11115002'>Percentage of respondents with secondary or higher education</option>
-      <option value='8142001'>Percentage of households with electricity</option>
-    </select><br>
-  </div>
 </header>
 	
 <div class='mapDiv'>
   <div id="map">
     <h1 id="indicatorTitle" class="indicator-title" ng-bind="currentIndicator"></h1>
-
+    <div class="popoverMap" ng-click="hidePopover()">
+      <p>Please Choose an Indicator</p>
+      <select style='max-width:215px;float:left;margin-top: 14px;' ng-model="changer" ng-change="changeIndicator(this)">
+        <option value='20171000'>Total fertility rate (children per women)</option>
+        <option value='34202000'>Percentage of married women currently using any method of family planning</option>
+        <option value='34202001'>Percentage of married women currently using any modern method of family planning</option>
+        <option value='216236002'>Percentage of married women with an unmet need for family planning (Revised)</option>
+        <option value='55166000'>Median age at first marriage for women age 25-49 (years)</option>
+        <option value='57166000'>Median age at first sex for women age 25-49 (years)</option>
+        <option value='70254002'>Infant mortality rate (per 1,000 live births)</option>
+        <option value='70254004'>Under-five mortality rate (per 1,000 live births)</option>
+        <option value='77282000'>Percentage of live births delivered at a health facility</option>
+        <option value='214528002'>Percentage of children underweight (-2 SD)</option>
+        <option value='214527002'>Percentage of children stunted (-2 SD)</option>
+        <option value='214529002'>Percentage of children wasted (-2 SD)</option>
+        <option value='82272010'>Percentage of children fully immunized</option>
+        <option value='87277003'>Percentage of children with diarrhea who received either ORS or RHS</option>
+        <option value='91317001'>Median exclusive breastfeeding duration (months)</option>
+        <option value='208490003'>Percentage of children < 5 sleeping under an ITN the night before the survey</option>
+        <option value='1091002003'>HIV prevalence among general population: Both sexes</option>
+        <option value='1091002002'>HIV prevalence among general population: Women</option>
+        <option value='1091002001'>HIV prevalence among general population: Men</option>
+        <option value='1115002002'>Population receiving an HIV test and receiving test results in the last 12 months: Women</option>
+        <option value='1115002001'>Population receiving an HIV test and receiving test results in the last 12 months: Men</option>
+        <option value='127383002'>Percentage of women who are literate</option>
+        <option value='11115002'>Percentage of respondents with secondary or higher education</option>
+        <option value='8142001'>Percentage of households with electricity</option>
+      </select><br>
+    </div>
     <div id='Legend'>
       <table id='LegendContent'>
         <tr>
