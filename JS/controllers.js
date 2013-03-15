@@ -666,8 +666,8 @@ function MappingController($http,$timeout,$scope) {
           //width: width,
           //height:height
         }
-        callback(Config.dynamicLayer.url+"/export?"+dojo.objectToQuery(params));
-        //callback(this.url+"/export?"+dojo.objectToQuery(params));
+        //callback(Config.dynamicLayer.url+"/export?"+dojo.objectToQuery(params));
+        callback(this.url+"/export?"+dojo.objectToQuery(params));
       }
     });
     // Custom Extended Layer
@@ -712,10 +712,9 @@ function MappingController($http,$timeout,$scope) {
 
     // Add SOE URL here
     // Config.dynamicLayer.url
-    // http://ags101.blueraster.net/arcgis/rest/services/sdr/spatialDataExport/MapServer/exts/DynamicLayersRESTSOE/
     // CustomDynamicLayer
     // esri.layers.ArcGISDynamicMapServiceLayer
-    var DHSMapLayer = new CustomDynamicLayer("http://ags101.blueraster.net/arcgis/rest/services/sdr/spatialDataExport/MapServer/exts/DynamicLayersRESTSOE",{
+    var DHSMapLayer = new CustomDynamicLayer("http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer/exts/DynamicLayersRESTSOE",{
       id: Config.dynamicLayer.id,
       imageParameters:imageParams
     });
