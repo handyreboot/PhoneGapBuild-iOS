@@ -1057,7 +1057,7 @@ function CountryIndicatorSpecifics($scope,$routeParams,$timeout) {
   var chart = new Highcharts.Chart({
     chart: {
       renderTo: 'chartContainer',
-      type: 'bar'
+      type: 'column'
     },
     title: {
       text: null
@@ -1076,10 +1076,7 @@ function CountryIndicatorSpecifics($scope,$routeParams,$timeout) {
       }
     },
     tooltip: {
-      formatter: function() {
-        return ''+
-        this.series.name +': '+ this.y;
-      }
+      enabled: false
     },
     plotOptions: {
       bar: {
