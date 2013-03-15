@@ -31,6 +31,8 @@ var module = angular.module('measureDHS',['filters']).
 			}).
 			when('/Countries/:CountryName/:CountryId/Quickstats/:Previous',{templateUrl:'partials/CountriesIndicatorsView.html', controller: CountriesIndicatorsController
 			}).
+      when('/Countries/:CountryName/:CountryId/Quickstats/:Previous/Details/:IndicatorLabel/:IndicatorId',{templateUrl:'partials/CountryIndicatorSpecifics.html', controller: CountryIndicatorSpecifics
+      }).
 			when('/Countries/:CountryName/:CountryId/Quickstats/:Previous/:IndicatorLabel/:IndicatorId',{templateUrl:'partials/CountriesIndicatorsView.html', controller: CountriesIndicatorsController
 			}).
 			when('/Home/Countries/:CountryName/:CountryId/:SurveyId/:Previous',{templateUrl:'partials/SurveyInformation.html',controller:SurveyInformationController	

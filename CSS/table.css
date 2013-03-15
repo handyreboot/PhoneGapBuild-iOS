@@ -1579,6 +1579,25 @@ only screen and (-webkit-device-pixel-ratio:1.5) {
 .pubsHide {
 	display: none;
 }
+/************************** Accordion *********************************/
+#detailsAccordion {
+  position: relative;
+  top:45px;
+}
+.ui-accordion .ui-accordion-header {
+  background: rgb(159,153,230);
+  background: -moz-linear-gradient(top,  rgba(159,153,230,1) 0%, rgba(104,100,151,1) 50%, rgba(78,75,116,1) 51%, rgba(136,131,193,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(159,153,230,1)), color-stop(50%,rgba(104,100,151,1)), color-stop(51%,rgba(78,75,116,1)), color-stop(100%,rgba(136,131,193,1)));
+  background: -webkit-linear-gradient(top,  rgba(159,153,230,1) 0%,rgba(104,100,151,1) 50%,rgba(78,75,116,1) 51%,rgba(136,131,193,1) 100%);
+  background: -o-linear-gradient(top,  rgba(159,153,230,1) 0%,rgba(104,100,151,1) 50%,rgba(78,75,116,1) 51%,rgba(136,131,193,1) 100%);
+  background: -ms-linear-gradient(top,  rgba(159,153,230,1) 0%,rgba(104,100,151,1) 50%,rgba(78,75,116,1) 51%,rgba(136,131,193,1) 100%);
+  background: linear-gradient(to bottom,  rgba(159,153,230,1) 0%,rgba(104,100,151,1) 50%,rgba(78,75,116,1) 51%,rgba(136,131,193,1) 100%);
+  border-bottom: 1px solid #3c3a76;
+  -moz-box-shadow: inset 0 -1px 1px rgba(67, 65, 124, 1);
+  -webkit-box-shadow: inset 0 -1px 1px rgba(67, 65, 124, 1);
+  box-shadow: inset 0 -1px 1px rgba(67, 65, 124, 1);
+}
+/************************** Accordion *********************************/
 /************************** Carousel CSS ******************************/
 /*.carousel-handles {
 	margin: 1em 0 0 0;

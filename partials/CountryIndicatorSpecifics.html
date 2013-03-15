@@ -1,0 +1,32 @@
+<header class="mainHeaderView">
+  <h3 ng-cloak ng-class="{true:'headerViewTitleCountriesOnlySmall',false:'headerViewTitleCountriesOnly'}[CountryName.length >= 20]" ng-bind="CountryName"></h3>
+  <img class='headerViewImage' height="30px" width='40px;' ng-src="data:image/png;base64,{{Flag}}">
+  <div id="ios-arrow-left" onclick='backButton("{{prevUrl}}")' title="Back"></div>
+</header>
+
+<div style="height:100%;">
+  <h1 id="indicatorTitle" class="indicator-title" ng-bind="IndicatorLabel"></h1>
+  <div id="detailsAccordion">
+    <h3>Graph</h3>
+      <div>
+
+      </div>
+    <h3>Residence</h3>
+      <div>
+        <p>Residence Data Coming Soon</p>
+      </div>
+    <h3>Region</h3>
+      <div>
+        <p>Region Data Coming Soon</p>
+      </div>
+    <h3>Education</h3>
+      <div>
+        <p>Education Data Coming Soon</p>
+      </div>
+    <h3>Wealth Quintile</h3>
+      <div>
+        <p>Wealth Quintile Data Coming Soon</p>
+      </div>
+  </div>
+
+</div>

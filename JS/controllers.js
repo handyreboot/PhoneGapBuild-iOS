@@ -96,10 +96,11 @@ function CountriesIndicatorsController($scope, $routeParams, $http) {
 	//	$scope.indicatorLabels = data.DATA;
 	//});
 	
-	$scope.indicatorLabels = Global.getQuickStats	
-
+	$scope.indicatorLabels = Global.getQuickStats
 	$scope.CountryName = $routeParams.CountryName;
-	$scope.CountryId = $routeParams.CountryId	;
+	$scope.CountryId = $routeParams.CountryId;
+  $scope.IndicatorId = $routeParams.IndicatorId;
+  $scope.IndicatorLabel = $routeParams.IndicatorLabel;
 	
 	// Increment and Decrement Functions for View with Atleast Two Years
 	$scope.increaseYears = function() {
@@ -1014,6 +1015,24 @@ function IndicatorInfoController($scope,$routeParams,$http) {
 	});
 	
 }
+
+
+// Uses CountryIndicatorSpecifics.html
+// Countries/:CountryName/:CountryId/Quickstats/:Previous/Details'
+function CountryIndicatorSpecifics($scope,$routeParams) {
+
+  $('#detailsAccordion').accordion();
+
+  $scope.Flag = Global.getCountryDetailsByCountryCode[$routeParams.CountryId].Flag;
+  $scope.CountryName = $routeParams.CountryName;
+  $scope.IndicatorLabel = $routeParams.IndicatorLabel;
+
+  if ($routeParams.Previous == "Country")
+    $scope.prevUrl = "#/Countries/"+$routeParams.CountryName+"/"+$routeParams.CountryId+"/Quickstats/"+$routeParams.Previous;
+  else
+    $scope.prevUrl = "#/Countries/"+$routeParams.CountryName+"/"+$routeParams.CountryId+"/Quickstats/"+$routeParams.Previous+"/"+$routeParams.IndicatorLabel+"/"+$routeParams.IndicatorId;
+}
+
 
 function HomePageController($http, $scope, $timeout) {
 
