@@ -1022,6 +1022,7 @@ function IndicatorInfoController($scope,$routeParams,$http) {
 function CountryIndicatorSpecifics($scope,$routeParams,$timeout) {
 
   $('#detailsAccordion').accordion();
+  $('#detailsAccordion').accordion("option","icons",{ 'header': 'accordionCollapse', 'headerSelected': 'accordionExpand' });
   $timeout(function() {
     if($('#indicatorTitle').css('height') == '17px')
       $('#detailsAccordion').css('top','45px');

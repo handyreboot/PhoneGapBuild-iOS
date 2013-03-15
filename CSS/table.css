@@ -1598,7 +1598,7 @@ only screen and (-webkit-device-pixel-ratio:1.5) {
   -webkit-box-shadow: inset 0 -1px 1px rgba(67, 65, 124, 1);
   box-shadow: inset 0 -1px 1px rgba(67, 65, 124, 1);
   color: #fff;
-  font: 18px/20px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif
+  font: 18px/20px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif;
 }
 .chartAccordion {
   height: 200px;
