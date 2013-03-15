@@ -128,7 +128,7 @@ Config.dynamicLayerInfo = [{
       },{
         "value":"TZ",
         "symbol":{
-          "color":[252,141,89,255],
+          "color":[227, 74, 51,255],
           "outline":{
             "color":[0,0,0,0],
             "width":0.75,
@@ -138,6 +138,19 @@ Config.dynamicLayerInfo = [{
           "type":"esriSFS",
           "style":"esriSFSSolid"
         }
+      },{
+          "value":"RW",
+          "symbol":{
+            "color":[252,141,89,255],
+            "outline":{
+              "color":[0,0,0,0],
+              "width":0.75,
+              "type":"esriSLS",
+              "style":"esriSLSSolid"
+            },
+            "type":"esriSFS",
+            "style":"esriSFSSolid"
+          }
       }]
     }
   }
