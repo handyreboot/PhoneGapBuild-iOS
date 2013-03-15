@@ -79,8 +79,8 @@
   position: absolute;
   display: none;
   z-index: 108;
-  top: 60px;
-  right: 20px;
+  top: 41px;
+  right: 5px;
   margin: 0 auto;
   background-color: #fff;
   width: 220px;
@@ -93,11 +93,14 @@
   -webkit-box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
 }
-.popoverMap img {
+header .popoverMap:after {
+  content: ' ';
   position: absolute;
-  top: -12px;
-  right: -12px;
-  z-index: 120;
+  width: 37px;
+  height: 22px;
+  background: url(../img/sort-caret.png) no-repeat;
+  right: -5px;
+  top: -11px;
 }
 .closeIcon {
   background: url(../img/close_24x24.png);
