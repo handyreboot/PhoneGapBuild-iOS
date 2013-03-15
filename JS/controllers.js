@@ -758,7 +758,7 @@ function MappingController($http,$timeout,$scope) {
                 }
               });
             });
-            content = $scope.currentIndicator+" - "+item.year+": <br>"+item.val+"<br><br><div id='chartDiv' class='chartPopup'></div>";
+            content = $scope.currentIndicator+" - "+item.year+": "+item.val+"<br><br><div id='chartDiv' class='chartPopup'></div>";
             // item.label,content
             document.getElementById("myInfoWindow").style.display = "block";
             document.getElementById("myInfoWindowTitle").innerHTML = item.label;
