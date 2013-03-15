@@ -1019,13 +1019,86 @@ function IndicatorInfoController($scope,$routeParams,$http) {
 
 // Uses CountryIndicatorSpecifics.html
 // Countries/:CountryName/:CountryId/Quickstats/:Previous/Details'
-function CountryIndicatorSpecifics($scope,$routeParams) {
+function CountryIndicatorSpecifics($scope,$routeParams,$timeout) {
 
   $('#detailsAccordion').accordion();
+  $timeout(function() {
+    if($('#indicatorTitle').css('height') == '17px')
+      $('#detailsAccordion').css('top','45px');
+    else
+      $('#detailsAccordion').css('top','62px');
+  });
 
   $scope.Flag = Global.getCountryDetailsByCountryCode[$routeParams.CountryId].Flag;
   $scope.CountryName = $routeParams.CountryName;
   $scope.IndicatorLabel = $routeParams.IndicatorLabel;
+
+  var chartData = [], chartLabels = [];
+  var location = Config.indicatorDefsLookup[$scope.IndicatorLabel];
+  var countryData = Global.getDataByCountry[$routeParams.CountryId];
+  var indicatorYears = countryData.YEARS;
+  var indicatorValues = countryData.DATA;
+  $.each(indicatorYears,function(i,year){
+    $.each(indicatorValues,function(index,value){
+      if (index == location){
+        chartValue = (value[year] === undefined ? 0 : value[year]);
+        if (typeof year == "string")
+          yearValue = parseInt(year.slice(0,4));
+        else
+          yearValue = year;
+
+        chartData.push(chartValue);
+        chartLabels.push(yearValue); // For Bar Charts
+      }
+    });
+  });
+
+  // Create Chart
+  var chart = new Highcharts.Chart({
+    chart: {
+      renderTo: 'chartContainer',
+      type: 'bar'
+    },
+    title: {
+      text: null
+    },
+    xAxis: {
+      categories: chartLabels,
+      title: {
+        text: null
+      }
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: '',
+        align: 'high'
+      }
+    },
+    tooltip: {
+      formatter: function() {
+        return ''+
+        this.series.name +': '+ this.y;
+      }
+    },
+    plotOptions: {
+      bar: {
+        dataLabels: {
+          enabled: true
+        }
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    credits: {
+      enabled: false
+    },
+    series: [{
+      name: $scope.CountryName,
+      data: chartData
+    }]
+  });
 
   if ($routeParams.Previous == "Country")
     $scope.prevUrl = "#/Countries/"+$routeParams.CountryName+"/"+$routeParams.CountryId+"/Quickstats/"+$routeParams.Previous;
