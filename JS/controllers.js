@@ -761,27 +761,53 @@ function MappingController($http,$timeout,$scope) {
             document.getElementById("myInfoWindow").style.display = "block";
             document.getElementById("myInfoWindowTitle").innerHTML = item.label;
             document.getElementById("myInfoWindowContent").innerHTML = content;
+            var chart = new Highcharts.Chart({
+              chart: {
+                renderTo: 'chartDiv',
+                type: 'column'
+              },
+              title: {
+                text: null
+              },
+              xAxis: {
+                categories: chartLabels,
+                title: {
+                  text: null
+                }
+              },
+              yAxis: {
+                min: 0,
+                title: {
+                  text: '',
+                  align: 'high'
+                }
+              },
+              tooltip: {
+                enabled: false
+              },
+              plotOptions: {
+                column: {
+                  dataLabels: {
+                    enabled: true
+                  }
+                }
+              },
+              legend: {
+                enabled: false
+              },
+              credits: {
+                enabled: false
+              },
+              series: [{
+                name: $scope.CountryName,
+                data: chartData
+              }]
+            }); // End Chart
+          } // End if we had a match
+        }); // End for-each
+      }); // End Deferred Callback
 
-            var theme = dojo.getObject("dojox.charting.themes.Shrooms");
-            console.dir(theme);
-            var chart = new dojox.charting.Chart2D("chartDiv");
-            theme.axis.__proto__.tick.font = "normal normal normal 8pt GillSans-Light, Gill Sans Light,GillSans Light,Gill Sans,Gill Sans MT, Calibri, sans-serif";
-            chart.setTheme(theme);
-            chart.addPlot("default",{
-              type: "Columns",
-              markers: true,
-              gap: 3
-            });
-            chart.addAxis("x", {labelFunc:function(n){return (chartLabels[(parseInt(n)-1)]);},minorTicks:false,minorLabels:false});
-            chart.addAxis("y", {labelFunc:function(n){return (n);}, min:0,vertical: true, minorTicks: true});
-            chart.addSeries("Indicator Values",chartData);
-            new dojox.charting.action2d.Tooltip(chart,"default");
-            chart.render();
-          }
-        });
-      });
-
-    });
+    }); // End Map onclick
 
     // Symbols for the Renderer
     var defaultSymbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
@@ -961,6 +987,9 @@ function MappingController($http,$timeout,$scope) {
 		map.addLayer(graphicsLayer);
 		buildLegend();
 		*/
+    // Set up Custom Select
+    $("#indicatorSelect").customSelect();
+    $(".customSelectInner").html("Total fertility rate (children per women)");
 		$scope.changer = '20171000';
 		$scope.changeIndicator = function(changer) {
       currentData = Global.getDataByIndicator[changer.changer];

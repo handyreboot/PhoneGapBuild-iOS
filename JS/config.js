@@ -13,9 +13,9 @@ Config.mapDefaults = {
 }
 
 Config.mapDefaults.phone = {
-  centerX: 20,
-  centerY: 0,
-  zoom: 2
+  centerX: 35,
+  centerY: 15,
+  zoom: 3
 }
 
 Config.indicatorDefsLookup = {

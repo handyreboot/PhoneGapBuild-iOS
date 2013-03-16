@@ -13,7 +13,7 @@
   padding: 0;
 }
 .esriSimpleSlider {
-  top: 70px !important;
+  top: 10px !important;
   left: 10px !important;
 }
 #mapOptions {
@@ -106,12 +106,11 @@
   background: url(../img/close_24x24.png);
 }
 .chartPopup {
-  margin-top: 10px;
-  height: 200px;
-  width: 275px;
-}
-.chartFont {
-  font: 14px/16px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif !important;
+  position: relative;
+  height: 250px;
+  width: 95%;
+  margin: 10px 0 0 2%;
+  padding: 0;
 }
 /** Custom Info Window CSS **/
 .myInfoWindow {
@@ -121,7 +120,6 @@
   top: 70px;
   background-color: #fff;
   width: 90%;
-  height: 80%;
   margin-left: 5%;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -142,4 +140,77 @@
   font-weight: bold;
   font-size: 18px;
   text-decoration: underline;
+}
+/** Custom Info Window CSS **/
+.indicatorTitleMap {
+  display: block;
+  border-bottom: 1px solid #b6b3b3;
+  padding: 15px 10px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.57);
+  color: #7f7f7f;
+  font: 20px/14px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif;
+  -moz-box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
+  -webkit-box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
+  position: fixed;
+  top: 44px;
+  background-color: #efefef;
+  padding: 15px 0;
+  z-index: 1;
+  line-height: 17px;
+  font-size: 15px;
+  width: 90%;
+}
+/*.indicatorTitleSelector {
+  display: block;
+  border-bottom: 1px solid #b6b3b3;
+  padding: 15px 10px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.57);
+  color: #7f7f7f;
+  font: 20px/14px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif;
+  -moz-box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
+  -webkit-box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
+  position: fixed;
+  top: 44px;
+  right: 0px;
+  background-color: #efefef;
+  padding: 15px 0;
+  z-index: 1;
+  line-height: 17px;
+  font-size: 15px;
+  width: 10%;
+}*/
+#indicatorSelect {
+  width:100%;
+  z-index:120;
+}
+span.customSelect {
+  display: block;
+  border-bottom: 1px solid #b6b3b3;
+  padding: 15px 10px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.57);
+  color: #7f7f7f;
+  font: 20px/14px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif;
+  -moz-box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
+  -webkit-box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
+  background-color: #efefef;
+  padding: 15px 0;
+  z-index: 1;
+  line-height: 17px;
+  font-size: 15px;
+  height: 35px;
+}
+span.customSelect.changed {
+  background-color: #f0dea4;
+}
+.customSelectInner {
+  background:url(../img/customSelect-arrow.gif) no-repeat center -10px;
 }
