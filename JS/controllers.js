@@ -722,7 +722,7 @@ function MappingController($http,$timeout,$scope) {
     // Set up Identify
     var identifyTask = new esri.tasks.IdentifyTask(Config.dynamicLayer.url);
     var params = new esri.tasks.IdentifyParameters();
-    params.tolerance = 7;
+    params.tolerance = 4;
     params.returnGeometry = false;
     params.layerIds = [3];
     params.layerOption = esri.tasks.IdentifyParameters.LAYER_OPTION_ALL;

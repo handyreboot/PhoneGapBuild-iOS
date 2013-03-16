@@ -3,7 +3,7 @@
   width: 100% !important;
 }
 #map {
-  width:100%;
+  width:98%;
   height:100%;
   background-color:#CCC9C4;
 }
@@ -13,7 +13,7 @@
   padding: 0;
 }
 .esriSimpleSlider {
-  top: 10px !important;
+  top: 70px !important;
   left: 10px !important;
 }
 #mapOptions {
@@ -163,34 +163,14 @@
   font-size: 15px;
   width: 90%;
 }
-/*.indicatorTitleSelector {
-  display: block;
-  border-bottom: 1px solid #b6b3b3;
-  padding: 15px 10px;
-  text-align: center;
-  text-decoration: none;
-  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.57);
-  color: #7f7f7f;
-  font: 20px/14px GillSans-Regular,"Gill Sans","Gill Sans Regular","Gill Sans MT",sans-serif;
-  -moz-box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
-  -webkit-box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
-  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
-  position: fixed;
-  top: 44px;
-  right: 0px;
-  background-color: #efefef;
-  padding: 15px 0;
-  z-index: 1;
-  line-height: 17px;
-  font-size: 15px;
-  width: 10%;
-}*/
+
 #indicatorSelect {
   width:100%;
   z-index:120;
+  position: absolute;
+  top: 44px;
 }
 span.customSelect {
-  display: block;
   border-bottom: 1px solid #b6b3b3;
   padding: 15px 10px;
   text-align: center;
@@ -202,15 +182,13 @@ span.customSelect {
   -webkit-box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.57);
   background-color: #efefef;
-  padding: 15px 0;
   z-index: 1;
   line-height: 17px;
   font-size: 15px;
-  height: 35px;
 }
 span.customSelect.changed {
   background-color: #f0dea4;
 }
 .customSelectInner {
-  background:url(../img/customSelect-arrow.gif) no-repeat center -10px;
+  /*background:url(../img/customSelect-arrow.gif) no-repeat center -10px;*/
 }
