@@ -7,9 +7,9 @@ Config.dynamicLayer = {
 }
 
 Config.mapDefaults = {
-  centerX: 20,
-  centerY: 40,
-  zoom: 3
+  centerX: 33,
+  centerY: 8,
+  zoom: 4
 }
 
 Config.mapDefaults.phone = {
@@ -102,7 +102,7 @@ Config.dynamicLayerInfo = [{
       "uniqueValueInfos": [{
         "value": "KE",
         "symbol": {
-          "color": [253, 204, 138, 255],
+          "color": [253, 204, 138,255],
           "outline": {
             "color": [0, 0, 0, 0],
             "width": 0.75,
@@ -115,7 +115,7 @@ Config.dynamicLayerInfo = [{
       }, {
         "value": "UG",
         "symbol": {
-          "color": [179, 0, 0, 255],
+          "color": [179, 0, 0,255],
           "outline": {
             "color": [0, 0, 0, 0],
             "width": 0.75,

@@ -136,7 +136,7 @@ function CountriesIndicatorsController($scope, $routeParams, $http) {
   $scope.showInfo = function(index){
     document.getElementById("indicatorDescription").style.visibility = "visible";
     document.getElementById("indicatorDescriptionContent").innerHTML = "<img src='./img/close_24x24.png' height='24px' width='24px' ng-click='hideDescription()'/>"+
-    "<p>"+defs[index]+"</p>";
+    "<h5 style='text-decoration: underline;margin: 5px 10px;'>"+$scope.indicatorLabels[index][0]+"</h5>"+"<p>"+defs[index]+"</p>";
   }
 
   $scope.hideDescription = function() {
@@ -258,7 +258,7 @@ function IndicatorCountriesController($scope,$http,$routeParams,$timeout) {
   $scope.showInfo = function(){
     document.getElementById("indicatorDescription").style.visibility = "visible";
     document.getElementById("indicatorDescriptionContent").innerHTML = "<img src='./img/close_24x24.png' height='24px' width='24px' ng-click='hideDescription()'/>"+
-    "<p>"+defs[Config.indicatorDefsLookup[$scope.IndicatorLabel]]+"</p>";
+    "<h5 style='text-decoration: underline;margin: 5px 10px;'>"+$scope.IndicatorLabel+"</h5>"+"<p>"+defs[Config.indicatorDefsLookup[$scope.IndicatorLabel]]+"</p>";
   }
 
   $scope.hideDescription = function() {
@@ -745,14 +745,15 @@ function MappingController($http,$timeout,$scope) {
             dojo.forEach(indicatorYears,function(year){
               dojo.forEach(indicatorValues,function(value,index){
                 if (index == location){
-                  chartValue = (value[year] === undefined ? 0 : value[year]);
-                  if (typeof year == "string")
-                    yearValue = parseInt(year.slice(0,4));
-                  else
-                    yearValue = year;
-                  //chartData.push({x:yearValue,y:chartValue});
-                  chartData.push(chartValue);
-                  chartLabels.push(yearValue); // For Bar Charts
+                  if (value[year] === undefined) {} else {
+                    chartValue = value[year];
+                    if (typeof year == "string")
+                      yearValue = parseInt(year.slice(0,4));
+                    else
+                      yearValue = year;
+                    chartData.push(chartValue);
+                    chartLabels.push(yearValue);
+                  }
                 }
               });
             });
@@ -761,48 +762,52 @@ function MappingController($http,$timeout,$scope) {
             document.getElementById("myInfoWindow").style.display = "block";
             document.getElementById("myInfoWindowTitle").innerHTML = item.label;
             document.getElementById("myInfoWindowContent").innerHTML = content;
-            var chart = new Highcharts.Chart({
-              chart: {
-                renderTo: 'chartDiv',
-                type: 'column'
-              },
-              title: {
-                text: null
-              },
-              xAxis: {
-                categories: chartLabels,
+            if (chartData.length > 0) {
+              var chart = new Highcharts.Chart({
+                chart: {
+                  renderTo: 'chartDiv',
+                  type: 'column'
+                },
                 title: {
                   text: null
-                }
-              },
-              yAxis: {
-                min: 0,
-                title: {
-                  text: '',
-                  align: 'high'
-                }
-              },
-              tooltip: {
-                enabled: false
-              },
-              plotOptions: {
-                column: {
-                  dataLabels: {
-                    enabled: true
+                },
+                xAxis: {
+                  categories: chartLabels,
+                  title: {
+                    text: null
                   }
-                }
-              },
-              legend: {
-                enabled: false
-              },
-              credits: {
-                enabled: false
-              },
-              series: [{
-                name: $scope.CountryName,
-                data: chartData
-              }]
-            }); // End Chart
+                },
+                yAxis: {
+                  min: 0,
+                  title: {
+                    text: '',
+                    align: 'high'
+                  }
+                },
+                tooltip: {
+                  enabled: false
+                },
+                plotOptions: {
+                  column: {
+                    dataLabels: {
+                      enabled: true
+                    }
+                  }
+                },
+                legend: {
+                  enabled: false
+                },
+                credits: {
+                  enabled: false
+                },
+                series: [{
+                  name: $scope.CountryName,
+                  data: chartData
+                }]
+              }); // End Chart
+            } else {
+              document.getElementById("chartDiv").innerHTML = "<p>There is no data for this particular Indicator.</p>";
+            }
           } // End if we had a match
         }); // End for-each
       }); // End Deferred Callback
@@ -816,19 +821,19 @@ function MappingController($http,$timeout,$scope) {
 
     var class1Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([253, 204, 138,1]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([253, 204, 138,.5]));
 
     var class2Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([252, 141, 89,1]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([252, 141, 89,.5]));
 
     var class3Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([227, 74, 51,1]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([227, 74, 51,.5]));
 
     var class4Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([179, 0, 0,1]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([179, 0, 0,.5]));
 
     // Set up the renderer
     var renderer = new esri.renderer.UniqueValueRenderer(defaultSymbol,"DHS_CC");
@@ -840,12 +845,14 @@ function MappingController($http,$timeout,$scope) {
       class4Min,class4Max;
       var c1First = true, c2First = true, c3First = true,c4First = true;
       var c1 = [], c2 = [], c3 = [], c4 = [];
-      //renderer.addValue('BR',class1Symbol);
-      //renderer.addValue('BD',class4Symbol);
+      //renderer.addValue('KE',class1Symbol);
+      //renderer.addValue('UG',class4Symbol);
+      //renderer.addValue('TZ',class1Symbol);
+      //renderer.addValue('RW',class4Symbol);
       for (var i = 0; i < Global.getCountries.length;i++) {
         switch(indData[i].class){
           case 1:
-            renderer.addValue(indData[i].countryCode,class1Symbol);
+            //renderer.addValue(indData[i].countryCode,class1Symbol);
             c1.push(indData[i].countryCode);
             if (c1First) {
               class1Min = class1Max = indData[i].val;
@@ -855,7 +862,7 @@ function MappingController($http,$timeout,$scope) {
             class1Max = Math.max(class1Max,indData[i].val);
             break;
           case 2:
-            renderer.addValue(indData[i].countryCode,class2Symbol);
+            //renderer.addValue(indData[i].countryCode,class2Symbol);
             c2.push(indData[i].countryCode);
             if (c2First) {
               class2Min = class2Max = indData[i].val;
@@ -865,7 +872,7 @@ function MappingController($http,$timeout,$scope) {
             class2Max = Math.max(class2Max,indData[i].val);
             break;
           case 3:
-            renderer.addValue(indData[i].countryCode,class3Symbol);
+            //renderer.addValue(indData[i].countryCode,class3Symbol);
             c3.push(indData[i].countryCode);
             if (c3First) {
               class3Min = class3Max = indData[i].val;
@@ -875,7 +882,7 @@ function MappingController($http,$timeout,$scope) {
             class3Max = Math.max(class3Max,indData[i].val);
             break;
           case 4:
-            renderer.addValue(indData[i].countryCode,class4Symbol);
+            //renderer.addValue(indData[i].countryCode,class4Symbol);
             c4.push(indData[i].countryCode);
             if (c4First) {
               class4Min = class4Max = indData[i].val;
@@ -1070,61 +1077,67 @@ function CountryIndicatorSpecifics($scope,$routeParams,$timeout) {
   $.each(indicatorYears,function(i,year){
     $.each(indicatorValues,function(index,value){
       if (index == location){
-        chartValue = (value[year] === undefined ? 0 : value[year]);
-        if (typeof year == "string")
-          yearValue = parseInt(year.slice(0,4));
-        else
-          yearValue = year;
+        if (value[year] === undefined){} else {
+          chartValue = value[year];
+          if (typeof year == "string")
+            yearValue = parseInt(year.slice(0,4));
+          else
+            yearValue = year;
 
-        chartData.push(chartValue);
-        chartLabels.push(yearValue); // For Bar Charts
+          chartData.push(chartValue);
+          chartLabels.push(yearValue); // For Bar Charts
+        }
       }
     });
   });
 
   // Create Chart
-  var chart = new Highcharts.Chart({
-    chart: {
-      renderTo: 'chartContainer',
-      type: 'column'
-    },
-    title: {
-      text: null
-    },
-    xAxis: {
-      categories: chartLabels,
+  if (chartData.length > 0) {
+    var chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'chartContainer',
+        type: 'column'
+      },
       title: {
         text: null
-      }
-    },
-    yAxis: {
-      min: 0,
-      title: {
-        text: '',
-        align: 'high'
-      }
-    },
-    tooltip: {
-      enabled: false
-    },
-    plotOptions: {
-      column: {
-        dataLabels: {
-          enabled: true
+      },
+      xAxis: {
+        categories: chartLabels,
+        title: {
+          text: null
         }
-      }
-    },
-    legend: {
-      enabled: false
-    },
-    credits: {
-      enabled: false
-    },
-    series: [{
-      name: $scope.CountryName,
-      data: chartData
-    }]
-  });
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: '',
+          align: 'high'
+        }
+      },
+      tooltip: {
+        enabled: false
+      },
+      plotOptions: {
+        column: {
+          dataLabels: {
+            enabled: true
+          }
+        }
+      },
+      legend: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+        name: $scope.CountryName,
+        data: chartData
+      }]
+    });
+  } else {
+    document.getElementById("chartContainer").innerHTML = "<p>There is no data for this particular Indicator.</p>";
+  }
 
   if ($routeParams.Previous == "Country")
     $scope.prevUrl = "#/Countries/"+$routeParams.CountryName+"/"+$routeParams.CountryId+"/Quickstats/"+$routeParams.Previous;
