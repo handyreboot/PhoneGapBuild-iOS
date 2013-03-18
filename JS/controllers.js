@@ -713,7 +713,7 @@ function MappingController($http,$timeout,$scope) {
     //var DHSMapLayer = new esri.layers.ArcGISDynamicMapServiceLayer(Config.dynamicLayer.url,{
       id: Config.dynamicLayer.id,
       imageParameters:imageParams,
-      opacity: .5
+      opacity: .75
     });
 
     map.addLayer(DHSMapLayer);
