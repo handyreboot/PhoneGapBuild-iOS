@@ -55,8 +55,21 @@ function manualCheckForUpdates() {
   //});
 
 }
+function resizeWidgets(view) {
+  switch (view){
+    case "partials/CountryIndicatorSpecifics.html":
+      $.each(Config.unresponsiveWidgets,function(index,widget){
+        $(widget).css('width','100%');
+      });
+      break;
+    case "partials/Map.html":
+      $.each(Config.unresponsiveWidgets,function(index,widget){
+        $(widget).css('width','100%');
+      });
+      break;
+  }
 
-
+}
 // To be used in PhoneGap Version
 function changeView(view) {
 	//debug('#/'+view);

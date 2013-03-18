@@ -85,6 +85,7 @@ Config.dynamicLayerInfo = [{
     "mapLayerId": 3
   },
   "drawingInfo": {
+    //"serviceUrl":"http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer",
     "renderer": {
       "type": "uniqueValue",
       "field1": "DHS_CC",
@@ -155,3 +156,99 @@ Config.dynamicLayerInfo = [{
     }
   }
 }];
+
+Config.test = [
+  {
+    "drawingInfo": {
+      "serviceUrl":"http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer",
+      "renderer": {
+        "field1": "DHS_CC",
+        "uniqueValueInfos": [
+          {
+            "symbol": {
+              "color": [
+                255,
+                120,
+                55,
+                128
+              ],
+              "style": "esriSFSSolid",
+              "type": "esriSFS",
+              "outline": {
+                "color": [
+                  28,
+                  39,
+                  44,
+                  26
+                ],
+                "width": 0.75,
+                "style": "esriSLSSolid",
+                "type": "esriSLS"
+              }
+            },
+            "values": ["UG", "RW","KE"] ,
+            "labels": ["UG", "RW","KE"]
+          },
+          {
+            "symbol": {
+              "color": [
+                0,
+                0,
+                255,
+                128
+              ],
+              "style": "esriSFSSolid",
+              "type": "esriSFS",
+              "outline": {
+                "color": [
+                  28,
+                  39,
+                  44,
+                  26
+                ],
+                "width": 0.75,
+                "style": "esriSLSSolid",
+                "type": "esriSLS"
+              }
+            },
+            "values": ["BR", "TZ"] ,
+            "labels": ["BR", "TZ"]
+          }
+        ],
+        "type": "uniqueValue",
+        "defaultSymbol": {
+          "color": [
+            168,
+            179,
+            113,
+            179
+          ],
+          "style": "esriSFSSolid",
+          "type": "esriSFS",
+          "outline": {
+            "color": [
+              28,
+              39,
+              44,
+              26
+            ],
+            "width": 0.75,
+            "style": "esriSLSSolid",
+            "type": "esriSLS"
+          }
+        },
+        "fieldDelimiter": ","
+      }
+    },
+    "id": 3,
+    "source": {
+      "mapLayerId": 3,
+      "type": "mapLayer"
+    }
+  }
+];
+
+Config.unresponsiveWidgets = [
+  ".customSelectInner",
+  ".customSelect"
+]

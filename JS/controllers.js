@@ -568,6 +568,11 @@ function InfoController($scope,$http) {
 /**********************************************************************************************/
 function footerController($scope,$route,$window, $location) {
 	$scope.$on('$viewContentLoaded',function(){
+
+    $(window).resize(function(){
+      resizeWidgets($route.current.$route.templateUrl);
+    });
+
 		switch ($route.current.$route.templateUrl) {
 			case 'partials/Homepage.html' :
 				/* Set the App Footer position to Absolute for this view TODO Android Specific Code Here
@@ -618,7 +623,7 @@ function footerController($scope,$route,$window, $location) {
 				$scope.Surveys = '';
 				$scope.Home = '';
 				$scope.Maps = 'selected';
-				break;					
+				break;
 		}
 	});
 	
@@ -652,20 +657,16 @@ function MappingController($http,$timeout,$scope) {
       },
       getImageUrl: function(extent,width,height,callback){
         var params = {
-          // Move To
-          //serviceUrl: "http://ags101.blueraster.net/arcgis/rest/services/sdr/spatialDataExport/MapServer/",
-          dynamicLayers: JSON.stringify(Config.dynamicLayerInfo),
+          dynamicLayers: JSON.stringify(Config.dynamicLayerInfo),//Config.test
           transparent:true,
           dpi: 96,
-          format:"png8",
+          format:"png24",
           layers:"show:1,3",
           f:"image",
           imageSR:102100,
           bboxSR:102100,
           bbox: extent.xmin + "," + extent.ymin + "," + extent.xmax + "," + extent.ymax,
           size: width+","+height
-          //width: width,
-          //height:height
         }
         callback(Config.dynamicLayer.url+"/export?"+dojo.objectToQuery(params));
         //callback(this.url+"/export?"+dojo.objectToQuery(params));
@@ -709,6 +710,7 @@ function MappingController($http,$timeout,$scope) {
 
     // Config.dynamicLayer.url
     var DHSMapLayer = new CustomDynamicLayer("http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer/exts/DynamicLayersRESTSOE",{
+    //var DHSMapLayer = new esri.layers.ArcGISDynamicMapServiceLayer(Config.dynamicLayer.url,{
       id: Config.dynamicLayer.id,
       imageParameters:imageParams
     });
@@ -821,19 +823,19 @@ function MappingController($http,$timeout,$scope) {
 
     var class1Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([253, 204, 138,.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([253, 204, 138,1]));
 
     var class2Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([252, 141, 89,.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([252, 141, 89,1]));
 
     var class3Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([227, 74, 51,.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([227, 74, 51,1]));
 
     var class4Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID,
     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-    new dojo.Color([0,0,0,0]), 1),new dojo.Color([179, 0, 0,.5]));
+    new dojo.Color([0,0,0,0]), 1),new dojo.Color([179, 0, 0,1]));
 
     // Set up the renderer
     var renderer = new esri.renderer.UniqueValueRenderer(defaultSymbol,"DHS_CC");
@@ -900,7 +902,7 @@ function MappingController($http,$timeout,$scope) {
         {symbol:class4Symbol,values:c4,labels:c4}
       ];
       renderer.uniqueValueInfos = uniqueInfo;
-      //Config.dynamicLayerInfo[1].drawingInfo.renderer.uniqueValueInfos = uniqueInfo;
+      //Config.test[0].drawingInfo.renderer.uniqueValueInfos = uniqueInfo;
       var ldos = [];
       var ldo = new esri.layers.LayerDrawingOptions();
       ldo.renderer = renderer;
@@ -1054,7 +1056,7 @@ function IndicatorInfoController($scope,$routeParams,$http) {
 
 // Uses CountryIndicatorSpecifics.html
 // Countries/:CountryName/:CountryId/Quickstats/:Previous/:IndicatorLabel/:IndicatorId'
-function CountryIndicatorSpecifics($scope,$routeParams,$timeout) {
+function CountryIndicatorSpecifics($scope,$routeParams,$timeout,$window) {
 
   var chartData,chartLabels,location,countryData,indicatorYears,indicatorValues;
 
