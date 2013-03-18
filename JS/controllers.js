@@ -656,6 +656,7 @@ function MappingController($http,$timeout,$scope) {
       },
       getImageUrl: function(extent,width,height,callback){
         var params = {
+          //serviceUrl: "http://ags101.blueraster.net/arcgis/rest/services/sdr/spatialDataExport/MapServer/",
           dynamicLayers: JSON.stringify(Config.dynamicLayerInfo),//Config.test
           transparent:true,
           dpi: 96,
@@ -665,7 +666,7 @@ function MappingController($http,$timeout,$scope) {
           imageSR:102100,
           bboxSR:102100,
           bbox: extent.xmin + "," + extent.ymin + "," + extent.xmax + "," + extent.ymax,
-          size: width+","+height
+          size: width+","+height,
         }
         callback(Config.dynamicLayer.url+"/export?"+dojo.objectToQuery(params));
         //callback(this.url+"/export?"+dojo.objectToQuery(params));
@@ -708,8 +709,8 @@ function MappingController($http,$timeout,$scope) {
     imageParams.layerOption = esri.layers.ImageParameters.LAYER_OPTION_SHOW;
 
     // Config.dynamicLayer.url
-    //var DHSMapLayer = new CustomDynamicLayer("http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer/exts/DynamicLayersRESTSOE",{
-    var DHSMapLayer = new esri.layers.ArcGISDynamicMapServiceLayer(Config.dynamicLayer.url,{
+    var DHSMapLayer = new CustomDynamicLayer("http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer/exts/DynamicLayersRESTSOE",{
+    //var DHSMapLayer = new esri.layers.ArcGISDynamicMapServiceLayer(Config.dynamicLayer.url,{
       id: Config.dynamicLayer.id,
       imageParameters:imageParams,
       opacity: .5
