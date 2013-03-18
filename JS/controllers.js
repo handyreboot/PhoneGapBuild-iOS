@@ -1080,6 +1080,7 @@ function CountryIndicatorSpecifics($scope,$routeParams,$timeout,$window) {
   });
 
   $("#indicatorSelect").customSelect();
+  $("<span class='customSelectImage'></span>").insertAfter("#indicatorSelect");
   //$(".customSelectInner").html($scope.IndicatorLabel);
 
   $scope.Flag = Global.getCountryDetailsByCountryCode[$routeParams.CountryId].Flag;
