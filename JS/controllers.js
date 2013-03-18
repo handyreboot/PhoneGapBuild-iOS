@@ -136,7 +136,7 @@ function CountriesIndicatorsController($scope, $routeParams, $http) {
   $scope.showInfo = function(index){
     document.getElementById("indicatorDescription").style.visibility = "visible";
     document.getElementById("indicatorDescriptionContent").innerHTML = "<img src='./img/close_24x24.png' height='24px' width='24px' ng-click='hideDescription()'/>"+
-    "<h5 style='text-decoration: underline;margin: 5px 10px;'>"+$scope.indicatorLabels[index][0]+"</h5>"+"<p>"+defs[index]+"</p>";
+    "<h4 style='margin: 5px 10px;'>"+$scope.indicatorLabels[index][0]+":</h4>"+"<p>"+defs[index]+"</p>";
   }
 
   $scope.hideDescription = function() {
@@ -258,7 +258,7 @@ function IndicatorCountriesController($scope,$http,$routeParams,$timeout) {
   $scope.showInfo = function(){
     document.getElementById("indicatorDescription").style.visibility = "visible";
     document.getElementById("indicatorDescriptionContent").innerHTML = "<img src='./img/close_24x24.png' height='24px' width='24px' ng-click='hideDescription()'/>"+
-    "<h5 style='text-decoration: underline;margin: 5px 10px;'>"+$scope.IndicatorLabel+"</h5>"+"<p>"+defs[Config.indicatorDefsLookup[$scope.IndicatorLabel]]+"</p>";
+    "<h4 style='margin: 5px 10px;'>"+$scope.IndicatorLabel+":</h4>"+"<p>"+defs[Config.indicatorDefsLookup[$scope.IndicatorLabel]]+"</p>";
   }
 
   $scope.hideDescription = function() {
@@ -563,7 +563,6 @@ function InfoController($scope,$http) {
   // Show Last Date Updated
   var date = new Date(localStorage.getItem('Update'));
   $scope.currentDate = (date.getMonth()+1)+'/'+date.getDate()+'/'+date.getFullYear()+' - '+date.getHours()+':'+date.getMinutes();
-  console.log($scope.currentDate);
 }
 /**********************************************************************************************/
 function footerController($scope,$route,$window, $location) {
@@ -709,13 +708,20 @@ function MappingController($http,$timeout,$scope) {
     imageParams.layerOption = esri.layers.ImageParameters.LAYER_OPTION_SHOW;
 
     // Config.dynamicLayer.url
-    var DHSMapLayer = new CustomDynamicLayer("http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer/exts/DynamicLayersRESTSOE",{
-    //var DHSMapLayer = new esri.layers.ArcGISDynamicMapServiceLayer(Config.dynamicLayer.url,{
+    //var DHSMapLayer = new CustomDynamicLayer("http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer/exts/DynamicLayersRESTSOE",{
+    var DHSMapLayer = new esri.layers.ArcGISDynamicMapServiceLayer(Config.dynamicLayer.url,{
       id: Config.dynamicLayer.id,
-      imageParameters:imageParams
+      imageParameters:imageParams,
+      opacity: .5
     });
 
     map.addLayer(DHSMapLayer);
+
+    // Default Layer Defs for Demo
+    var layerdefs = [];
+    layerdefs[1] = "DHS_CC in ('KE','UG','TZ','RW')";
+    layerdefs[3] = "DHS_CC in ('KE','UG','TZ','RW')";
+    DHSMapLayer.setLayerDefinitions(layerdefs);
 
     // Some Defualts for the Map
     var currentData = Global.getDataByIndicator["20171000"];
@@ -847,10 +853,10 @@ function MappingController($http,$timeout,$scope) {
       class4Min,class4Max;
       var c1First = true, c2First = true, c3First = true,c4First = true;
       var c1 = [], c2 = [], c3 = [], c4 = [];
-      //renderer.addValue('KE',class1Symbol);
-      //renderer.addValue('UG',class4Symbol);
-      //renderer.addValue('TZ',class1Symbol);
-      //renderer.addValue('RW',class4Symbol);
+      renderer.addValue('KE',class1Symbol);
+      renderer.addValue('UG',class4Symbol);
+      renderer.addValue('TZ',class1Symbol);
+      renderer.addValue('RW',class4Symbol);
       for (var i = 0; i < Global.getCountries.length;i++) {
         switch(indData[i].class){
           case 1:
@@ -998,7 +1004,10 @@ function MappingController($http,$timeout,$scope) {
 		*/
     // Set up Custom Select
     $("#indicatorSelect").customSelect();
+    $("<span class='customSelectImage'></span>").insertAfter("#indicatorSelect");
+
     $(".customSelectInner").html("Total fertility rate (children per women)");
+    $scope.currentIndicator = "Total fertility rate (children per women)";
 		$scope.changer = '20171000';
 		$scope.changeIndicator = function(changer) {
       currentData = Global.getDataByIndicator[changer.changer];

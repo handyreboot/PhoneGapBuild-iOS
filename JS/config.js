@@ -250,5 +250,6 @@ Config.test = [
 
 Config.unresponsiveWidgets = [
   ".customSelectInner",
-  ".customSelect"
+  ".customSelect",
+  "#indicatorSelect"
 ]

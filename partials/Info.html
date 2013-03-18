@@ -12,25 +12,26 @@
 <h1 class="info-title"><span style="padding-top: 15px;padding-bottom:15px;">Connect with us on Social Media</span></h1>
 <ul class="icon-grid">
 	<li id="facebook">
+    <!-- Android
+    <a href='javascript:void(0)' onclick="window.plugins.childBrowser.showWebPage('https://www.facebook.com/MEASUREDHS',{showLocationBar: true});">Facebook</a>
+    <!-- Android -->
 		<!-- For iOS Only -->
     <a href='fb://profile/61536500527'>Facebook</a>
+    <!-- For iOS Only -->
 	</li>
 	<li id="twitter">
+    <!-- Android
+    <a href="javascript:void(0)" onclick="window.plugins.childBrowser.showWebPage('https://twitter.com/measuredhs',{showLocationBar:true})">Follow</a>
+    <!-- Android -->
     <!-- For iOS Only -->
     <a href="twitter://user?screen_name=MEASUREDHS">Follow</a>
+    <!-- For iOS Only -->
 	</li>
 </ul>
-<div id='updateData' align='center'>
-  <h5 style="padding-bottom: 5px;">Click Here to Update the Data in the Application.</h5>
+<div id='updateData' align='center' style="padding-top: 20px;">
   <button onclick="manualCheckForUpdates()" style="padding: 5px;font-size: 18px;">
-    Update Data
+    Get Latest Data
   </button>
   <br>
   <span id='lastUpdated'>{{currentDate}}</span>
 </div>
-<!--
-<a href='javascript:void(0)' onclick="window.plugins.childBrowser.showWebPage('https://www.facebook.com/MEASUREDHS',{showLocationBar: true});">Facebook</a>
-<a href="javascript:void(0)" onclick="window.plugins.childBrowser.showWebPage('https://twitter.com/measuredhs',{showLocationBar:true})">Follow</a>
-
-<a href="twitter://post?message=hello%20DHS">Twitter</a>
--->
