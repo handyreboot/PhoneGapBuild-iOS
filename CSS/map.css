@@ -193,10 +193,10 @@ span.customSelect.changed {
 
 }
 .customSelectImage {
-  background:url(../img/customSelect-arrow.gif) no-repeat center right;
-  height: 12px;
-  width: 12px;
+  background:url(../img/arrow.png) no-repeat center right;
+  height: 24px;
+  width: 33px;
   position: absolute;
   right: 20px;
-  top: 60px;
+  top: 58px;
 }
