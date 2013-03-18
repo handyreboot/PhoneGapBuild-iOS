@@ -103,7 +103,7 @@ Config.dynamicLayerInfo = [{
       "uniqueValueInfos": [{
         "value": "KE",
         "symbol": {
-          "color": [253, 204, 138,255],
+          "color": [227, 74, 51,255],
           "outline": {
             "color": [0, 0, 0, 0],
             "width": 0.75,
@@ -116,7 +116,7 @@ Config.dynamicLayerInfo = [{
       }, {
         "value": "UG",
         "symbol": {
-          "color": [179, 0, 0,255],
+          "color": [179, 0, 0, 255],
           "outline": {
             "color": [0, 0, 0, 0],
             "width": 0.75,
@@ -129,7 +129,7 @@ Config.dynamicLayerInfo = [{
       },{
         "value":"TZ",
         "symbol":{
-          "color":[227, 74, 51,255],
+          "color":[179, 0, 0, 255],
           "outline":{
             "color":[0,0,0,0],
             "width":0.75,
@@ -142,7 +142,7 @@ Config.dynamicLayerInfo = [{
       },{
           "value":"RW",
           "symbol":{
-            "color":[252,141,89,255],
+            "color":[227, 74, 51,255],
             "outline":{
               "color":[0,0,0,0],
               "width":0.75,
