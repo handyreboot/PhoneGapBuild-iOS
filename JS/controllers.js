@@ -1061,14 +1061,14 @@ function CountryIndicatorSpecifics($scope,$routeParams,$timeout) {
   $('#detailsAccordion').accordion();
   $('#detailsAccordion').accordion("option","icons",{ 'header': 'accordionCollapse', 'headerSelected': 'accordionExpand' });
   $timeout(function() {
-    if($('#indicatorSelect').css('height') == '46px')
-      $('#detailsAccordion').css('top','46px');
+    if($('.customSelect').css('height') == '17px')
+      $('#detailsAccordion').css('top','45px');
     else
-      $('#detailsAccordion').css('top','63px');
+      $('#detailsAccordion').css('top','62px');
   });
 
   $("#indicatorSelect").customSelect();
-  $(".customSelectInner").html($scope.IndicatorLabel);
+  //$(".customSelectInner").html($scope.IndicatorLabel);
 
   $scope.Flag = Global.getCountryDetailsByCountryCode[$routeParams.CountryId].Flag;
   $scope.CountryName = $routeParams.CountryName;
@@ -1119,13 +1119,16 @@ function CountryIndicatorSpecifics($scope,$routeParams,$timeout) {
   });
 
   // Support Functions
-  $scope.changer = $routeParams.IndicatorId;
+  $scope.changer = $routeParams.IndicatorLabel;
   $scope.changeIndicator = function(changer) {
     chartData = [], chartLabels = [];
-    if (typeof changer === 'string')
+    if (typeof changer === 'string'){
       location = Config.indicatorDefsLookup[changer];
-    else
-      location = Config.indicatorDefsLookup[changer.changer]
+      $('.customSelectInner').html(changer);
+    } else {
+      location = Config.indicatorDefsLookup[changer.changer];
+      $('.customSelectInner').html(changer.changer);
+    }
     countryData = Global.getDataByCountry[$routeParams.CountryId];
     indicatorYears = countryData.YEARS;
     indicatorValues = countryData.DATA;
@@ -1146,9 +1149,13 @@ function CountryIndicatorSpecifics($scope,$routeParams,$timeout) {
       });
     });
 
-    console.log(chartData.length);
 
     if (chartData.length > 0) {
+      if($('.customSelect').css('height') == '17px')
+        $('#detailsAccordion').css('top','45px');
+      else
+        $('#detailsAccordion').css('top','62px');
+
       $('#chartContainer').css('display','block');
       $('#noChartMessage').css('display','none');
       Global.chart.series[0].setData(chartData);
