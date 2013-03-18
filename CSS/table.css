@@ -1608,6 +1608,10 @@ only screen and (-webkit-device-pixel-ratio:1.5) {
   width: 100%;
   margin-left: -5px;
   padding: 0;
+  display: block;
+}
+#noChartMessage {
+  display: none;
 }
 /************************** Accordion *********************************/
 /************************** Carousel CSS ******************************/

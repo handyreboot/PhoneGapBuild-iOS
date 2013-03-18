@@ -190,5 +190,5 @@ span.customSelect.changed {
   background-color: #f0dea4;
 }
 .customSelectInner {
-  /*background:url(../img/customSelect-arrow.gif) no-repeat center -10px;*/
+  background:url(../img/customSelect-arrow.gif) no-repeat center left;
 }

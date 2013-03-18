@@ -763,7 +763,7 @@ function MappingController($http,$timeout,$scope) {
             document.getElementById("myInfoWindowTitle").innerHTML = item.label;
             document.getElementById("myInfoWindowContent").innerHTML = content;
             if (chartData.length > 0) {
-              var chart = new Highcharts.Chart({
+              Global.chart = new Highcharts.Chart({
                 chart: {
                   renderTo: 'chartDiv',
                   type: 'column'
@@ -1053,91 +1053,116 @@ function IndicatorInfoController($scope,$routeParams,$http) {
 
 
 // Uses CountryIndicatorSpecifics.html
-// Countries/:CountryName/:CountryId/Quickstats/:Previous/Details'
+// Countries/:CountryName/:CountryId/Quickstats/:Previous/:IndicatorLabel/:IndicatorId'
 function CountryIndicatorSpecifics($scope,$routeParams,$timeout) {
+
+  var chartData,chartLabels,location,countryData,indicatorYears,indicatorValues;
 
   $('#detailsAccordion').accordion();
   $('#detailsAccordion').accordion("option","icons",{ 'header': 'accordionCollapse', 'headerSelected': 'accordionExpand' });
   $timeout(function() {
-    if($('#indicatorTitle').css('height') == '17px')
-      $('#detailsAccordion').css('top','45px');
+    if($('#indicatorSelect').css('height') == '46px')
+      $('#detailsAccordion').css('top','46px');
     else
-      $('#detailsAccordion').css('top','62px');
+      $('#detailsAccordion').css('top','63px');
   });
+
+  $("#indicatorSelect").customSelect();
+  $(".customSelectInner").html($scope.IndicatorLabel);
 
   $scope.Flag = Global.getCountryDetailsByCountryCode[$routeParams.CountryId].Flag;
   $scope.CountryName = $routeParams.CountryName;
   $scope.IndicatorLabel = $routeParams.IndicatorLabel;
 
-  var chartData = [], chartLabels = [];
-  var location = Config.indicatorDefsLookup[$scope.IndicatorLabel];
-  var countryData = Global.getDataByCountry[$routeParams.CountryId];
-  var indicatorYears = countryData.YEARS;
-  var indicatorValues = countryData.DATA;
-  $.each(indicatorYears,function(i,year){
-    $.each(indicatorValues,function(index,value){
-      if (index == location){
-        if (value[year] === undefined){} else {
-          chartValue = value[year];
-          if (typeof year == "string")
-            yearValue = parseInt(year.slice(0,4));
-          else
-            yearValue = year;
-
-          chartData.push(chartValue);
-          chartLabels.push(yearValue); // For Bar Charts
-        }
-      }
-    });
-  });
-
   // Create Chart
-  if (chartData.length > 0) {
-    var chart = new Highcharts.Chart({
-      chart: {
-        renderTo: 'chartContainer',
-        type: 'column'
-      },
+  Global.chart = new Highcharts.Chart({
+    chart: {
+      renderTo: 'chartContainer',
+      type: 'column'
+    },
+    title: {
+      text: null
+    },
+    xAxis: {
+      categories: chartLabels,
       title: {
         text: null
-      },
-      xAxis: {
-        categories: chartLabels,
-        title: {
-          text: null
+      }
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: '',
+        align: 'high'
+      }
+    },
+    tooltip: {
+      enabled: false
+    },
+    plotOptions: {
+      column: {
+        dataLabels: {
+          enabled: true
         }
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: '',
-          align: 'high'
-        }
-      },
-      tooltip: {
-        enabled: false
-      },
-      plotOptions: {
-        column: {
-          dataLabels: {
-            enabled: true
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    credits: {
+      enabled: false
+    },
+    series: [{
+      name: $scope.CountryName,
+      data: chartData
+    }]
+  });
+
+  // Support Functions
+  $scope.changer = $routeParams.IndicatorId;
+  $scope.changeIndicator = function(changer) {
+    chartData = [], chartLabels = [];
+    if (typeof changer === 'string')
+      location = Config.indicatorDefsLookup[changer];
+    else
+      location = Config.indicatorDefsLookup[changer.changer]
+    countryData = Global.getDataByCountry[$routeParams.CountryId];
+    indicatorYears = countryData.YEARS;
+    indicatorValues = countryData.DATA;
+    $.each(indicatorYears,function(i,year){
+      $.each(indicatorValues,function(index,value){
+        if (index == location){
+          if (value[year] === undefined){} else {
+            chartValue = value[year];
+            if (typeof year == "string")
+              yearValue = parseInt(year.slice(0,4));
+            else
+              yearValue = year;
+
+            chartData.push(chartValue);
+            chartLabels.push(yearValue); // For Bar Charts
           }
         }
-      },
-      legend: {
-        enabled: false
-      },
-      credits: {
-        enabled: false
-      },
-      series: [{
-        name: $scope.CountryName,
-        data: chartData
-      }]
+      });
     });
-  } else {
-    document.getElementById("chartContainer").innerHTML = "<p>There is no data for this particular Indicator.</p>";
+
+    console.log(chartData.length);
+
+    if (chartData.length > 0) {
+      $('#chartContainer').css('display','block');
+      $('#noChartMessage').css('display','none');
+      Global.chart.series[0].setData(chartData);
+      Global.chart.xAxis[0].setCategories(chartLabels);
+    } else {
+      $('#chartContainer').css('display','none');
+      $('#noChartMessage').css('display','block');
+      document.getElementById("noChartMessage").innerHTML = "<p>There is no data for this particular Indicator.</p>";
+    }
+
   }
+
+  // Call the Chart
+  $scope.changeIndicator($scope.IndicatorLabel);
 
   if ($routeParams.Previous == "Country")
     $scope.prevUrl = "#/Countries/"+$routeParams.CountryName+"/"+$routeParams.CountryId+"/Quickstats/"+$routeParams.Previous;

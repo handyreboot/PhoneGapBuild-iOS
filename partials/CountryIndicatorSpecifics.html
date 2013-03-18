@@ -2,14 +2,40 @@
   <h3 ng-cloak ng-class="{true:'headerViewTitleCountriesOnlySmall',false:'headerViewTitleCountriesOnly'}[CountryName.length >= 20]" ng-bind="CountryName"></h3>
   <img class='headerViewImage' height="30px" width='40px;' ng-src="data:image/png;base64,{{Flag}}">
   <div id="ios-arrow-left" onclick='backButton("{{prevUrl}}")' title="Back"></div>
+  <select id="indicatorSelect" ng-model="changer" ng-change="changeIndicator(this)">
+    <option value='Total fertility rate (children per women)'>Total fertility rate (children per women)</option>
+    <option value='Percentage of married women currently using any method of family planning'>Percentage of married women currently using any method of family planning</option>
+    <option value='Percentage of married women currently using any modern method of family planning'>Percentage of married women currently using any modern method of family planning</option>
+    <option value='Percentage of married women with an unmet need for family planning (Revised)'>Percentage of married women with an unmet need for family planning (Revised)</option>
+    <option value='Median age at first marriage for women age 25-49 (years)'>Median age at first marriage for women age 25-49 (years)</option>
+    <option value='Median age at first sex for women age 25-49 (years)'>Median age at first sex for women age 25-49 (years)</option>
+    <option value='Infant mortality rate (per 1,000 live births)'>Infant mortality rate (per 1,000 live births)</option>
+    <option value='Under-five mortality rate (per 1,000 live births)'>Under-five mortality rate (per 1,000 live births)</option>
+    <option value='Percentage of live births delivered at a health facility'>Percentage of live births delivered at a health facility</option>
+    <option value='Percentage of children underweight (-2 SD)'>Percentage of children underweight (-2 SD)</option>
+    <option value='Percentage of children stunted (-2 SD)'>Percentage of children stunted (-2 SD)</option>
+    <option value='Percentage of children wasted (-2 SD)'>Percentage of children wasted (-2 SD)</option>
+    <option value='Percentage of children fully immunized'>Percentage of children fully immunized</option>
+    <option value='Percentage of children with diarrhea who received either ORS or RHS'>Percentage of children with diarrhea who received either ORS or RHS</option>
+    <option value='Median exclusive breastfeeding duration (months)'>Median exclusive breastfeeding duration (months)</option>
+    <option value='Percentage of children < 5 sleeping under an ITN the night before the survey'>Percentage of children < 5 sleeping under an ITN the night before the survey</option>
+    <option value='HIV prevalence among general population: Both sexes'>HIV prevalence among general population: Both sexes</option>
+    <option value='HIV prevalence among general population: Women'>HIV prevalence among general population: Women</option>
+    <option value='HIV prevalence among general population: Men'>HIV prevalence among general population: Men</option>
+    <option value='Population receiving an HIV test and receiving test results in the last 12 months: Women'>Population receiving an HIV test and receiving test results in the last 12 months: Women</option>
+    <option value='Population receiving an HIV test and receiving test results in the last 12 months: Men'>Population receiving an HIV test and receiving test results in the last 12 months: Men</option>
+    <option value='Percentage of women who are literate'>Percentage of women who are literate</option>
+    <option value='Percentage of respondents with secondary or higher education'>Percentage of respondents with secondary or higher education</option>
+    <option value='Percentage of households with electricity'>Percentage of households with electricity</option>
+  </select>
 </header>
 
 <div style="height:100%;">
-  <h1 id="indicatorTitle" class="indicator-title" ng-bind="IndicatorLabel"></h1>
   <div id="detailsAccordion">
     <h3>Graph</h3>
       <div class="chartAccordion">
         <div id="chartContainer"></div>
+        <div id="noChartMessage"></div>
       </div>
     <h3>Residence</h3>
       <div>
