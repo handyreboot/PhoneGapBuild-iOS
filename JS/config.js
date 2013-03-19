@@ -163,75 +163,74 @@ Config.test = [
       "serviceUrl":"http://gis101.measuredhs.com/arcgis/rest/services/production/StatCompiler/MapServer",
       "renderer": {
         "field1": "DHS_CC",
-        "uniqueValueInfos": [
-          {
+        "uniqueValueInfos": [{
             "symbol": {
-              "color": [
-                255,
-                120,
-                55,
-                128
-              ],
+              "color": [253,204,138,255],
               "style": "esriSFSSolid",
               "type": "esriSFS",
               "outline": {
-                "color": [
-                  28,
-                  39,
-                  44,
-                  26
-                ],
+                "color": [0,0,0,0],
                 "width": 0.75,
                 "style": "esriSLSSolid",
                 "type": "esriSLS"
               }
             },
-            "values": ["UG", "RW","KE"] ,
-            "labels": ["UG", "RW","KE"]
+            "values": ["KE","UG"],
+            "labels": ["KE","UG"]
+          }/*,
+          {
+            "symbol": {
+              "color": [252,141,89,255],
+              "style": "esriSFSSolid",
+              "type": "esriSFS",
+              "outline": {
+                "color": [28,39,44,26],
+                "width": 0.75,
+                "style": "esriSLSSolid",
+                "type": "esriSLS"
+              }
+            },
+            "values": ["RW", "TZ"],
+            "labels": ["RW", "TZ"]
           },
           {
             "symbol": {
-              "color": [
-                0,
-                0,
-                255,
-                128
-              ],
+              "color": [227,74,51,255],
               "style": "esriSFSSolid",
               "type": "esriSFS",
               "outline": {
-                "color": [
-                  28,
-                  39,
-                  44,
-                  26
-                ],
+                "color": [0,0,0,0],
                 "width": 0.75,
                 "style": "esriSLSSolid",
                 "type": "esriSLS"
               }
             },
-            "values": ["BR", "TZ"] ,
-            "labels": ["BR", "TZ"]
-          }
+            "values": [],
+            "labels": []
+          },
+          {
+            "symbol": {
+              "color": [179,0,0,255],
+              "style": "esriSFSSolid",
+              "type": "esriSFS",
+              "outline": {
+                "color": [0,0,0,0],
+                "width": 0.75,
+                "style": "esriSLSSolid",
+                "type": "esriSLS"
+              }
+            },
+            "values": [],
+            "labels": []
+          }*/
         ],
         "type": "uniqueValue",
         "defaultSymbol": {
-          "color": [
-            168,
-            179,
-            113,
-            179
-          ],
+          "color": [0,0,0,0],
           "style": "esriSFSSolid",
           "type": "esriSFS",
           "outline": {
-            "color": [
-              28,
-              39,
-              44,
-              26
-            ],
+            "color": [0,0,0,0],
             "width": 0.75,
             "style": "esriSLSSolid",
             "type": "esriSLS"

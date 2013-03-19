@@ -656,8 +656,7 @@ function MappingController($http,$timeout,$scope) {
       },
       getImageUrl: function(extent,width,height,callback){
         var params = {
-          //serviceUrl: "http://ags101.blueraster.net/arcgis/rest/services/sdr/spatialDataExport/MapServer/",
-          dynamicLayers: JSON.stringify(Config.dynamicLayerInfo),//Config.test
+          dynamicLayers: JSON.stringify(Config.test),//Config.dynamicLayerInfo
           transparent:true,
           dpi: 96,
           format:"png24",
@@ -666,14 +665,13 @@ function MappingController($http,$timeout,$scope) {
           imageSR:102100,
           bboxSR:102100,
           bbox: extent.xmin + "," + extent.ymin + "," + extent.xmax + "," + extent.ymax,
-          size: width+","+height,
+          size: width+","+height
         }
-        callback(Config.dynamicLayer.url+"/export?"+dojo.objectToQuery(params));
-        //callback(this.url+"/export?"+dojo.objectToQuery(params));
+        //callback(Config.dynamicLayer.url+"/export?"+dojo.objectToQuery(params));
+        callback(this.url+"/export?"+dojo.objectToQuery(params));
       }
     });
     // Custom Extended Layer
-
     var options;
 		if (window.innerWidth < 450)
       options = Config.mapDefaults.phone;
@@ -854,10 +852,10 @@ function MappingController($http,$timeout,$scope) {
       class4Min,class4Max;
       var c1First = true, c2First = true, c3First = true,c4First = true;
       var c1 = [], c2 = [], c3 = [], c4 = [];
-      renderer.addValue('KE',class1Symbol);
-      renderer.addValue('UG',class4Symbol);
-      renderer.addValue('TZ',class1Symbol);
-      renderer.addValue('RW',class4Symbol);
+      //renderer.addValue('KE',class1Symbol);
+      //renderer.addValue('UG',class4Symbol);
+      //renderer.addValue('TZ',class1Symbol);
+      //renderer.addValue('RW',class4Symbol);
       for (var i = 0; i < Global.getCountries.length;i++) {
         switch(indData[i].class){
           case 1:
@@ -903,18 +901,23 @@ function MappingController($http,$timeout,$scope) {
         }
       }
       var uniqueInfo = [
-        {symbol:class1Symbol,values:c1,labels:c1},
-        {symbol:class2Symbol,values:c2,labels:c2},
-        {symbol:class3Symbol,values:c3,labels:c3},
-        {symbol:class4Symbol,values:c4,labels:c4}
+        {values:c1,labels:c1},
+        {values:c2,labels:c2},
+        {values:c3,labels:c3},
+        {values:c4,labels:c4}
       ];
-      renderer.uniqueValueInfos = uniqueInfo;
-      //Config.test[0].drawingInfo.renderer.uniqueValueInfos = uniqueInfo;
+
+      var rendererData = Config.test[0].drawingInfo.renderer.uniqueValueInfos, index = 0, rendererDataLength = Config.test[0].drawingInfo.renderer.uniqueValueInfos.length;
+      for(index; index < rendererDataLength; index++){
+        rendererData[index].values = uniqueInfo[index].values;
+        rendererData[index].labels = uniqueInfo[index].labels;
+      }
+      /*Config.test[0].drawingInfo.renderer.uniqueValueInfos = uniqueInfo;
       var ldos = [];
       var ldo = new esri.layers.LayerDrawingOptions();
       ldo.renderer = renderer;
       ldos[3] = ldo;
-      DHSMapLayer.setLayerDrawingOptions(ldos);
+      DHSMapLayer.setLayerDrawingOptions(ldos);*/
 
 
       $scope.c1min = class1Min;
