@@ -127,7 +127,6 @@ function CountriesIndicatorsController($scope, $routeParams, $http) {
 	}
 
   // Show Info about Indicator
-  // TODO CSS for this guy is position: fixed, may need to be adjusted for Android, do some testing
   var defs;
   $http.get('data/indicatorDefinitions.json').success(function(data) {
     defs = data.Defs;

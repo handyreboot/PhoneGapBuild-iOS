@@ -1,6 +1,10 @@
 + Some Files have Android Specific Code commented out, those files are:
 	- controllers.js
-	- SurveryInformation.html
+		~ Line 568 (footerController function), and 1196 (HomePageController function), the HomePageController has 4 TODO's to edit for this
+	- SurveyInformation.html
+		~ Lines 79 - 84, and 87 - 92
+	- Info.html
+		~ Lines 15 - 20, and 23 - 28
 
 
 + Release Package Name
