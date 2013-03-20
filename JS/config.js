@@ -177,7 +177,7 @@ Config.test = [
             },
             "values": ["KE","UG"],
             "labels": ["KE","UG"]
-          }/*,
+          },
           {
             "symbol": {
               "color": [252,141,89,255],
@@ -192,7 +192,7 @@ Config.test = [
             },
             "values": ["RW", "TZ"],
             "labels": ["RW", "TZ"]
-          },
+          }/*,
           {
             "symbol": {
               "color": [227,74,51,255],
@@ -205,8 +205,8 @@ Config.test = [
                 "type": "esriSLS"
               }
             },
-            "values": [],
-            "labels": []
+            "values": ["BO", "KH", "EG"],
+            "labels": ["BO", "KH", "EG"]
           },
           {
             "symbol": {
@@ -220,8 +220,8 @@ Config.test = [
                 "type": "esriSLS"
               }
             },
-            "values": [],
-            "labels": []
+            "values": ["GH", "GY", "HT"],
+            "labels": ["GH", "GY", "HT"]
           }*/
         ],
         "type": "uniqueValue",

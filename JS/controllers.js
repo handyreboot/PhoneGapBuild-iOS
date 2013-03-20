@@ -908,9 +908,10 @@ function MappingController($http,$timeout,$scope) {
 
       var rendererData = Config.test[0].drawingInfo.renderer.uniqueValueInfos, index = 0, rendererDataLength = Config.test[0].drawingInfo.renderer.uniqueValueInfos.length;
       for(index; index < rendererDataLength; index++){
-        rendererData[index].values = uniqueInfo[index].values;
-        rendererData[index].labels = uniqueInfo[index].labels;
+        //rendererData[index].values = uniqueInfo[index].values;
+        //rendererData[index].labels = uniqueInfo[index].labels;
       }
+
       /*Config.test[0].drawingInfo.renderer.uniqueValueInfos = uniqueInfo;
       var ldos = [];
       var ldo = new esri.layers.LayerDrawingOptions();
