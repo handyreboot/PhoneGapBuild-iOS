@@ -658,7 +658,7 @@ function MappingController($http,$timeout,$scope) {
           dynamicLayers: JSON.stringify(Config.test),//Config.dynamicLayerInfo
           transparent:true,
           dpi: 96,
-          format:"png24",
+          format:"png32",
           layers:"show:1,3",
           f:"image",
           imageSR:102100,
@@ -908,8 +908,8 @@ function MappingController($http,$timeout,$scope) {
 
       var rendererData = Config.test[0].drawingInfo.renderer.uniqueValueInfos, index = 0, rendererDataLength = Config.test[0].drawingInfo.renderer.uniqueValueInfos.length;
       for(index; index < rendererDataLength; index++){
-        //rendererData[index].values = uniqueInfo[index].values;
-        //rendererData[index].labels = uniqueInfo[index].labels;
+        rendererData[index].values = uniqueInfo[index].values;
+        rendererData[index].labels = uniqueInfo[index].labels;
       }
 
       /*Config.test[0].drawingInfo.renderer.uniqueValueInfos = uniqueInfo;
