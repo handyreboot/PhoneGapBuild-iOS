@@ -2,9 +2,11 @@
 	- controllers.js
 		~ Line 568 (footerController function), and 1196 (HomePageController function), the HomePageController has 4 TODO's to edit for this
 	- SurveyInformation.html
-		~ Lines 79 - 84, and 87 - 92
+		~ Lines 77, and 84 - 89
 	- Info.html
 		~ Lines 15 - 20, and 23 - 28
+	- Index.html
+		~ Line 60, add id to footer element
 
 
 + Release Package Name

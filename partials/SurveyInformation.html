@@ -74,18 +74,15 @@
   		<!-- Online -->
   		<div ng-class="{true:'pubsShow',false:'pubsHide'}[Online == 'Online']">
 	  			<ul class='noBullets'>
-		  			<li ng-repeat='item in Publications' style='padding-bottom: 5px;margin-right: -30px !important;'>
+		  			<li ng-repeat='item in Publications' style='padding-bottom: 5px;margin-right: -30px !important;'><!-- Android Version -- onclick='window.open("{{item.url}}")' Android Version(Add to li element not img) -->
 		  			  <span>
-                <!-- Android Version
-                onclick='window.open("{{item.url}}")'
-                <!-- Android Version -->
                 <!-- iOS Version -->
                 <img alt='{{item.pdfTitle}}' src='{{item.thumbnail}}' height='110px;' onclick="window.plugins.childBrowser.showWebPage('{{item.url}}',{ showLocationBar: true })"/>
                 <!-- iOS Version -->
               </span>
               <span>
                 <!-- Android Version
-                <span><a href="{{item.url}}" target="_blank">{{item.title}}</a></span>
+                <span><a href="{{item.url}}" target="_blank">{{item.title}}</a></span> Probably Don't need this anchor tag in Android
                 <!-- Android Version -->
                 <!-- iOS Version -->
                 <a href="javascript:void(0)" onclick="window.plugins.childBrowser.showWebPage('{{item.url}}',{ showLocationBar: true })">{{item.title}}</a>
